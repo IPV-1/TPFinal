@@ -19,7 +19,7 @@ public class Ball extends MovingGameComponent<FieldScene> {
 	
 
 	public Ball(Color color, double xPos, double yPos, UnitVector2D direction) {
-		super(Resource.getSprite("ball.png"), xPos, yPos, direction.getX(),
+		super(Resource.fromImage("ball.png"), xPos, yPos, direction.getX(),
 				direction.getY(), INITIAL_SPEED);
 	}
 

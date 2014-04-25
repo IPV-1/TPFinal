@@ -11,8 +11,8 @@ import com.uqbar.vainilla.events.constants.Key;
 public class TitleScene extends GameScene {
 	
 	public TitleScene(Game game) {
-		this.addComponent(new GameComponent<GameScene>(Resource.getSprite(
-				"img/scenes", "title.png"), 0, 0) {
+		this.addComponent(new GameComponent<GameScene>(Resource.getImage(
+				"img/scenes/title.png"), 0, 0) {
 			@Override
 			public void update(DeltaState deltaState) {
 				if (deltaState.isKeyPressed(Key.ENTER)) {
