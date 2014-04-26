@@ -2,7 +2,12 @@ package age;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import com.uqbar.vainilla.appearances.Appearance;
+import resource.Resource;
 import scenes.statics.StartScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
@@ -15,9 +20,12 @@ public class AgeOfVainilla extends Game {
 	private ScoreBoard scoreBoard = new ScoreBoard(15, 3, Color.white);
     private LivesBoard livesBoard = new LivesBoard(615, 3, Color.white);
 	private Dimension dimension;
-	
+    private HashMap<String, Resource> resources;
+
 	@Override
 	protected void initializeResources() {
+        this.resources  = new HashMap<String, Resource>();
+        this.resources.put("pointer", Resource.getImage("extras/pointer.png"));
 		dimension = new Dimension(800, 600);
 	}
 
@@ -33,7 +41,7 @@ public class AgeOfVainilla extends Game {
 
 	@Override
 	public String getTitle() {
-		return "Arkanoid";
+		return "Age of Vainilla";
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -47,5 +55,9 @@ public class AgeOfVainilla extends Game {
 	public LivesBoard getLivesBoard() {
 		return livesBoard;
 	}
+
+    public Appearance getResource(String key) {
+        return this.resources.get(key);
+    }
 
 }
