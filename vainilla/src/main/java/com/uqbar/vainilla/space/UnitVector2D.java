@@ -2,7 +2,6 @@ package com.uqbar.vainilla.space;
 
 import java.awt.geom.Point2D;
 
-@Deprecated
 public class UnitVector2D {
 	
 	protected Point2D.Double point;

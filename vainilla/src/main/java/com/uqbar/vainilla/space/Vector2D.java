@@ -25,12 +25,13 @@ public class Vector2D {
 		return vector;
 	}
 
-	public void asUnitVector() {
+	public Vector2D asUnitVector() {
 		if (! this.isUnitVector()) {
 			this.setLocation(this.getX() / this.getModule(),
 					this.getY() / this.getModule());
 			this.setModule(1);
 		}
+		return this;
 	}
 
 	public void sum(Vector2D v2D) {
