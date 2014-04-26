@@ -4,7 +4,7 @@ package utilsTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.uqbar.vainilla.UnitVector2D;
+import com.uqbar.vainilla.space.UnitVector2D;
 
 import static org.junit.Assert.assertTrue;
 

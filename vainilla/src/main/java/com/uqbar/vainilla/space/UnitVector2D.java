@@ -1,4 +1,4 @@
-package com.uqbar.vainilla;
+package com.uqbar.vainilla.space;
 
 import java.awt.geom.Point2D;
 

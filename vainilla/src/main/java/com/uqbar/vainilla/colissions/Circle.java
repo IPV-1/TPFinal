@@ -1,6 +1,6 @@
 package com.uqbar.vainilla.colissions;
 
-import com.uqbar.vainilla.Posicionable;
+import com.uqbar.vainilla.space.Posicionable;
 
 public class Circle extends Posicionable {
 
