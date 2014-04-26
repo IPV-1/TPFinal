@@ -32,11 +32,11 @@ public class Coord {
 		this.y = y;
 	}
 
-	public UnitVector2D getDirectionTo(Coord to) {
+	public Vector2D getDirectionTo(Coord to) {
 		double toX = to.getX() - this.getX();
 		double toY = to.getY() - this.getY();
 		
-		return new UnitVector2D(toX, toY);
+		return new Vector2D(toX, toY);
 	}
 
 }

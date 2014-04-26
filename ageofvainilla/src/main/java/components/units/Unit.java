@@ -11,7 +11,7 @@ import com.uqbar.vainilla.colissions.Circle;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.Coord;
-import com.uqbar.vainilla.space.UnitVector2D;
+import com.uqbar.vainilla.space.Vector2D;
 
 public class Unit extends MovingGameComponent<FieldScene> {
 
@@ -21,7 +21,7 @@ public class Unit extends MovingGameComponent<FieldScene> {
 	private Circle breakMove;
 
 	public Unit(Color color, double xPos, double yPos) {
-		super(new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), SPEED);
+		super(new Rectangle(color, 10, 12), xPos, yPos, new Vector2D(1, 1), SPEED);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class Unit extends MovingGameComponent<FieldScene> {
 
 	public void setMoveTo(Coord moveTo) {
 		this.moveTo = moveTo;
-		this.setDirection(this.getCoord().getDirectionTo(moveTo));
+		this.setVector(this.getCoord().getDirectionTo(moveTo));
 	}
 
 }

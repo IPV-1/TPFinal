@@ -2,40 +2,40 @@ package com.uqbar.vainilla;
 
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.space.Coord;
-import com.uqbar.vainilla.space.UnitVector2D;
+import com.uqbar.vainilla.space.Vector2D;
 
 /**
- * GameComponent with velocity (speed and unit vector)
+ * GameComponent with velocity (speed and vector)
  */
 public class MovingGameComponent<SceneType extends GameScene> extends GameComponent<SceneType> {
 
-	protected UnitVector2D direction;
+	protected Vector2D vector;
 	protected double speed;
 
 	public MovingGameComponent() {
 		super();
-		this.setDirection(new UnitVector2D(1, 1));
+		this.setVector(new Vector2D(1, 1));
 		this.speed = 0;
 	}
 
-	public MovingGameComponent(double xPos, double yPos, UnitVector2D direction, double speed) {
+	public MovingGameComponent(double xPos, double yPos, Vector2D direction, double speed) {
 		super(xPos, yPos);
-		this.setDirection(direction);
+		this.setVector(direction);
 		this.speed = speed;
 	}
 
 	public MovingGameComponent(Appearance appearance, double xPos, double yPos,
-			UnitVector2D direction, double speed) {
+			Vector2D direction, double speed) {
 		super(appearance, xPos, yPos);
-		this.direction = direction;
+		this.vector = direction;
 		this.speed = speed;
 	}
 
 	@Override
 	public void update(DeltaState deltaState) {
-		double xPosition = this.getX() + this.getDirection().getX()
+		double xPosition = this.getX() + this.getVector().getX()
 				* this.getSpeedFactor(deltaState);
-		double yPosition = this.getY() + this.getDirection().getY()
+		double yPosition = this.getY() + this.getVector().getY()
 				* this.getSpeedFactor(deltaState);
 		this.setX(xPosition);
 		this.setY(yPosition);
@@ -59,12 +59,12 @@ public class MovingGameComponent<SceneType extends GameScene> extends GameCompon
 		this.speed = speed;
 	}
 	
-	public UnitVector2D getDirection() {
-		return this.direction;
+	public Vector2D getVector() {
+		return this.vector;
 	}
 	
-	public void setDirection(UnitVector2D direction) {
-		this.direction = direction;
+	public void setVector(Vector2D vector) {
+		this.vector = vector;
 	}
 	
 	public Coord getCoord() {
