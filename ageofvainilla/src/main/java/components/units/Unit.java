@@ -26,7 +26,7 @@ public class Unit extends MovingGameComponent<FieldScene> {
 
 	@Override
 	public void update(DeltaState deltaState) {
-		if(deltaState.isMouseButtonReleased(MouseButton.LEFT)) {
+		if(deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
 			this.setMoveTo(new Coord(deltaState.getCurrentMousePosition()));
 			this.updateBreakMove();
 			moving = true;
