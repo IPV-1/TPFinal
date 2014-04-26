@@ -68,11 +68,12 @@ public class GameComponent<SceneType extends GameScene> {
 	// ****************************************************************
 	// ** ALIGNMENT OPERATIONS
 	// ****************************************************************
-	
+
 	public void horizontalCenterRespect(GameComponent<?> component) {
-		this.alignHorizontalCenterTo(component.getX() + component.getWidth() / 2);
+		this.alignHorizontalCenterTo(component.getX() + component.getWidth()
+				/ 2);
 	}
-	
+
 	public void verticalCenterRespect(GameComponent<?> component) {
 		this.alignVerticalCenterTo(component.getY() + component.getHeight() / 2);
 	}
@@ -104,24 +105,24 @@ public class GameComponent<SceneType extends GameScene> {
 	public void alignCloserBoundTo(GameComponent<?> target) {
 		Appearance ownBounds = this.getAppearance();
 		Appearance targetBounds = target.getAppearance();
-		double bottomDistance = abs(ownBounds.getHeight() + this.getY() - target.getY());
+		double bottomDistance = abs(ownBounds.getHeight() + this.getY()
+				- target.getY());
 		double targetRight = target.getX() + targetBounds.getWidth();
 		double leftDistance = abs(this.getX() - targetRight);
 		double targetBottom = target.getY() + targetBounds.getHeight();
 		double topDistance = abs(this.getY() - targetBottom);
-		double rightDistance = abs(this.getX() + ownBounds.getWidth() - target.getX());
-		double minDistance = min(bottomDistance, min(leftDistance, min(topDistance, rightDistance)));
+		double rightDistance = abs(this.getX() + ownBounds.getWidth()
+				- target.getX());
+		double minDistance = min(bottomDistance,
+				min(leftDistance, min(topDistance, rightDistance)));
 
-		if(minDistance == bottomDistance) {
+		if (minDistance == bottomDistance) {
 			this.alignBottomTo(target.getY());
-		}
-		else if(minDistance == leftDistance) {
+		} else if (minDistance == leftDistance) {
 			this.alignLeftTo(targetRight);
-		}
-		else if(minDistance == topDistance) {
+		} else if (minDistance == topDistance) {
 			this.alignTopTo(targetBottom);
-		}
-		else {
+		} else {
 			this.alignRightTo(target.getX());
 		}
 	}
@@ -137,8 +138,17 @@ public class GameComponent<SceneType extends GameScene> {
 	public void update(DeltaState deltaState) {
 		this.getAppearance().update(deltaState.getDelta());
 	}
-	
-	public void collide(GameComponent<?> component) {}
+
+	public void collide(GameComponent<?> component) {
+	}
+
+	// ****************************************************************
+	// ** COLLISIONS
+	// ****************************************************************
+	public boolean collides(GameComponent<GameScene> component) {
+		return this.getAppearance().collides(this.getX(), this.getY(),
+				component.getAppearance(), component.getX(), component.getY());
+	}
 
 	// ****************************************************************
 	// ** ACCESSORS
@@ -147,19 +157,21 @@ public class GameComponent<SceneType extends GameScene> {
 	public double getWidth() {
 		return this.getAppearance().getWidth();
 	}
-	
+
 	public double getHeight() {
 		return this.getAppearance().getHeight();
 	}
-	
+
 	public Rectangle getRect() {
-		return new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		return new Rectangle(this.getX(), this.getY(), this.getWidth(),
+				this.getHeight());
 	}
-	
+
 	public Circle getCirc() {
-		return new Circle(this.getX(), this.getY(), Math.max(this.getWidth(), this.getHeight()));
+		return new Circle(this.getX(), this.getY(), Math.max(this.getWidth(),
+				this.getHeight()));
 	}
-	
+
 	public SceneType getScene() {
 		return this.scene;
 	}

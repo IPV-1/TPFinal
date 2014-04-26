@@ -2,16 +2,14 @@ package age;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import com.uqbar.vainilla.appearances.Appearance;
 import resource.Resource;
 import scenes.statics.StartScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
+import com.uqbar.vainilla.appearances.Appearance;
 import components.boards.LivesBoard;
 import components.boards.ScoreBoard;
 

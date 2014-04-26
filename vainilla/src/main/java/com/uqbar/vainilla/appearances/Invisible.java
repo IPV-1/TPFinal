@@ -37,4 +37,27 @@ public class Invisible implements Appearance {
 	@Override
 	public void render(GameComponent<?> component, Graphics2D graphics) {
 	}
+	
+	
+	// ****************************************************************
+	// ** COLLISIONS
+	// ****************************************************************
+	
+	@Override
+	public boolean collides(double x, double y, Appearance ap, double apX,
+			double apY) {
+		return false;
+	}
+
+	@Override
+	public boolean collidesCircle(double x, double y, double cx, double cy,
+			double cratio) {
+		return false;
+	}
+
+	@Override
+	public boolean collidesRect(double x, double y, double rx, double xy,
+			double rwidth, double rheight) {
+		return false;
+	}
 }
