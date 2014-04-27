@@ -19,21 +19,17 @@ import com.uqbar.vainilla.sound.SoundBuilder;
  *
  * Version 2.0
  */
-public class Resource extends Sprite {
+public class Resource {
 
     protected static final String IMG_PACKAGE = "img";
     protected static final String SOUND_PACKAGE = "sound";
-
-    public Resource(BufferedImage image) {
-        super(image);
-    }
 
     /**
      * Returns the image in path "PROJECT_ROOT/src/main/resources/resource/imageFileName"
      * @param imageFileName String
      * @return Resource
      */
-    public static Resource fromImage(String imageFileName) {
+    public static Sprite fromImage(String imageFileName) {
         BufferedImage image;
 
         try {
@@ -42,7 +38,7 @@ public class Resource extends Sprite {
             throw new GameException(String.format("The resource '%s' was not found", imageFileName));
         }
 
-        return new Resource(image);
+        return new Sprite(image);
     }
 
     /**
@@ -51,7 +47,7 @@ public class Resource extends Sprite {
      * @param fileName String
      * @return Resource
      */
-    public static Resource getImage(String fileName) {
+    public static Sprite getImage(String fileName) {
         return fromImage(String.format("%s/%s", IMG_PACKAGE, fileName));
     }
 

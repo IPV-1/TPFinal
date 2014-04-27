@@ -10,6 +10,8 @@ import scenes.statics.StartScene;
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.appearances.Sprite;
+
 import components.boards.LivesBoard;
 import components.boards.ScoreBoard;
 
@@ -18,11 +20,11 @@ public class AgeOfVainilla extends Game {
 	private ScoreBoard scoreBoard = new ScoreBoard(15, 3, Color.white);
     private LivesBoard livesBoard = new LivesBoard(615, 3, Color.white);
 	private Dimension dimension;
-    private HashMap<String, Resource> resources;
+    private HashMap<String, Sprite> resources;
 
 	@Override
 	protected void initializeResources() {
-        this.resources  = new HashMap<String, Resource>();
+        this.resources  = new HashMap<String, Sprite>();
         this.resources.put("pointer", Resource.getImage("extras/pointer.png"));
 		dimension = new Dimension(800, 600);
 	}
