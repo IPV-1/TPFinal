@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import map.Map;
 
+import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
 
@@ -17,6 +18,7 @@ public class FieldScene extends GameScene {
     public FieldScene(Game game) {
         super();
         this.setGame(game);
+        this.addComponent(Camera.INSTANCE);
         this.addComponent(new Map("map"));
         this.addComponent(new Unit(Color.BLACK, 10, 10));
         this.addComponent(new MouseHandler());

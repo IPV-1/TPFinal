@@ -1,7 +1,9 @@
 package components;
 
+import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
 
+import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
 
 public class MouseHandler extends BasicAgeComponent {
@@ -24,5 +26,14 @@ public class MouseHandler extends BasicAgeComponent {
 		Double position = deltaState.getCurrentMousePosition();
 		this.setX(position.getX());
 		this.setY(position.getY());
+	}
+	
+	@Override
+	public void render(Graphics2D graphics) {
+		this.setX(this.getX() + Camera.INSTANCE.getX());
+		this.setY(this.getY() + Camera.INSTANCE.getY());
+		super.render(graphics);
+		this.setX(this.getX() - Camera.INSTANCE.getX());
+		this.setY(this.getY() - Camera.INSTANCE.getY());
 	}
 }

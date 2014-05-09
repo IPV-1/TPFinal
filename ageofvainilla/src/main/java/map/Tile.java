@@ -13,7 +13,7 @@ public class Tile {
 	public static final Tile ROCKS = new Tile("rock.png");
 	public static final Tile WATER = new Tile("water.png");
 	
-	public static final int WIDTH = 32;
+	public static final int WIDTH = (int) Tile.GRASS.SPRITE.getWidth();
 	
 	protected Tile(String sprite) {
 		this.SPRITE = Resource.fromImage("img/map/tiles/" + sprite);
