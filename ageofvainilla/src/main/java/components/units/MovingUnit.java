@@ -9,6 +9,7 @@ import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.Coord;
 import com.uqbar.vainilla.space.UnitVector2D;
+import components.MouseHandler;
 
 public class MovingUnit extends Unit {
 
@@ -24,15 +25,24 @@ public class MovingUnit extends Unit {
 	@Override
 	public void update(DeltaState deltaState) {
 		if(deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
-			this.setMoveTo(new Coord(deltaState.getCurrentMousePosition()));
-			this.updateBreakMove();
-			moving = true;
+			if(getMouse().isUnitUnderMouse()) {
+				Unit enemy = getScene().getMockEnemy();
+				this.attack(enemy);
+			} else {
+				this.setMoveTo(new Coord(deltaState.getCurrentMousePosition()));
+				this.updateBreakMove();
+				moving = true;
+			}
 		}
 
 		if(moving) {
 			super.update(deltaState);
 			this.checkBreak();
 		}
+	}
+
+	private MouseHandler getMouse() {
+		return this.getScene().getMouse();
 	}
 
 	private void updateBreakMove() {

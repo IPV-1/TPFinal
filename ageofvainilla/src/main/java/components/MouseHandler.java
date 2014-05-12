@@ -3,6 +3,7 @@ package components;
 import java.awt.geom.Point2D.Double;
 
 import com.uqbar.vainilla.DeltaState;
+import components.units.Unit;
 
 public class MouseHandler extends BasicAgeComponent {
 	
@@ -24,5 +25,13 @@ public class MouseHandler extends BasicAgeComponent {
 		Double position = deltaState.getCurrentMousePosition();
 		this.setX(position.getX());
 		this.setY(position.getY());
+	}
+
+	public boolean isUnitUnderMouse() {
+		return true;
+	}
+
+	public Unit getUnitUnder() {
+		return null;
 	}
 }

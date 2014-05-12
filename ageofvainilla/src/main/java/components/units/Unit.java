@@ -25,11 +25,12 @@ public abstract class Unit extends MovingGameComponent<FieldScene> {
 		if(newLife <= 0) {
 			// estado = muerto
 			this.destroy();
+			System.out.println("me destrui");
 		} else {
 			this.setLifePoint(newLife);
+			System.out.println(newLife);
+			this.attack(unit);
 		}
-		
-		this.attack(unit);
 	}
 
 	public void suicide() {
