@@ -1,60 +1,55 @@
 package components.units;
 
-import java.awt.Color;
-
 import scenes.FieldScene;
 
-import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.MovingGameComponent;
-import com.uqbar.vainilla.appearances.Rectangle;
-import com.uqbar.vainilla.colissions.Circle;
-import com.uqbar.vainilla.colissions.CollisionDetector;
-import com.uqbar.vainilla.events.constants.MouseButton;
-import com.uqbar.vainilla.space.Coord;
+import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.space.UnitVector2D;
 
-public class Unit extends MovingGameComponent<FieldScene> {
+public abstract class Unit extends MovingGameComponent<FieldScene> {
+	
+	private int lifePoint = 1000;
+	private int powerAttack = 10;
 
-	public static final int SPEED = 200;
-	private boolean moving = false;
-	private Coord moveTo;
-	private Circle breakMove;
-
-	public Unit(Color color, double xPos, double yPos) {
-		super(new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), SPEED);
+	public Unit(Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
+		super(rectangle, xPos, yPos, unitVector2D, speed);
 	}
 
-	@Override
-	public void update(DeltaState deltaState) {
-		if(deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
-			this.setMoveTo(new Coord(deltaState.getCurrentMousePosition()));
-			this.updateBreakMove();
-			moving = true;
+	public void attack(Unit unit) {
+		unit.attackedBy(this);
+	}
+	
+	private void attackedBy(Unit unit) {
+		int newLife = this.getLifePoint() - unit.getPowerAttack();
+		
+		if(newLife <= 0) {
+			// estado = muerto
+			this.destroy();
+		} else {
+			this.setLifePoint(newLife);
 		}
-
-		if(moving) {
-			super.update(deltaState);
-			this.checkBreak();
-		}
+		
+		this.attack(unit);
 	}
 
-	private void updateBreakMove() {
-		breakMove = new Circle(this.getMoveTo().getX(), this.getMoveTo().getY(), this.getWidth());
+	public void suicide() {
+		this.attack(this);
 	}
 
-	public void checkBreak() {
-		if(CollisionDetector.INSTANCE.collidesCircleAgainstRect(this.breakMove, this.getRect())) {
-			moving = false;
-		}
+	public int getLifePoint() {
+		return lifePoint;
 	}
 
-	public Coord getMoveTo() {
-		return moveTo;
+	public void setLifePoint(int lifePoint) {
+		this.lifePoint = lifePoint;
 	}
 
-	public void setMoveTo(Coord moveTo) {
-		this.moveTo = moveTo;
-		this.setDirection(this.getCoord().getDirectionTo(moveTo));
+	public int getPowerAttack() {
+		return powerAttack;
+	}
+
+	public void setPowerAttack(int powerAttack) {
+		this.powerAttack = powerAttack;
 	}
 
 }

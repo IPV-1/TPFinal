@@ -8,7 +8,8 @@ import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
 
 import components.MouseHandler;
-import components.units.Unit;
+import components.buildings.BasicBuilding;
+import components.units.MovingUnit;
 
 public class FieldScene extends GameScene {
 
@@ -18,7 +19,8 @@ public class FieldScene extends GameScene {
         super();
         this.setGame(game);
         this.addComponent(new Map("map"));
-        this.addComponent(new Unit(Color.BLACK, 10, 10));
+        this.addComponent(new MovingUnit(Color.BLACK, 10, 10));
+        this.addComponent(new BasicBuilding(Color.RED, 100, 10));
         this.addComponent(new MouseHandler());
     }
     
