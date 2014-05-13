@@ -27,22 +27,16 @@ public class MovingUnit extends Unit {
 
 	@Override
 	public void update(DeltaState deltaState) {
-		
-		getState().update(this, deltaState);
-		
-		if(deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
-			this.interact(getMouse().getElementUnderMouse());
-			
-//				Unit enemy = getScene().getMockEnemy();
-//				this.attack(enemy);
-//			} else {
-//				this.setMoveTo(new Coord(deltaState.getCurrentMousePosition()));
-//				this.updateBreakMove();
-//				moving = true;
-//			}
-		}
 
+		getState().update(this, deltaState);
+
+		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
+			this.interact(getMouse().getElementUnderMouse());
+		}
 		
+		/* Mover la camara con la' flechitas :D */
+//		double x = d.x + Camera.INSTANCE.getX();
+//		double y = d.y + Camera.INSTANCE.getY();
 	}
 
 	public void interact(Unit unit) {

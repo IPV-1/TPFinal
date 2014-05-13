@@ -2,6 +2,7 @@ package components.units;
 
 import java.awt.Color;
 
+import com.uqbar.vainilla.appearances.Appearance;
 import scenes.FieldScene;
 
 import com.uqbar.vainilla.DeltaState;
