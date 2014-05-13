@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.util.Arrays;
 import java.util.List;
 import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.colissions.CollisionDetector;
 
 public class Label implements Appearance {
 
@@ -98,6 +99,31 @@ public class Label implements Appearance {
 			(int) (component.getY() + this.getLineHeight() * (index + 1)) //
 				);
 		}
+	}
+	
+	// ****************************************************************
+	// ** COLLISIONS
+	// ****************************************************************	
+
+	@Override
+	public boolean collides(double x, double y, Appearance ap, double apX,
+			double apY) {
+		return ap.collidesRect(apX, apY, x, y, this.getWidth(),
+				this.getHeight());
+	}
+
+	@Override
+	public boolean collidesCircle(double x, double y, double cx, double cy,
+			double cratio) {
+		return CollisionDetector.INSTANCE.collidesCircleAgainstRect(cx, cy,
+				cratio, x, y, this.getWidth(), this.getHeight());
+	}
+
+	@Override
+	public boolean collidesRect(double x, double y, double rx, double ry,
+			double rwidth, double rheight) {
+		return CollisionDetector.INSTANCE.collidesRectAgainstRect(rx, ry,
+				rwidth, rheight, x, y, this.getWidth(), this.getHeight());
 	}
 
 	// ****************************************************************

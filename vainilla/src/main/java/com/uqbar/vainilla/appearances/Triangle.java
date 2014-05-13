@@ -6,6 +6,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
 import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.colissions.CollisionDetector;
 
 public class Triangle implements Appearance {
 
@@ -50,6 +51,31 @@ public class Triangle implements Appearance {
 		int[] xs = { (int) this.p1.x, (int) this.p2.x, (int) this.p3.x };
 		int[] ys = { (int) this.p1.y, (int) this.p2.y, (int) this.p3.y };
 		graphics.fillPolygon(xs, ys, 3);
+	}
+	
+	// ****************************************************************
+	// ** COLLISIONS
+	// ****************************************************************
+
+	@Override
+	public boolean collides(double x, double y, Appearance ap, double apX,
+			double apY) {
+		// TODO
+		return (Boolean) null;
+	}
+
+	@Override
+	public boolean collidesCircle(double x, double y, double cx, double cy,
+			double cradius) {
+		return CollisionDetector.INSTANCE.collidesCircleAgainstTriangle(cx, cy,
+				cradius, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+	}
+
+	@Override
+	public boolean collidesRect(double x, double y, double rx, double ry,
+			double rwidth, double rheight) {
+		return CollisionDetector.INSTANCE.collidesRectAgainstTriangle(rx, ry,
+				rwidth, rheight, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
 	}
 
 }

@@ -12,6 +12,7 @@ import utility.Commons;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
+import com.uqbar.vainilla.space.Coord;
 
 public class Map extends GameComponent<GameScene> {
 
@@ -64,11 +65,11 @@ public class Map extends GameComponent<GameScene> {
 	}
 
 	public boolean isBlocked(int x, int y) {
-		return this.get(x,y).isBlocked();
+		return this.get(x, y).isBlocked();
 	}
-	
+
 	public boolean isWalkable(int x, int y) {
-		return this.get(x,y).isWalkable();
+		return this.get(x, y).isWalkable();
 	}
 
 	public Tile get(int x, int y) {
@@ -90,6 +91,9 @@ public class Map extends GameComponent<GameScene> {
 	public int getyTiles() {
 		return yTiles;
 	}
-	
+
+	public Tile get(Coord tile) {
+		return this.get((int) tile.getX(), (int) tile.getY());
+	}
 
 }

@@ -41,6 +41,43 @@ public class Animation implements Appearance {
 	protected Sprite getCurrentSprite() {
 		return this.getSprites()[this.getCurrentIndex()];
 	}
+	
+	// ****************************************************************
+	// ** COLLISIONS
+	// ****************************************************************
+
+	@Override
+	public boolean collides(double x, double y, Appearance ap, double apX,
+			double apY) {
+		for(Sprite sprite : sprites) {
+			if(sprite.collides(x, y, ap, apX, apY)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean collidesCircle(double x, double y, double cx, double cy,
+			double cratio) {
+		for(Sprite sprite : sprites) {
+			if(sprite.collidesCircle(x, y, cx, cy, cratio)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean collidesRect(double x, double y, double rx, double ry,
+			double rwidth, double rheight) {
+		for(Sprite sprite : sprites) {
+			if(sprite.collidesRect(x, y, rx, ry, rwidth, rheight)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	// ****************************************************************
 	// ** OPERATIONS

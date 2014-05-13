@@ -11,4 +11,7 @@ public class BasicAgeComponent extends GameComponent<FieldScene> {
     public AgeOfVainilla getGame(){
         return (AgeOfVainilla) super.getGame();
     }
+
+
+
 }

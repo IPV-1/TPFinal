@@ -3,8 +3,14 @@ package components;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
 
+import map.Tile;
+
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.space.Coord;
+
+import components.units.Flag;
+import components.units.Unit;
 
 public class MouseHandler extends BasicAgeComponent {
 	
@@ -26,6 +32,18 @@ public class MouseHandler extends BasicAgeComponent {
 		Double position = deltaState.getCurrentMousePosition();
 		this.setX(position.getX());
 		this.setY(position.getY());
+	}
+
+	public Unit getElementUnderMouse() {
+		Coord tile = new Coord(this.getX(), this.getY()).getTile(Tile.WIDTH);
+		
+		System.out.println(getScene().getMap().get(tile).isEmpty());
+		
+		if(getScene().getMap().get(tile).isEmpty()) {
+			return new Flag(this.getX(), this.getY());
+		}
+		
+		return getScene().getMockEnemy();
 	}
 	
 	@Override

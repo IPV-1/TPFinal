@@ -15,6 +15,7 @@ import com.uqbar.vainilla.colissions.Circle;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.ImmutablePoint;
+import components.units.MovingUnit;
 
 public class Path {
 
@@ -66,7 +67,7 @@ public class Path {
 				.getDirection()
 				.set(x - this.getComponent().getX(),
 						y - this.getComponent().getY());
-		this.getComponent().setSpeed(200); // TODO resume proper speed
+		this.getComponent().setSpeed(MovingUnit.SPEED); // TODO change state instead
 		this.currentBreak = new Circle(x + 2, y + 2, 4);
 	}
 

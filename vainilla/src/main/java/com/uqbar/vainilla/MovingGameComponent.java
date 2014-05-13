@@ -33,14 +33,18 @@ public class MovingGameComponent<SceneType extends GameScene> extends GameCompon
 
 	@Override
 	public void update(DeltaState deltaState) {
+		this.move(deltaState);
+
+		super.update(deltaState);
+	}
+
+	public void move(DeltaState deltaState) {
 		double xPosition = this.getX() + this.getDirection().getX()
 				* this.getSpeedFactor(deltaState);
 		double yPosition = this.getY() + this.getDirection().getY()
 				* this.getSpeedFactor(deltaState);
 		this.setX(xPosition);
 		this.setY(yPosition);
-
-		super.update(deltaState);
 	}
 
 	public double getSpeedFactor(DeltaState deltaState) {

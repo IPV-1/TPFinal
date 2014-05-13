@@ -1,6 +1,7 @@
 package com.uqbar.vainilla;
 
 import com.uqbar.vainilla.events.constants.Key;
+import com.uqbar.vainilla.space.Coord;
 
 public class Camera extends GameComponent<GameScene> {
 	
@@ -25,6 +26,10 @@ public class Camera extends GameComponent<GameScene> {
 			this.setX(this.getX() + X * deltaState.getDelta());
 		}
 		super.update(deltaState);
+	}
+
+	public Coord getCoord() {
+		return new Coord(X, Y);
 	}
 
 }
