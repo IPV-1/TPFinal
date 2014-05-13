@@ -27,11 +27,7 @@ public class MouseHandler extends BasicAgeComponent {
 		this.setY(position.getY());
 	}
 
-	public boolean isUnitUnderMouse() {
-		return true;
-	}
-
-	public Unit getUnitUnder() {
-		return null;
+	public Unit getElementUnderMouse() {
+		return getScene().getMockEnemy();
 	}
 }
