@@ -44,4 +44,8 @@ public class Coord {
 		return new UnitVector2D(toX, toY);
 	}
 
+	public Coord add(Coord coord) {
+		return new Coord(this.getX() + coord.getX(), this.getY() + coord.getY());
+	}
+
 }

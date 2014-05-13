@@ -54,8 +54,10 @@ public class MovingUnit extends Unit {
 	public Coord getMoveTo() {
 		return moveTo;
 	}
-
+	
 	public void setMoveTo(Unit unit) {
+		/* Aca deberia ir lo que mueve relativo a la camara? */
+		//this.moveTo = unit.getCoord().add(Camera.INSTANCE.getCoord()); //unit.getCoord();
 		this.moveTo = unit.getCoord();
 		this.setDirection(this.getCoord().getDirectionTo(moveTo));
 		this.updateBreakMove();
