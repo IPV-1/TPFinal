@@ -13,4 +13,7 @@ public class BasicBuilding extends Unit {
 	public BasicBuilding(Color color, double xPos, double yPos) {
 		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos, new UnitVector2D(1, 1), 0);
 	}
+
+	@Override
+	public void hasKilled(Unit unit) {}
 }

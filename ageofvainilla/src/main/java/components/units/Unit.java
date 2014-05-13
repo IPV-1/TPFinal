@@ -20,21 +20,34 @@ public abstract class Unit extends MovingGameComponent<FieldScene> {
 	}
 	
 	private void attackedBy(Unit unit) {
-		int newLife = this.getLifePoint() - unit.getPowerAttack();
+		this.decrementLife(unit.getPowerAttack());
 		
-		if(newLife <= 0) {
-			// estado = muerto
-			this.destroy();
-			System.out.println("me destrui");
+		if(!this.isDead()) {
+			unit.decrementLife(this.getPowerAttack());
 		} else {
-			this.setLifePoint(newLife);
-			System.out.println(newLife);
-			this.attack(unit);
+			unit.hasKilled(this);
 		}
 	}
 
+	public abstract void hasKilled(Unit unit);
+
 	public void suicide() {
 		this.attack(this);
+	}
+	
+	public void decrementLife(int points) {
+		this.setLifePoint(this.getLifePoint() - points);
+		System.out.println(getLifePoint());
+		
+		if(isDead()) {
+			// estado = muerto
+			this.destroy();
+			System.out.println("me destrui");
+		}
+	}
+	
+	public boolean isDead() {
+		return this.getLifePoint() <= 0;
 	}
 
 	public int getLifePoint() {

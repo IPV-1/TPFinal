@@ -38,6 +38,11 @@ public class MovingUnit extends Unit {
 //		double x = d.x + Camera.INSTANCE.getX();
 //		double y = d.y + Camera.INSTANCE.getY();
 	}
+	
+	@Override
+	public void hasKilled(Unit unit) {
+		this.setState(new Waiting());
+	}
 
 	public void interact(Unit unit) {
 		this.getState().interact(this, unit);
