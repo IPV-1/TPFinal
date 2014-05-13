@@ -48,4 +48,8 @@ public class Coord {
 		return new Coord(this.getX() + coord.getX(), this.getY() + coord.getY());
 	}
 
+	public Coord getTile(double TILE_SIZE) {
+		return new Coord(this.getX() / TILE_SIZE, this.getY() / TILE_SIZE);
+	}
+
 }

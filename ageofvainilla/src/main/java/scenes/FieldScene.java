@@ -18,12 +18,13 @@ public class FieldScene extends GameScene {
 	
 	private MouseHandler mouse = new MouseHandler();
 	private Unit mockEnemy = new BasicBuilding(Color.RED, 100, 10);
+	private Map map = new Map("map");
 
     public FieldScene(Game game) {
         super();
         this.setGame(game);
         this.addComponent(Camera.INSTANCE);
-        this.addComponent(new Map("map"));
+        this.addComponent(getMap());
         this.addComponent(new MovingUnit(Color.BLACK, 10, 10));
         this.addComponent(this.getMockEnemy());
         this.addComponent(this.getMouse());
@@ -43,6 +44,14 @@ public class FieldScene extends GameScene {
 
 	public void setMockEnemy(Unit mockEnemy) {
 		this.mockEnemy = mockEnemy;
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
 	}
     
 //	private GameComponent<?> getBackground() {

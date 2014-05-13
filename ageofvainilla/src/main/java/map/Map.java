@@ -12,6 +12,7 @@ import utility.Commons;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
+import com.uqbar.vainilla.space.Coord;
 
 public class Map extends GameComponent<GameScene> {
 
@@ -66,6 +67,10 @@ public class Map extends GameComponent<GameScene> {
 						graphics);
 			}
 		}
+	}
+
+	public Tile get(Coord tile) {
+		return tiles[(int)tile.getY()][(int)tile.getX()];
 	}
 
 }

@@ -29,7 +29,7 @@ public abstract class Unit extends MovingGameComponent<FieldScene> {
 		}
 	}
 
-	public abstract void hasKilled(Unit unit);
+	public void hasKilled(Unit unit){}
 
 	public void suicide() {
 		this.attack(this);
