@@ -1,17 +1,9 @@
 package components.units;
 
-import java.awt.Color;
-
-import com.uqbar.vainilla.appearances.Appearance;
 import scenes.FieldScene;
 
-import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.MovingGameComponent;
-import com.uqbar.vainilla.appearances.Rectangle;
-import com.uqbar.vainilla.colissions.Circle;
-import com.uqbar.vainilla.colissions.CollisionDetector;
-import com.uqbar.vainilla.events.constants.MouseButton;
-import com.uqbar.vainilla.space.Coord;
+import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.space.UnitVector2D;
 
 public abstract class Unit extends MovingGameComponent<FieldScene> {

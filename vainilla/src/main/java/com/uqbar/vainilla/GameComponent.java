@@ -145,7 +145,7 @@ public class GameComponent<SceneType extends GameScene> {
 	// ****************************************************************
 	// ** COLLISIONS
 	// ****************************************************************
-	public boolean collides(GameComponent<GameScene> component) {
+	public boolean collides(GameComponent<? extends GameScene> component) {
 		return this.getAppearance().collides(this.getX(), this.getY(),
 				component.getAppearance(), component.getX(), component.getY());
 	}
