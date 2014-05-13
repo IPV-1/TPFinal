@@ -22,6 +22,9 @@ public class Moving extends UnitState {
 	@Override
 	public void update(MovingUnit self, DeltaState deltaState) {
 		self.getPath().update(deltaState);
+		if(!self.getPath().isTraveling()) {
+			self.setState(getNextState());
+		}
 //		self.move(deltaState);
 //		this.checkBreak(self);
 	}

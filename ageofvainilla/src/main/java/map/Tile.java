@@ -14,7 +14,7 @@ public class Tile {
 	public static final Tile ROCKS = new Tile("rock.png");
 	public static final Tile WATER = new Tile("water.png");
 	
-	public static final Tile HOUSE = new Tile("rock.png");
+	public static final Tile HOUSE = new Tile("enemy.png");
 	
 	public static final int WIDTH = (int) Tile.GRASS.SPRITE.getWidth();
 	public static final int HEIGHT = (int) Tile.GRASS.SPRITE.getHeight();
@@ -31,15 +31,15 @@ public class Tile {
 	public static Tile getH()	{	return Tile.HOUSE;	}
 
 	public boolean isEmpty() {
-		return ! RESOURCE.equals("rock.png");
+		return ! RESOURCE.equals("enemy.png");
 	}
 	
 	public boolean isBlocked() {
-		return ! (this.equals(Tile.GRASS) || (this.equals(Tile.PLAIN)));
+		return ! (this.equals(Tile.GRASS) || (this.equals(Tile.PLAIN)) || (this.equals(Tile.HOUSE)));//TODO change movement);
 	}
 	
 	public boolean isWalkable() {
-		return this.equals(Tile.GRASS) || (this.equals(Tile.PLAIN));
+		return this.equals(Tile.GRASS) || (this.equals(Tile.PLAIN) || (this.equals(Tile.HOUSE)));
 	}
 	
 }

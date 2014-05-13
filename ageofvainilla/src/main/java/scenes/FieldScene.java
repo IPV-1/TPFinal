@@ -3,6 +3,7 @@ package scenes;
 import java.awt.Color;
 
 import map.Map;
+import map.Tile;
 import map.path.PathFinder;
 
 import com.uqbar.vainilla.Camera;
@@ -21,7 +22,7 @@ public class FieldScene extends GameScene {
 	protected PathFinder pathFinder;
 
 	private MouseHandler mouse = new MouseHandler();
-	private Unit mockEnemy = new BasicBuilding(Color.RED, 100, 10);
+	private Unit mockEnemy = new BasicBuilding(Color.RED, 4 * Tile.WIDTH, Tile.HEIGHT);
 
     public FieldScene(Game game) {
         super();

@@ -88,8 +88,8 @@ public class Path {
 	public ImmutablePoint getMoveTo() {
 		return this.getPoints().get(this.getCurrentStep());
 	}
-
-	protected boolean isTraveling() {
+	
+	public boolean isTraveling() {
 		return this.getCurrentStep() < this.getPoints().size();
 	}
 
