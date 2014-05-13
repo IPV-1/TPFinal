@@ -58,7 +58,7 @@ public class Circle implements Appearance {
 	}
 	
 	// ****************************************************************
-	// ** COLLISIONS
+	// ** COLLISIONS TODO: Shouldn't be here ¬¬
 	// ****************************************************************
 
 	@Override
