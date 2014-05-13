@@ -15,20 +15,14 @@ import com.uqbar.vainilla.GameScene;
 
 public class Map extends GameComponent<GameScene> {
 
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	protected final int xTiles;
+	protected final int yTiles;
+	protected Tile[][] tiles;
 
-	protected Tile[][] tiles = new Tile[(HEIGHT / Tile.WIDTH) + 1][(WIDTH / Tile.WIDTH) + 1];
-
-	public Map() {
-		for (int i = 0; i < tiles.length; i++) {
-			for (int j = 0; j < tiles[0].length; j++) {
-				tiles[i][j] = Tile.GRASS;
-			}
-		}
-	}
-
-	public Map(String file) {
+	public Map(int width, int height, String file) {
+		this.xTiles = width;
+		this.yTiles = height;
+		tiles = new Tile[yTiles][xTiles];
 		BufferedReader br = null;
 		try {
 			String line;
@@ -52,20 +46,50 @@ public class Map extends GameComponent<GameScene> {
 	protected void process(String line, int y) {
 		Scanner scanner = new Scanner(line);
 		for (int x = 0; scanner.hasNext(); x++) {
-			tiles[y][x] = (Tile) Commons.invokeMethodFromClass(Tile.class,
-					"get" + scanner.next());
+			this.set(
+					(Tile) Commons.invokeMethodFromClass(Tile.class, "get"
+							+ scanner.next()), x, y);
 		}
 		scanner.close();
 	}
 
 	@Override
 	public void render(Graphics2D graphics) {
-		for (int y = 0; y < tiles.length; y++) {
-			for (int x = 0; x < tiles[0].length; x++) {
-				tiles[y][x].SPRITE.renderAt((int) x * Tile.WIDTH, (int) y * Tile.WIDTH,
+		for (int y = 0; y < this.getTiles().length; y++) {
+			for (int x = 0; x < this.getTiles()[0].length; x++) {
+				this.get(x, y).SPRITE.renderAt(x * Tile.WIDTH, y * Tile.HEIGHT,
 						graphics);
 			}
 		}
 	}
+
+	public boolean isBlocked(int x, int y) {
+		return this.get(x,y).isBlocked();
+	}
+	
+	public boolean isWalkable(int x, int y) {
+		return this.get(x,y).isWalkable();
+	}
+
+	public Tile get(int x, int y) {
+		return this.getTiles()[y][x];
+	}
+
+	public void set(Tile tile, int x, int y) {
+		this.getTiles()[y][x] = tile;
+	}
+
+	public Tile[][] getTiles() {
+		return this.tiles;
+	}
+
+	public int getxTiles() {
+		return xTiles;
+	}
+
+	public int getyTiles() {
+		return yTiles;
+	}
+	
 
 }

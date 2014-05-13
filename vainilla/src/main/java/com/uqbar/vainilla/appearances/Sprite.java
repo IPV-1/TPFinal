@@ -6,7 +6,6 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.exceptions.GameException;
 
 @SuppressWarnings("unchecked")
@@ -172,32 +171,6 @@ public class Sprite extends SimpleAppearance<Sprite> {
 	protected void doRenderAt(int x, int y, Graphics2D graphics) {
 		graphics.drawImage(this.getImage(), x, y, null);
 	}
-	
-	// ****************************************************************
-	// ** COLLISIONS
-	// ****************************************************************
-		
-	@Override
-	public boolean collides(double x, double y, Appearance ap, double apX,
-			double apY) {
-		return ap.collidesRect(apX, apY, x, y, this.getWidth(),
-				this.getHeight());
-	}
-
-	@Override
-	public boolean collidesCircle(double x, double y, double cx, double cy,
-			double cratio) {
-		return CollisionDetector.INSTANCE.collidesCircleAgainstRect(cx, cy,
-				cratio, x, y, this.getWidth(), this.getHeight());
-	}
-
-	@Override
-	public boolean collidesRect(double x, double y, double rx, double ry,
-			double rwidth, double rheight) {
-		return CollisionDetector.INSTANCE.collidesRectAgainstRect(rx, ry,
-				rwidth, rheight, x, y, this.getWidth(), this.getHeight());
-	}
-	
 
 	// ****************************************************************
 	// ** ACCESSORS

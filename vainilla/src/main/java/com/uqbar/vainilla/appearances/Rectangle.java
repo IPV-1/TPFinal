@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.GameComponent;
-import com.uqbar.vainilla.colissions.CollisionDetector;
 
 public class Rectangle implements Appearance {
 
@@ -53,33 +52,9 @@ public class Rectangle implements Appearance {
 	@Override
 	public void render(GameComponent<?> component, Graphics2D graphics) {
 		graphics.setColor(this.color);
-		graphics.fillRect((int) (component.getX() - Camera.INSTANCE.getX()), (int) (component.getY() - Camera.INSTANCE.getY()),
-				this.width, this.height);
+		graphics.fillRect((int) (component.getX() - Camera.INSTANCE.getX()),
+				(int) (component.getY() - Camera.INSTANCE.getY()), this.width,
+				this.height);
 	}
 
-	// ****************************************************************
-	// ** COLLISIONS
-	// ****************************************************************
-		
-	@Override
-	public boolean collides(double x, double y, Appearance ap, double apX,
-			double apY) {
-		return ap.collidesRect(apX, apY, x, y, this.getWidth(),
-				this.getHeight());
-	}
-
-	@Override
-	public boolean collidesCircle(double x, double y, double cx, double cy,
-			double cradius) {
-		return CollisionDetector.INSTANCE.collidesCircleAgainstRect(cx, cy,
-				cradius, x, y, this.getWidth(), this.getHeight());
-	}
-
-	@Override
-	public boolean collidesRect(double x, double y, double rx, double ry,
-			double rwidth, double rheight) {
-		return CollisionDetector.INSTANCE.collidesRectAgainstRect(rx, ry,
-				rwidth, rheight, x, y, this.getWidth(), this.getHeight());
-	}
-	
 }

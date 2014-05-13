@@ -5,7 +5,8 @@ import java.awt.Graphics2D;
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.GameComponent;
 
-public abstract class SimpleAppearance<T extends Appearance> implements Appearance, Cloneable {
+public abstract class SimpleAppearance<T extends Appearance> implements
+		Appearance, Cloneable {
 
 	private double x;
 	private double y;
@@ -19,8 +20,7 @@ public abstract class SimpleAppearance<T extends Appearance> implements Appearan
 	public T copy() {
 		try {
 			return (T) this.clone();
-		}
-		catch(CloneNotSupportedException e) {
+		} catch (CloneNotSupportedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -72,7 +72,8 @@ public abstract class SimpleAppearance<T extends Appearance> implements Appearan
 	}
 
 	public void renderAt(int x, int y, Graphics2D graphics) {
-		this.doRenderAt(x + (int) (this.getX()- Camera.INSTANCE.getX()), y + (int) (this.getY()- Camera.INSTANCE.getY()), graphics);
+		this.doRenderAt(x + (int) (this.getX() - Camera.INSTANCE.getX()), y
+				+ (int) (this.getY() - Camera.INSTANCE.getY()), graphics);
 	}
 
 	protected abstract void doRenderAt(int x, int y, Graphics2D graphics);

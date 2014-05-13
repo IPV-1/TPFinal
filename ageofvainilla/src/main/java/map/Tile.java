@@ -14,6 +14,7 @@ public class Tile {
 	public static final Tile WATER = new Tile("water.png");
 	
 	public static final int WIDTH = (int) Tile.GRASS.SPRITE.getWidth();
+	public static final int HEIGHT = (int) Tile.GRASS.SPRITE.getHeight();
 	
 	protected Tile(String sprite) {
 		this.SPRITE = Resource.fromImage("img/map/tiles/" + sprite);
@@ -23,5 +24,13 @@ public class Tile {
 	public static Tile getP()	{	return Tile.PLAIN;	}
 	public static Tile getR()	{	return Tile.ROCKS;	}
 	public static Tile getW()	{	return Tile.WATER;	}
+	
+	public boolean isBlocked() {
+		return ! (this.equals(Tile.GRASS) || (this.equals(Tile.PLAIN)));
+	}
+	
+	public boolean isWalkable() {
+		return this.equals(Tile.GRASS) || (this.equals(Tile.PLAIN));
+	}
 	
 }
