@@ -62,7 +62,7 @@ public class Map extends GameComponent<GameScene> {
 	public void render(Graphics2D graphics) {
 		for (int y = 0; y < tiles.length; y++) {
 			for (int x = 0; x < tiles[0].length; x++) {
-				tiles[y][x].SPRITE.renderAt(x * Tile.WIDTH, y * Tile.WIDTH,
+				tiles[y][x].SPRITE.renderAt((int) x * Tile.WIDTH, (int) y * Tile.WIDTH,
 						graphics);
 			}
 		}

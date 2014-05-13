@@ -1,6 +1,8 @@
 package com.uqbar.vainilla.appearances;
 
 import java.awt.Graphics2D;
+
+import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.GameComponent;
 
 public abstract class SimpleAppearance<T extends Appearance> implements Appearance, Cloneable {
@@ -70,7 +72,7 @@ public abstract class SimpleAppearance<T extends Appearance> implements Appearan
 	}
 
 	public void renderAt(int x, int y, Graphics2D graphics) {
-		this.doRenderAt(x + (int) this.getX(), y + (int) this.getY(), graphics);
+		this.doRenderAt(x + (int) (this.getX()- Camera.INSTANCE.getX()), y + (int) (this.getY()- Camera.INSTANCE.getY()), graphics);
 	}
 
 	protected abstract void doRenderAt(int x, int y, Graphics2D graphics);
