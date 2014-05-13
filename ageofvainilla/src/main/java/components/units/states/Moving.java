@@ -1,7 +1,7 @@
 package components.units.states;
 
 import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.colissions.CollisionDetector;
+//import com.uqbar.vainilla.colissions.CollisionDetector;
 
 import components.units.MovingUnit;
 import components.units.Unit;

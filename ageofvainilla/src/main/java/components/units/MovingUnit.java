@@ -6,9 +6,9 @@ import map.path.Path;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Rectangle;
-import com.uqbar.vainilla.colissions.Circle;
+//import com.uqbar.vainilla.colissions.Circle;
 import com.uqbar.vainilla.events.constants.MouseButton;
-import com.uqbar.vainilla.space.Coord;
+//import com.uqbar.vainilla.space.Coord;
 import com.uqbar.vainilla.space.UnitVector2D;
 import components.MouseHandler;
 import components.units.states.Atacking;
@@ -23,7 +23,7 @@ public class MovingUnit extends Unit {
 //	private Circle breakMove;
 	private UnitState state = new Waiting();
 	
-	protected Path path = new Path(this);;
+	protected final Path path = new Path(this);
 
 	public MovingUnit(Color color, double xPos, double yPos) {
 		super(new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
@@ -32,11 +32,11 @@ public class MovingUnit extends Unit {
 	@Override
 	public void update(DeltaState deltaState) {
 
-		getState().update(this, deltaState);
-
 		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
 			this.interact(getMouse().getElementUnderMouse());
 		}
+
+		getState().update(this, deltaState);
 		
 		/* Mover la camara con la' flechitas :D */
 //		double x = d.x + Camera.INSTANCE.getX();
