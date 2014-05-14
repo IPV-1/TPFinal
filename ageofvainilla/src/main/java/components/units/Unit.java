@@ -37,12 +37,10 @@ public abstract class Unit extends MovingGameComponent<FieldScene> {
 
 	public void decrementLife(int points) {
 		this.setLifePoint(this.getLifePoint() - points);
-		System.out.println(getLifePoint());
 
 		if(isDead()) {
 			// estado = muerto
 			this.destroy();
-			System.out.println("me destrui");
 		}
 	}
 

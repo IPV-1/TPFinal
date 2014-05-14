@@ -2,41 +2,37 @@ package age;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.HashMap;
 
-import resource.Resource;
 import scenes.statics.StartScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
-import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.appearances.Sprite;
-
 import components.boards.LivesBoard;
 import components.boards.ScoreBoard;
+
+import config.Configuration;
 
 public class AgeOfVainilla extends Game {
 
 	private ScoreBoard scoreBoard = new ScoreBoard(15, 3, Color.white);
     private LivesBoard livesBoard = new LivesBoard(615, 3, Color.white);
-	private Dimension dimension;
-    private HashMap<String, Sprite> resources;
+    
+    private final String CONFIG_FILE = "application.xml";
+    
+    public AgeOfVainilla() {
+    	super();
+    	Configuration.LOAD(CONFIG_FILE);
+	}
 
 	@Override
-	protected void initializeResources() {
-        this.resources  = new HashMap<String, Sprite>();
-        this.resources.put("pointer", Resource.getImage("extras/pointer.png"));
-		dimension = new Dimension(800, 600);
+	public Dimension getDisplaySize() {
+		return new Dimension((int) Configuration.getDisplayWidth(),
+			(int) Configuration.getDisplayHeight());
 	}
 
 	@Override
 	protected void setUpScenes() {
 		this.setCurrentScene(new StartScene(this));
-	}
-
-	@Override
-	public Dimension getDisplaySize() {
-		return dimension;
 	}
 
 	@Override
@@ -56,8 +52,8 @@ public class AgeOfVainilla extends Game {
 		return livesBoard;
 	}
 
-    public Appearance getResource(String key) {
-        return this.resources.get(key);
-    }
+	@Override
+	protected void initializeResources() {
+	}
 
 }

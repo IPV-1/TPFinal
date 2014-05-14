@@ -1,13 +1,19 @@
 package components;
 
-import age.AgeOfVainilla;
-import com.uqbar.vainilla.GameComponent;
 import scenes.FieldScene;
+import age.AgeOfVainilla;
+
+import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.appearances.Appearance;
 
 
 public class BasicAgeComponent extends GameComponent<FieldScene> {
 
-    @Override
+    public BasicAgeComponent(Appearance appearance, int x, int y) {
+    	super(appearance, x, y);
+	}
+
+	@Override
     public AgeOfVainilla getGame(){
         return (AgeOfVainilla) super.getGame();
     }

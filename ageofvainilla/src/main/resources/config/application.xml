@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="screenWidth">800</entry>
+    <entry key="screenHeight">600</entry>
+    
+    <entry key="pointer">extras/pointer.png</entry>
+    
+</properties>

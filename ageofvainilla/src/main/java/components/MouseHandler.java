@@ -8,23 +8,17 @@ import map.Tile;
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.space.Coord;
-
 import components.units.Flag;
 import components.units.Unit;
+
+import config.Configuration;
 
 public class MouseHandler extends BasicAgeComponent {
 	
 	public MouseHandler() {
-		super();
-		this.setX(10);
-		this.setY(20);
+		super(Configuration.getSprite("pointer"), 0, 0);
 	}
-
-    @Override
-    public void onSceneActivated(){
-        this.setAppearance(getGame().getResource("pointer"));
-    }
-
+	
 	@Override
 	public void update(DeltaState deltaState) {
 		super.update(deltaState);
@@ -36,8 +30,6 @@ public class MouseHandler extends BasicAgeComponent {
 
 	public Unit getElementUnderMouse() {
 		Coord tile = new Coord(this.getX(), this.getY()).getTile(Tile.WIDTH);
-		
-		System.out.println(getScene().getMap().get(tile).isEmpty());
 		
 		if(getScene().getMap().get(tile).isEmpty()) {
 			return new Flag(this.getX(), this.getY());
