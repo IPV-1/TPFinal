@@ -6,7 +6,7 @@ import java.util.List;
 
 import scenes.FieldScene;
 
-import map.Tile;
+import map.tiles.Tile;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;

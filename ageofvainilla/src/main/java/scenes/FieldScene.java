@@ -3,16 +3,16 @@ package scenes;
 import java.awt.Color;
 
 import map.Map;
-import map.Tile;
 import map.path.PathFinder;
+import map.tiles.Tile;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
 import components.MouseHandler;
-import components.buildings.BasicBuilding;
 import components.units.MovingUnit;
 import components.units.Unit;
+import components.units.buildings.BasicBuilding;
 
 public class FieldScene extends GameScene {
 

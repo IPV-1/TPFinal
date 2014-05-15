@@ -3,7 +3,7 @@ package components;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
 
-import map.Tile;
+import map.tiles.Tile;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;

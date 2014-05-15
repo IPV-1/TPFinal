@@ -20,9 +20,17 @@ public class Configuration {
 	
     private static void loadConfiguration() {
 		addSprite("pointer");
+		addSprite("grass");
+		addSprite("plain");
+		addSprite("rock");
+		addSprite("water");
+		addSprite("house");
 	
 		addValue("screenWidth");
 		addValue("screenHeight");
+		
+		addValue("tileWidth");
+		addValue("tileHeight");
     }
     
     public static void LOAD(String file) {

@@ -1,8 +1,8 @@
-package components.buildings;
+package components.units.buildings;
 
 import java.awt.Color;
 
-import map.Tile;
+import map.tiles.Tile;
 
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.UnitVector2D;

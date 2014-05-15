@@ -7,8 +7,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import map.tiles.Tile;
+
 import resource.Resource;
-import utility.Commons;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
@@ -44,12 +45,20 @@ public class Map extends GameComponent<GameScene> {
 		}
 	}
 
+//	protected void process(String line, int y) {
+//		Scanner scanner = new Scanner(line);
+//		for (int x = 0; scanner.hasNext(); x++) {
+//			this.set(
+//					(Tile) Commons.invokeMethodFromClass(Tile.class, "get"
+//							+ scanner.next()), x, y);
+//		}
+//		scanner.close();
+//	}
+	
 	protected void process(String line, int y) {
 		Scanner scanner = new Scanner(line);
 		for (int x = 0; scanner.hasNext(); x++) {
-			this.set(
-					(Tile) Commons.invokeMethodFromClass(Tile.class, "get"
-							+ scanner.next()), x, y);
+			this.set(Tile.getTile(scanner.next()), x, y);
 		}
 		scanner.close();
 	}
@@ -58,7 +67,7 @@ public class Map extends GameComponent<GameScene> {
 	public void render(Graphics2D graphics) {
 		for (int y = 0; y < this.getTiles().length; y++) {
 			for (int x = 0; x < this.getTiles()[0].length; x++) {
-				this.get(x, y).SPRITE.renderAt(x * Tile.WIDTH, y * Tile.HEIGHT,
+				this.get(x, y).getSprite().renderAt(x * Tile.WIDTH, y * Tile.HEIGHT,
 						graphics);
 			}
 		}
