@@ -10,6 +10,7 @@ import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
 import components.MouseHandler;
+import components.menus.ResourcesMenu;
 import components.units.MovingUnit;
 import components.units.Unit;
 import components.units.buildings.BasicBuilding;
@@ -34,6 +35,8 @@ public class FieldScene extends GameScene {
         this.addComponent(new MovingUnit(Color.BLACK, 10, 10));
         this.addComponent(this.getMockEnemy());
         this.addComponent(this.getMouse());
+        
+        this.addComponent(new ResourcesMenu());
     }
 
 	public MouseHandler getMouse() {

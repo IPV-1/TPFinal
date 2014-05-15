@@ -12,6 +12,14 @@ public class BasicAgeComponent extends GameComponent<FieldScene> {
     public BasicAgeComponent(Appearance appearance, int x, int y) {
     	super(appearance, x, y);
 	}
+    
+    public BasicAgeComponent(double x, double y) {
+    	super(x, y);
+	}
+    
+    public BasicAgeComponent() {
+    	super();
+	}
 
 	@Override
     public AgeOfVainilla getGame(){

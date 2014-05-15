@@ -26,8 +26,7 @@ public class AgeOfVainilla extends Game {
 
 	@Override
 	public Dimension getDisplaySize() {
-		return new Dimension((int) Configuration.getDisplayWidth(),
-			(int) Configuration.getDisplayHeight());
+		return new Dimension(Configuration.getDisplayWidth(), Configuration.getDisplayHeight());
 	}
 
 	@Override
