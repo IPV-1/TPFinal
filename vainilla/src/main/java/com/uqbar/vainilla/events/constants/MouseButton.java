@@ -7,6 +7,7 @@ import java.util.Map;
 public enum MouseButton {
 	LEFT, MIDDLE, RIGHT, ANY;
 
+	@SuppressWarnings("serial")
 	private static final Map<Integer, MouseButton> EQUIVALENCES = new HashMap<Integer, MouseButton>() {
 		{
 			this.put(MouseEvent.BUTTON1, LEFT);

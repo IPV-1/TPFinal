@@ -10,6 +10,8 @@ import com.uqbar.vainilla.events.EventAdapter;
 
 public class GamePlayer extends Canvas implements Runnable {
 
+	private static final long serialVersionUID = 6688564343943569332L;
+
 	private static final int BACKBUFFER_COUNT = 2;
 
 	private Game game;

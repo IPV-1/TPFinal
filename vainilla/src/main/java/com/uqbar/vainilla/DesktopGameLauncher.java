@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 public class DesktopGameLauncher extends JFrame {
 
+	private static final long serialVersionUID = 7195006358539890892L;
 	private GamePlayer player;
 
 	// ****************************************************************
