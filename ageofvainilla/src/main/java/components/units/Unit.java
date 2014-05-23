@@ -8,10 +8,6 @@ public abstract class Unit extends CameraRelativeComponent {
 	private int lifePoint = 1000;
 	private int powerAttack = 10;
 
-//	public Unit(Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
-//		super(rectangle, xPos, yPos, unitVector2D, speed);
-//	}
-
 	public Unit() {
 		super();
 	}
@@ -23,8 +19,6 @@ public abstract class Unit extends CameraRelativeComponent {
 	public Unit(double x, double y) {
 		super(x, y);
 	}
-	
-	
 
 	public void interactedBy(Unit unit) {
 		this.decrementLife(unit.getPowerAttack());
