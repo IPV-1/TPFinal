@@ -9,6 +9,7 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Rectangle;
 import components.BasicAgeComponent;
 import components.boards.ResourceBoard;
+import components.boards.ResourceBoardFactory;
 
 import config.Configuration;
 
@@ -20,16 +21,16 @@ public class ResourcesMenu extends BasicAgeComponent {
 		super(0, 0);
 		this.setAppearance(new Rectangle(Color.BLACK, Configuration.getDisplayWidth(), 30));
 		
-		ResourceBoard gold = new ResourceBoard(15, 1, Color.WHITE, "GOLD", 100);
+		ResourceBoard gold = new ResourceBoardFactory().withX(15).withLabel("GOLD").build();
 		components.add(gold);
 		
-		ResourceBoard lumber = new ResourceBoard(155, 1, Color.WHITE, "LUMBER", 100);
+		ResourceBoard lumber = new ResourceBoardFactory().withX(155).withLabel("LUMBER").build();
 		components.add(lumber);
 		
-		ResourceBoard food = new ResourceBoard(355, 1, Color.WHITE, "FOOD", 100);
+		ResourceBoard food = new ResourceBoardFactory().withX(355).withLabel("FOOD").build();
 		components.add(food);
 		
-		ResourceBoard rock = new ResourceBoard(555, 1, Color.WHITE, "ROCK", 100);
+		ResourceBoard rock = new ResourceBoardFactory().withX(555).withLabel("ROCK").build();
 		components.add(rock);
 		
 	}
