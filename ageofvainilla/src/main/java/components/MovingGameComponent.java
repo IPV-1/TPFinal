@@ -1,13 +1,15 @@
-package com.uqbar.vainilla;
+package components;
 
+import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.space.Coord;
 import com.uqbar.vainilla.space.UnitVector2D;
+import components.units.Unit;
 
 /**
  * GameComponent with velocity (speed and unit vector)
  */
-public class MovingGameComponent<SceneType extends GameScene> extends GameComponent<SceneType> {
+public class MovingGameComponent<FieldScene> extends Unit {
 
 	protected UnitVector2D direction;
 	protected double speed;
@@ -23,9 +25,8 @@ public class MovingGameComponent<SceneType extends GameScene> extends GameCompon
 		this.setDirection(direction);
 		this.speed = speed;
 	}
-
-	public MovingGameComponent(Appearance appearance, double xPos, double yPos,
-			UnitVector2D direction, double speed) {
+	
+	public MovingGameComponent(Appearance appearance, double xPos, double yPos, UnitVector2D direction, double speed) {
 		super(appearance, xPos, yPos);
 		this.direction = direction;
 		this.speed = speed;

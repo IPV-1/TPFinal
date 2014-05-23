@@ -23,7 +23,7 @@ public class FieldScene extends GameScene {
 	protected PathFinder pathFinder;
 
 	private MouseHandler mouse = new MouseHandler();
-	private Unit mockEnemy = new BasicBuilding(Color.RED, 4 * Tile.WIDTH, Tile.HEIGHT);
+	private Unit mockEnemy = new BasicBuilding(Color.RED, 4, 1);
 
     public FieldScene(Game game) {
         super();

@@ -1,12 +1,12 @@
 package components.units;
 
 import com.uqbar.vainilla.appearances.Invisible;
-import com.uqbar.vainilla.space.UnitVector2D;
+import components.recursos.TiledComponent;
 
-public class Flag extends Unit {
+public class Flag extends TiledComponent {
 
 	public Flag(double x, double y) {
-		super(new Invisible(), x, y, new UnitVector2D(1, 1), 0);
+		super(new Invisible(), x, y);
 	}
 
 	@Override

@@ -4,17 +4,16 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import scenes.FieldScene;
-
 import map.tiles.Tile;
+import scenes.FieldScene;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.colissions.Circle;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.ImmutablePoint;
+import components.MovingGameComponent;
 import components.units.MovingUnit;
 
 public class Path {

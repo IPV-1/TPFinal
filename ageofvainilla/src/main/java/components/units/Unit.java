@@ -1,25 +1,32 @@
 package components.units;
 
-import scenes.FieldScene;
-
-import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.space.UnitVector2D;
+import components.CameraRelativeComponent;
 
-public abstract class Unit extends MovingGameComponent<FieldScene> {
+public abstract class Unit extends CameraRelativeComponent {
 
 	private int lifePoint = 1000;
 	private int powerAttack = 10;
 
-	public Unit(Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
-		super(rectangle, xPos, yPos, unitVector2D, speed);
+//	public Unit(Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
+//		super(rectangle, xPos, yPos, unitVector2D, speed);
+//	}
+
+	public Unit() {
+		super();
 	}
 
-	public void attack(Unit unit) {
-		unit.attackedBy(this);
+	public Unit(Appearance appearance, double x, double y) {
+		super(appearance, x, y);
 	}
 
-	private void attackedBy(Unit unit) {
+	public Unit(double x, double y) {
+		super(x, y);
+	}
+	
+	
+
+	public void interactedBy(Unit unit) {
 		this.decrementLife(unit.getPowerAttack());
 
 		if(!this.isDead()) {
@@ -30,10 +37,6 @@ public abstract class Unit extends MovingGameComponent<FieldScene> {
 	}
 
 	public void hasKilled(Unit unit){}
-
-	public void suicide() {
-		this.attack(this);
-	}
 
 	public void decrementLife(int points) {
 		this.setLifePoint(this.getLifePoint() - points);

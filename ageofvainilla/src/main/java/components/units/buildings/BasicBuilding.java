@@ -5,15 +5,13 @@ import java.awt.Color;
 import map.tiles.Tile;
 
 import com.uqbar.vainilla.appearances.Rectangle;
-import com.uqbar.vainilla.space.UnitVector2D;
+import components.recursos.TiledComponent;
 
-import components.units.Unit;
-
-public class BasicBuilding extends Unit {
+public class BasicBuilding extends TiledComponent {
 	public BasicBuilding(Color color, double xPos, double yPos) {
-		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos, new UnitVector2D(1, 1), 0);
+		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos);
 	}
 
-	@Override
-	public void hasKilled(Unit unit) {}
+//	@Override
+//	public void hasKilled(Unit unit) {}
 }

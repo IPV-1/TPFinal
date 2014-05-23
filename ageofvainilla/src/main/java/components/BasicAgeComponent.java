@@ -9,7 +9,7 @@ import com.uqbar.vainilla.appearances.Appearance;
 
 public class BasicAgeComponent extends GameComponent<FieldScene> {
 
-    public BasicAgeComponent(Appearance appearance, int x, int y) {
+    public BasicAgeComponent(Appearance appearance, double x, double y) {
     	super(appearance, x, y);
 	}
     
