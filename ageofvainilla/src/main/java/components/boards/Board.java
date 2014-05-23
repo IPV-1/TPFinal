@@ -3,25 +3,29 @@ package components.boards;
 import java.awt.Color;
 import java.awt.Font;
 
-import scenes.FieldScene;
-
 import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Label;
+import components.BasicAgeComponent;
 
-public abstract class Board extends GameComponent<FieldScene> {
+public abstract class Board extends BasicAgeComponent {
 	
 	private int value;
 	
 	public Board(double x, double y, Color color) {
-		super(new Label(new Font("verdana",  Font.BOLD, 34), color, "0"), x, y);
+		super(x, y);
+
+		this.setAppearance(new Label(new Font("verdana",  Font.BOLD, getFontSize()), color, "0")); 
 	}
 	
-    public void changeScore(int score){
-        this.getAppearance().setText(this.getLabel() +": "+ Integer.toString(score));
+    public int getFontSize() {
+		return 32;
+	}
+
+	public void changeScore(int score){
+        this.getAppearance().setText(this.getTitle() +": "+ Integer.toString(score));
     }
 	
-	public abstract String getLabel();
+	public abstract String getTitle();
 	
 	public void add(int value) {
 		this.setValue(this.getValue() + value);

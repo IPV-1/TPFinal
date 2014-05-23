@@ -10,7 +10,7 @@ public class ScoreBoard extends Board {
 	}
 
 	@Override
-	public String getLabel() {
+	public String getTitle() {
 		return "Score";
 	}
 

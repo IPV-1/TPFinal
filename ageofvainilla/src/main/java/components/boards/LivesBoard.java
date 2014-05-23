@@ -25,7 +25,7 @@ public class LivesBoard extends Board {
 	}
 
 	@Override
-	public String getLabel() {
+	public String getTitle() {
 		return "Lives";
 	}
 	
