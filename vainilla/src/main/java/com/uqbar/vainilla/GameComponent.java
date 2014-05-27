@@ -130,21 +130,8 @@ public class GameComponent<SceneType extends GameScene> {
 	// ****************************************************************
 	// ** GAME OPERATIONS
 	// ****************************************************************
-
-	public boolean onScreen() {
-		double cx = Camera.INSTANCE.getX();
-		double cy = Camera.INSTANCE.getY();
-		return this.getY() + this.getHeight() >= cy
-				&& this.getX() + this.getWidth() >= cx
-					//TODO use Configuration file
-				&& this.getY() <= cy + 600//this.getGame().getDisplayHeight()
-				&& this.getX() <= cx + 800;//this.getGame().getDisplayWidth();
-	}
-
 	public void render(Graphics2D graphics) {
-		if(this.onScreen()) {
-			this.getAppearance().render(this, graphics);
-		}
+		this.getAppearance().render(this, graphics);
 	}
 
 	public void update(DeltaState deltaState) {

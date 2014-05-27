@@ -3,7 +3,6 @@ package com.uqbar.vainilla.appearances;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 
@@ -52,11 +51,10 @@ public class Circle implements Appearance {
 	@Override
 	public void render(GameComponent<?> component, Graphics2D graphics) {
 		graphics.setColor(this.color);
-		graphics.fillOval((int) (component.getX() - Camera.INSTANCE.getX()),
-				(int) (component.getY() - Camera.INSTANCE.getY()),
+		graphics.fillOval((int) component.getX(), (int) component.getY(),
 				this.diameter, this.diameter);
 	}
-	
+
 	// ****************************************************************
 	// ** COLLISIONS TODO: Shouldn't be here ¬¬
 	// ****************************************************************

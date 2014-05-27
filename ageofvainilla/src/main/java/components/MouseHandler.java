@@ -1,11 +1,9 @@
 package components;
 
-import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
 
 import map.tiles.Tile;
 
-import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.space.Coord;
 import components.units.Flag;
@@ -38,12 +36,4 @@ public class MouseHandler extends BasicAgeComponent {
 		return getScene().getMockEnemy();
 	}
 	
-	@Override
-	public void render(Graphics2D graphics) {
-		this.setX(this.getX() + Camera.INSTANCE.getX());
-		this.setY(this.getY() + Camera.INSTANCE.getY());
-		super.render(graphics);
-		this.setX(this.getX() - Camera.INSTANCE.getX());
-		this.setY(this.getY() - Camera.INSTANCE.getY());
-	}
 }
