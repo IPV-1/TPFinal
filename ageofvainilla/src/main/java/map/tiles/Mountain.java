@@ -4,7 +4,7 @@ import com.uqbar.vainilla.appearances.Sprite;
 
 import config.Configuration;
 
-public class Rock extends BlockedTile {
+public class Mountain extends BlockedTile {
 
 	@Override
 	public Sprite getSprite() {
