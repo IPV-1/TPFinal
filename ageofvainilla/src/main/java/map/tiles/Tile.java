@@ -15,18 +15,18 @@ public abstract class Tile {
 	private Sprite sprite;
 	
 	public static Tile getTile(String key) {
-		return TILES.get(key);
+		return TILES.get(key).build();
 	}
 	
 	public abstract boolean isWalkable();
 	
 	@SuppressWarnings("serial")
-	private static Map<String, Tile> TILES = new HashMap<String, Tile>(){{
-        put("G", new Grass());
-        put("P", new Plain());
-        put("R", new Rock());
-        put("W", new Water());
-        put("H", new House());
+	private static Map<String, TileBuilder> TILES = new HashMap<String, TileBuilder>(){{
+        put("G", new TileBuilder().forTile(Grass.class));
+        put("P", new TileBuilder().forTile(Plain.class));
+        put("M", new TileBuilder().forTile(Mountain.class));
+        put("W", new TileBuilder().forTile(Water.class));
+        put("H", new TileBuilder().forTile(House.class));
     }};
 
 	public boolean isEmpty() {
