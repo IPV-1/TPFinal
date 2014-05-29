@@ -78,7 +78,7 @@ public class Map extends GameComponent<GameScene> {
 	}
 
 	public boolean isWalkable(int x, int y) {
-		return this.get(x, y).isWalkable();
+		return this.get(x, y).isEmpty();
 	}
 
 	public Tile get(int x, int y) {

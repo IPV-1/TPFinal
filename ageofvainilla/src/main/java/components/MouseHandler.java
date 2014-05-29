@@ -27,13 +27,15 @@ public class MouseHandler extends BasicAgeComponent {
 	}
 
 	public Unit getElementUnderMouse() {
-		Coord tile = new Coord(this.getX(), this.getY()).getTile(Tile.WIDTH);
+		Coord tileC = new Coord(this.getX(), this.getY()).getTile(Tile.WIDTH);
 		
-		if(getScene().getMap().get(tile).isEmpty()) {
+		Tile tile = getScene().getMap().get(tileC);
+
+		if(! tile.isOccuppied()) {
 			return new Flag(this.getX(), this.getY());
 		}
 		
-		return getScene().getMockEnemy();
+		return tile.getOcuppant();
 	}
 	
 }

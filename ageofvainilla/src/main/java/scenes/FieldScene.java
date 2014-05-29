@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import map.Map;
 import map.path.PathFinder;
-import map.tiles.Tile;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
