@@ -8,12 +8,12 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import map.tiles.Tile;
-
 import resource.Resource;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.space.Coord;
+import components.units.Unit;
 
 public class Map extends GameComponent<GameScene> {
 
@@ -44,16 +44,6 @@ public class Map extends GameComponent<GameScene> {
 			}
 		}
 	}
-
-//	protected void process(String line, int y) {
-//		Scanner scanner = new Scanner(line);
-//		for (int x = 0; scanner.hasNext(); x++) {
-//			this.set(
-//					(Tile) Commons.invokeMethodFromClass(Tile.class, "get"
-//							+ scanner.next()), x, y);
-//		}
-//		scanner.close();
-//	}
 	
 	protected void process(String line, int y) {
 		Scanner scanner = new Scanner(line);
@@ -104,5 +94,13 @@ public class Map extends GameComponent<GameScene> {
 	public Tile get(Coord tile) {
 		return this.get((int) tile.getX(), (int) tile.getY());
 	}
+	
+	public void occupy(Unit unit, int tileX, int tileY) {
+		this.get(tileX, tileY).setOcuppant(unit);
+	}
 
+	public void setFree(int tileX, int tileY) {
+		this.get(tileX, tileY).setFree();
+	}
+	
 }

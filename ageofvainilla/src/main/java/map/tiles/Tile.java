@@ -52,5 +52,9 @@ public abstract class Tile {
 	public void setOcuppant(Unit ocuppant) {
 		this.ocuppant = ocuppant;
 	}
+
+	public void setFree() {
+		this.setOcuppant(null);
+	}
 	
 }
