@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import map.Map;
 import map.tiles.Tile;
 import scenes.FieldScene;
 
@@ -45,11 +46,11 @@ public class Path {
 			for (int j = 0, i = l.size() - 1; i >= 0; j++, i--) {
 				ll.add(j, l.get(i));
 			}
-			this.setCurrentStep(0);
-			//TODO reuse one same list. first it will be cleaned then
+			this.setCurrentStep(1);
+			// TODO reuse one same list. first it will be cleaned then
 			this.setPoints(ll);
-			if (!ll.isEmpty()) {
-				this.moveTo(ll.get(0));// ll.size() - 1));
+			if (ll.size() > 1) {
+				this.moveTo(ll.get(1));// ll.size() - 1));
 			} else {
 				this.stop();
 			}
@@ -66,7 +67,8 @@ public class Path {
 				.getDirection()
 				.set(x - this.getComponent().getX(),
 						y - this.getComponent().getY());
-		this.getComponent().setSpeed(MovingUnit.SPEED); // TODO change state instead
+		this.getComponent().setSpeed(MovingUnit.SPEED); // TODO change state
+														// instead
 		this.currentBreak = new Circle(x + 2, y + 2, 4);
 	}
 
@@ -75,6 +77,7 @@ public class Path {
 				this.currentBreak, this.getComponent().getRect())) {
 			this.getComponent().setX(this.getMoveTo().x * Tile.WIDTH);
 			this.getComponent().setY(this.getMoveTo().y * Tile.HEIGHT);
+			this.applyChangesOnMap();
 			this.setCurrentStep(this.getCurrentStep() + 1);
 			if (!this.isTraveling()) {
 				this.getComponent().setSpeed(0);
@@ -84,16 +87,26 @@ public class Path {
 		}
 	}
 
+	protected void applyChangesOnMap() {
+		Map map = this.getComponent().getScene().getMap();
+		map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
+		map.occupy(this.getComponent(), this.getMoveTo().x, this.getMoveTo().y);
+	}
+
 	public ImmutablePoint getMoveTo() {
 		return this.getPoints().get(this.getCurrentStep());
 	}
 	
+	public ImmutablePoint getPreviousPoint() {
+		return this.getPoints().get(this.getCurrentStep() - 1);
+	}
+
 	public boolean isTraveling() {
 		return this.getCurrentStep() < this.getPoints().size();
 	}
 
 	public void stop() {
-		//TODO component should move to a valid tile position
+		// TODO component should move to a valid tile position
 		this.setCurrentStep(this.getPoints().size());
 		this.getComponent().setSpeed(0);
 	}

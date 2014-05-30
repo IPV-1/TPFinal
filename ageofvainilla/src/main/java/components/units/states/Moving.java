@@ -1,7 +1,6 @@
 package components.units.states;
 
 import com.uqbar.vainilla.DeltaState;
-//import com.uqbar.vainilla.colissions.CollisionDetector;
 
 import components.units.MovingUnit;
 import components.units.Unit;
@@ -25,16 +24,8 @@ public class Moving extends UnitState {
 		if(!self.getPath().isTraveling()) {
 			self.setState(getNextState());
 		}
-//		self.move(deltaState);
-//		this.checkBreak(self);
 	}
 	
-//	public void checkBreak(MovingUnit self) {
-//		if(CollisionDetector.INSTANCE.collidesCircleAgainstRect(self.getBreakMove(), self.getRect())) {
-//			self.setState(getNextState());
-//		}
-//	}
-
 	public UnitState getNextState() {
 		return nextState;
 	}

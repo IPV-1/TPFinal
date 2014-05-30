@@ -81,6 +81,7 @@ public class PathFinder {
 				path.add(current.POINT);
 				current = current.getParent();
 			}
+			path.add(current.POINT);
 		}
 	}
 
@@ -107,7 +108,7 @@ public class PathFinder {
 				&& x < this.getNodes()[0].length;
 	}
 
-	protected Node get(int x, int y) {
+	public Node get(int x, int y) {
 		return this.getNodes()[y][x];
 	}
 
