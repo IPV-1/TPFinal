@@ -23,6 +23,8 @@ public class FieldScene extends GameScene {
 
 	private MouseHandler mouse = new MouseHandler();
 	private Unit mockEnemy = new BasicBuilding(Color.RED, 4, 1);
+	public MovingUnit initialUnit1 = new MovingUnit(Color.BLACK, 10, 10);
+	public MovingUnit initialUnit2 = new MovingUnit(Color.DARK_GRAY, 110, 110);
 
     public FieldScene(Game game) {
         super();
@@ -31,12 +33,20 @@ public class FieldScene extends GameScene {
         this.map = map;;
         this.pathFinder = new PathFinder(map);
         this.addComponent(map);
-        this.addComponent(new MovingUnit(Color.BLACK, 10, 10));
+        
+        this.addMovingUnit(initialUnit1);
+        this.addComponent(initialUnit2);
+        
         this.addComponent(this.getMockEnemy());
         this.addComponent(this.getMouse());
         
         this.addComponent(new ResourcesMenu());
     }
+
+	private void addMovingUnit(MovingUnit unit) {
+		this.addComponent(unit);
+		this.getMouse().addSelected(unit);
+	}
 
 	public MouseHandler getMouse() {
 		return mouse;

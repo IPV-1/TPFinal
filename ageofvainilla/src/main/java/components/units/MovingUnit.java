@@ -37,7 +37,7 @@ public class MovingUnit extends MovingGameComponent<FieldScene> {
 	@Override
 	public void update(DeltaState deltaState) {
 
-		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
+		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT) && getMouse().isSelected(this)) {
 			this.interact(getMouse().getElementUnderMouse());
 		}
 
