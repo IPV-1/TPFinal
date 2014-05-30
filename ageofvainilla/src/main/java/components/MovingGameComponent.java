@@ -9,7 +9,7 @@ import components.units.Unit;
 /**
  * GameComponent with velocity (speed and unit vector)
  */
-public class MovingGameComponent<FieldScene> extends Unit {
+public class MovingGameComponent extends Unit {
 
 	protected UnitVector2D direction;
 	protected double speed;

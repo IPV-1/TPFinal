@@ -3,7 +3,6 @@ package components.units;
 import java.awt.Color;
 
 import map.path.Path;
-import scenes.FieldScene;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
@@ -17,9 +16,10 @@ import components.units.states.Moving;
 import components.units.states.UnitState;
 import components.units.states.Waiting;
 
-public class MovingUnit extends MovingGameComponent<FieldScene> {
+public class MovingUnit extends MovingGameComponent {
 
 	public static final int SPEED = 200;
+
 	private UnitState state = new Waiting();
 	
 	protected final Path path = new Path(this);
@@ -35,7 +35,7 @@ public class MovingUnit extends MovingGameComponent<FieldScene> {
 	@Override
 	public void update(DeltaState deltaState) {
 
-		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
+		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT) && getMouse().isSelected(this)) {
 			this.interact(getMouse().getElementUnderMouse());
 		}
 

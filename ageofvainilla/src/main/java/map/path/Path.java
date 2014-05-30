@@ -6,7 +6,6 @@ import java.util.List;
 
 import map.Map;
 import map.tiles.Tile;
-import scenes.FieldScene;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
@@ -19,14 +18,14 @@ import components.units.MovingUnit;
 
 public class Path {
 
-	protected final MovingGameComponent<FieldScene> component;
+	protected final MovingGameComponent component;
 	protected List<ImmutablePoint> points = new ArrayList<ImmutablePoint>();
 	protected int currentStep = 0;
 
 	// TODO to remove
 	private Circle currentBreak;
 
-	public Path(MovingGameComponent<FieldScene> component) {
+	public Path(MovingGameComponent component) {
 		this.component = component;
 	}
 
@@ -111,7 +110,7 @@ public class Path {
 		this.getComponent().setSpeed(0);
 	}
 
-	public MovingGameComponent<FieldScene> getComponent() {
+	public MovingGameComponent getComponent() {
 		return this.component;
 	}
 
