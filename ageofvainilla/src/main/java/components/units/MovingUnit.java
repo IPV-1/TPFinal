@@ -26,10 +26,11 @@ public class MovingUnit extends MovingGameComponent {
 	
 	public MovingUnit(Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
 		super(rectangle, xPos, yPos, unitVector2D, speed);
+		// TODO this.getScene().getMap().occupy(this, (int) (xPos / Tile.WIDTH), (int) (yPos / Tile.HEIGHT));
 	}
 
 	public MovingUnit(Color color, double xPos, double yPos) {
-		super(new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
+		this(new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
 	}
 
 	@Override

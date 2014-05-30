@@ -108,7 +108,7 @@ public class PathFinder {
 				&& x < this.getNodes()[0].length;
 	}
 
-	public Node get(int x, int y) {
+	protected Node get(int x, int y) {
 		return this.getNodes()[y][x];
 	}
 
