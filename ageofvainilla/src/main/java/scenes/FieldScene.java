@@ -4,10 +4,13 @@ import java.awt.Color;
 
 import map.Map;
 import map.path.PathFinder;
+import map.tiles.Tile;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
+import com.uqbar.vainilla.space.Coord;
+
 import components.MouseHandler;
 import components.menus.ResourcesMenu;
 import components.units.MovingUnit;
@@ -23,7 +26,7 @@ public class FieldScene extends GameScene {
 
 	private MouseHandler mouse = new MouseHandler();
 	private Unit mockEnemy = new BasicBuilding(Color.RED, 4, 1);
-	public MovingUnit initialUnit1 = new MovingUnit(Color.BLACK, 10, 10);
+	public MovingUnit initialUnit1 = new MovingUnit(Color.BLACK, 200, 110);
 	public MovingUnit initialUnit2 = new MovingUnit(Color.DARK_GRAY, 110, 110);
 
     public FieldScene(Game game) {
@@ -35,7 +38,7 @@ public class FieldScene extends GameScene {
         this.addComponent(map);
         
         this.addMovingUnit(initialUnit1);
-        this.addComponent(initialUnit2);
+        this.addMovingUnit(initialUnit2);
         
         this.addComponent(this.getMockEnemy());
         this.addComponent(this.getMouse());
@@ -45,7 +48,11 @@ public class FieldScene extends GameScene {
 
 	private void addMovingUnit(MovingUnit unit) {
 		this.addComponent(unit);
-		this.getMouse().addSelected(unit);
+		
+		Coord tileCoord = new Coord(unit.getX(), unit.getY()).getTile(Tile.WIDTH);
+		this.getMap().occupy(unit, (int)tileCoord.getX(), (int)tileCoord.getY());
+		
+		//this.getMouse().addSelected(unit);
 	}
 
 	public MouseHandler getMouse() {

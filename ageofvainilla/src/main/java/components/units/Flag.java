@@ -1,6 +1,9 @@
 package components.units;
 
+import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Invisible;
+
+import components.MouseHandler;
 import components.recursos.TiledComponent;
 
 public class Flag extends TiledComponent {
@@ -18,4 +21,12 @@ public class Flag extends TiledComponent {
 	public int getPowerAttack() {
 		return 0;
 	}
+
+	@Override
+	public void seleccionate(MouseHandler mouseHandler, DeltaState deltaState) {
+		super.seleccionate(mouseHandler, deltaState);
+		
+		mouseHandler.getSelected().clear();
+	}
+	
 }

@@ -7,6 +7,7 @@ import map.path.Path;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
+import com.uqbar.vainilla.events.constants.Key;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.UnitVector2D;
 import components.MouseHandler;
@@ -50,11 +51,22 @@ public class MovingUnit extends MovingGameComponent {
 		this.setState(new Waiting());
 	}
 
+	@Override
+	public void seleccionate(MouseHandler mouseHandler, DeltaState deltaState) {
+		super.seleccionate(mouseHandler, deltaState);
+		
+		if(deltaState.isKeyBeingHold(Key.CTRL) && !mouseHandler.isSelected(this)) {
+			mouseHandler.addSelected(this);
+		} else {
+			mouseHandler.singleSelect(this);
+		}
+	}
+
 	public void interact(Unit unit) {
 		this.getState().interact(this, unit);
 	}
 
-	private MouseHandler getMouse() {
+	public MouseHandler getMouse() {
 		return this.getScene().getMouse();
 	}
 	

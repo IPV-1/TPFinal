@@ -1,7 +1,9 @@
 package components.units;
 
+import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import components.CameraRelativeComponent;
+import components.MouseHandler;
 
 public abstract class Unit extends CameraRelativeComponent {
 
@@ -59,6 +61,9 @@ public abstract class Unit extends CameraRelativeComponent {
 
 	public void setPowerAttack(int powerAttack) {
 		this.powerAttack = powerAttack;
+	}
+
+	public void seleccionate(MouseHandler mouseHandler, DeltaState deltaState) {
 	}
 
 }

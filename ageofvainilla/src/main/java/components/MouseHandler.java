@@ -7,7 +7,6 @@ import java.util.List;
 import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.events.constants.Key;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.Coord;
 import components.units.Flag;
@@ -33,18 +32,12 @@ public class MouseHandler extends BasicAgeComponent {
 		this.setY(position.getY());
 		
 		if(deltaState.isMouseButtonReleased(MouseButton.LEFT)) {
-			// TODO: getElementUnderMouse 
-			MovingUnit unit = this.isSelected(getScene().initialUnit1) ? getScene().initialUnit2 : getScene().initialUnit1;
-
-			if(deltaState.isKeyBeingHold(Key.CTRL) && !this.isSelected(unit)) {
-				this.addSelected(unit);
-			} else {
-				this.singleSelect(unit);
-			}
+			this.getElementUnderMouse().seleccionate(this, deltaState);
 		}
 	}
 
 	public Unit getElementUnderMouse() {
+		// TODO: get tile position teniendo en cuenta la camara
 		Coord tileC = new Coord(this.getX(), this.getY()).getTile(Tile.WIDTH);
 		
 		Tile tile = getScene().getMap().get(tileC);
