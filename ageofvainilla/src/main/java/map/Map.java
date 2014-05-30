@@ -10,6 +10,7 @@ import java.util.Scanner;
 import map.tiles.Tile;
 import resource.Resource;
 
+import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.space.Coord;
@@ -57,8 +58,9 @@ public class Map extends GameComponent<GameScene> {
 	public void render(Graphics2D graphics) {
 		for (int y = 0; y < this.getTiles().length; y++) {
 			for (int x = 0; x < this.getTiles()[0].length; x++) {
-				this.get(x, y).getSprite().renderAt(x * Tile.WIDTH, y * Tile.HEIGHT,
-						graphics);
+				this.get(x, y).getSprite().renderAt((int)((x * Tile.WIDTH)
+						- Camera.INSTANCE.getX()), (int)((y * Tile.HEIGHT)
+						- Camera.INSTANCE.getY()), graphics);
 			}
 		}
 	}
