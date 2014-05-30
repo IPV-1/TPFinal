@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.appearances.Appearance;
 
+import config.Configuration;
+
 public class CameraRelativeComponent extends BasicAgeComponent {
 
 	public CameraRelativeComponent() {
@@ -37,9 +39,8 @@ public class CameraRelativeComponent extends BasicAgeComponent {
 		double cy = Camera.INSTANCE.getY();
 		return this.getY() + this.getHeight() >= cy
 				&& this.getX() + this.getWidth() >= cx
-					//TODO use Configuration file
-				&& this.getY() <= cy + 600//this.getGame().getDisplayHeight()
-				&& this.getX() <= cx + 800;//this.getGame().getDisplayWidth();
+				&& this.getY() <= cy + Configuration.getDisplayHeight()
+				&& this.getX() <= cx + Configuration.getDisplayWidth();
 	}
 	
 }
