@@ -25,7 +25,7 @@ public class FieldScene extends GameScene {
 	protected PathFinder pathFinder;
 
 	private MouseHandler mouse = new MouseHandler();
-	private Unit mockEnemy = new BasicBuilding(Color.RED, 4, 1);
+	private Unit mockEnemy;
 	public MovingUnit initialUnit1 = new MovingUnit(Color.BLACK, 200, 110);
 	public MovingUnit initialUnit2 = new MovingUnit(Color.DARK_GRAY, 110, 110);
 
@@ -39,7 +39,8 @@ public class FieldScene extends GameScene {
         
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
-        
+
+		setMockEnemy(new BasicBuilding(Color.RED, 4, 1));
         this.addComponent(this.getMockEnemy());
         this.addComponent(this.getMouse());
         
