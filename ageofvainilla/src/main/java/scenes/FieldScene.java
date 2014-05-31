@@ -6,8 +6,8 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
 import components.units.buildings.Builder;
 import components.units.panels.ControlPanel;
-import components.units.panels.PanelBuilder;
-import components.units.panels.PanelFactory;
+import components.units.panels.factories.PanelBuilder;
+import components.units.panels.factories.PanelFactory;
 import map.Map;
 import map.path.PathFinder;
 import map.tiles.Tile;
@@ -20,7 +20,6 @@ import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
 import components.menus.ResourcesMenu;
 import components.units.MovingUnit;
-import components.units.Unit;
 import components.units.buildings.BasicBuilding;
 
 public class FieldScene extends GameScene {
@@ -31,7 +30,6 @@ public class FieldScene extends GameScene {
 	protected PathFinder pathFinder;
 
 	private MouseHandler mouse = new MouseHandler();
-	private Unit mockEnemy;
 	public MovingUnit initialUnit1 = new MovingUnit(Color.BLACK, 200, 110);
 	public MovingUnit initialUnit2 = new MovingUnit(Color.DARK_GRAY, 110, 110);
 

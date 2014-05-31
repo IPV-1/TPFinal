@@ -1,4 +1,4 @@
-package components.units.panels;
+package components.units.panels.factories;
 
 
 import com.uqbar.vainilla.Game;
@@ -6,6 +6,10 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
 import components.units.buildings.Builder;
+import components.units.panels.BuildingButton;
+import components.units.panels.ControlPanel;
+import components.units.panels.UnitShower;
+import components.units.panels.factories.PanelBuilder;
 import components.units.panels.factories.UnitShowerFactory;
 import map.tiles.Tile;
 

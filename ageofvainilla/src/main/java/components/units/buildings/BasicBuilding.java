@@ -15,14 +15,12 @@ public class BasicBuilding extends TiledComponent {
 	//I let this here for backward compatibility
 	public BasicBuilding(Color color, double xPos, double yPos) {
 		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos);
-		setZ(4); //Well, this shouldn't be here
 	}
 
 	public BasicBuilding(Appearance appearance, int positionX, int positionY, int widthInTiles, int longInTiles){
 		super(appearance,positionX, positionY);
 		setWidthInTiles(widthInTiles);
 		setLongInTiles(longInTiles);
-		setZ(4);
 	}
 
 	public int getLongInTiles() {
