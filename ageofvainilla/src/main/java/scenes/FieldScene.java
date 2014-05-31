@@ -2,6 +2,9 @@ package scenes;
 
 import java.awt.Color;
 
+import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.appearances.Rectangle;
+import components.units.buildings.Builder;
 import map.Map;
 import map.path.PathFinder;
 import map.tiles.Tile;
@@ -40,8 +43,9 @@ public class FieldScene extends GameScene {
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
 
-		setMockEnemy(new BasicBuilding(Color.RED, 4, 1));
-        this.addComponent(this.getMockEnemy());
+		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH, Tile.WIDTH);
+		BasicBuilding building = new Builder(buildingAppearance, Tile.WIDTH, Tile.WIDTH).build(4, 1);
+        this.addComponent(building);
         this.addComponent(this.getMouse());
         
         this.addComponent(new ResourcesMenu());
@@ -62,14 +66,6 @@ public class FieldScene extends GameScene {
 
 	public void setMouse(MouseHandler mouse) {
 		this.mouse = mouse;
-	}
-
-	public Unit getMockEnemy() {
-		return mockEnemy;
-	}
-
-	public void setMockEnemy(Unit mockEnemy) {
-		this.mockEnemy = mockEnemy;
 	}
     
 //	private GameComponent<?> getBackground() {
