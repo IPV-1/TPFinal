@@ -10,12 +10,19 @@ public class PanelBuilder {
 	private Appearance appearance;
 	private int z;
 	private List<BuildingButton> buttons = new ArrayList<BuildingButton>();
+	private UnitShower unitShower;
 
 	public ControlPanel build(int x, int y) {
 		ControlPanel panel = new ControlPanel(getAppearance(), x, y);
 		panel.setZ(getZ());
 		panel.addButtons(getButtons());
+		panel.unitShower = getUnitShower();
 		return panel;
+	}
+
+	public PanelBuilder withShower(UnitShower unitShower){
+		setUnitShower(unitShower);
+		return this;
 	}
 
 	public PanelBuilder withButton(BuildingButton button){
@@ -55,5 +62,13 @@ public class PanelBuilder {
 
 	public void setButtons(List<BuildingButton> buttons) {
 		this.buttons = buttons;
+	}
+
+	public UnitShower getUnitShower() {
+		return unitShower;
+	}
+
+	public void setUnitShower(UnitShower unitShower) {
+		this.unitShower = unitShower;
 	}
 }

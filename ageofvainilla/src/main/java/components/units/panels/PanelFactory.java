@@ -24,12 +24,17 @@ public class PanelFactory {
 		int height = Tile.HEIGHT * 3;
 		Appearance appearance = new Rectangle(Color.orange, game.getDisplayWidth(), height);
 		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH, Tile.WIDTH);
-		Builder buildingBuilder = new Builder(buildingAppearance,Tile.WIDTH, Tile.WIDTH);
+		Builder buildingBuilder = new Builder(buildingAppearance, Tile.WIDTH, Tile.WIDTH);
 		Appearance buttonAp = new Circle(Color.red, 40);
 		for (int i = 0; i < 2; i++) {
 			getBuilder().withButton(new BuildingButton(buildingBuilder, buttonAp, 0, 1));
 		}
-		return getBuilder().withAppearance(appearance).withZ(8).build(0, game.getDisplayHeight() - height);
+		UnitShower unitShower = new UnitShower(new Rectangle(Color.DARK_GRAY, 200, game.getDisplayHeight() - height));
+		unitShower.setX(game.getDisplayWidth() - 200);
+		unitShower.setY(game.getDisplayHeight() - height);
+		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, game.getDisplayHeight() - height);
+		unitShower.setPanel(panel);
+		return panel;
 	}
 
 	public PanelBuilder getBuilder() {
