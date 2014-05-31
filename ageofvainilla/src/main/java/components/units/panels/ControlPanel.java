@@ -20,13 +20,13 @@ public class ControlPanel extends DownMenu {
 	}
 
 	public void addButtons(List<BuildingButton> buttons) {
-		int nextX = ((int) getX()) + 10; // why 10? I don't know.
-		int nextY = (int) (getY()) + 10;
+		int nextX = ((int) getX()); // why 10? I don't know.
+		int nextY = (int) (getY());
 		for (BuildingButton button : buttons) {
 			button.setX(nextX);
 			button.setY(nextY);
 			button.setZ(getZ() + 1);
-			nextX += button.getWidth() + 10;
+			nextX += button.getWidth();
 			getComponents().add(button);
 		}
 	}
