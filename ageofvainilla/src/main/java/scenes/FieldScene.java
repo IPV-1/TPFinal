@@ -5,6 +5,7 @@ import java.awt.Color;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
 import components.units.buildings.Builder;
+import components.units.panels.Factory;
 import map.Map;
 import map.path.PathFinder;
 import map.tiles.Tile;
@@ -49,7 +50,13 @@ public class FieldScene extends GameScene {
         this.addComponent(this.getMouse());
         
         this.addComponent(new ResourcesMenu());
+		addControlPanel(game);
     }
+
+	private void addControlPanel(Game game) {
+		Factory panelFactory = new Factory(new components.units.panels.Builder());
+		addComponent(panelFactory.downPanelFullWith(game));
+	}
 
 	private void addMovingUnit(MovingUnit unit) {
 		this.addComponent(unit);
