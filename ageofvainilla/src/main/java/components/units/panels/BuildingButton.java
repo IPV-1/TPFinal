@@ -1,7 +1,10 @@
 package components.units.panels;
 
+import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.events.constants.MouseButton;
 import components.BasicAgeComponent;
+import components.units.Unit;
 import components.units.buildings.Builder;
 
 /**
@@ -19,6 +22,12 @@ public class BuildingButton extends BasicAgeComponent{
 
 	public void onSceneActivated(ControlPanel panel){
 		setScene(panel.getScene());
+	}
+
+	public void update(DeltaState deltaState){
+//		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT) && getScene().getMouse().isSelected(this)) {
+//			this.interact(getScene().getMouse().getElementUnderMouse());
+//		}
 	}
 
 	//Helper method for appearance
