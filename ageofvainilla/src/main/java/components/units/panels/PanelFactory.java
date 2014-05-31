@@ -6,6 +6,7 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
 import components.units.buildings.Builder;
+import components.units.panels.factories.UnitShowerFactory;
 import map.tiles.Tile;
 
 import java.awt.*;
@@ -29,9 +30,7 @@ public class PanelFactory {
 		for (int i = 0; i < 2; i++) {
 			getBuilder().withButton(new BuildingButton(buildingBuilder, buttonAp, 0, 1));
 		}
-		UnitShower unitShower = new UnitShower(new Rectangle(Color.DARK_GRAY, 200, game.getDisplayHeight() - height));
-		unitShower.setX(game.getDisplayWidth() - 200);
-		unitShower.setY(game.getDisplayHeight() - height);
+		UnitShower unitShower = UnitShowerFactory.createRectangle(game, 200, game.getDisplayHeight() - height, game.getDisplayWidth() - 200, game.getDisplayHeight() - height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, game.getDisplayHeight() - height);
 		unitShower.setPanel(panel);
 		return panel;
