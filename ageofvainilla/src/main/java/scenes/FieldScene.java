@@ -8,6 +8,7 @@ import components.units.buildings.Builder;
 import components.units.panels.ControlPanel;
 import components.units.panels.factories.PanelBuilder;
 import components.units.panels.factories.PanelFactory;
+import components.units.resources.factory.ResourceFactory;
 import map.Map;
 import map.path.PathFinder;
 import map.tiles.Tile;
@@ -48,12 +49,15 @@ public class FieldScene extends GameScene {
 		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH, Tile.WIDTH);
 		BasicBuilding building = new Builder(buildingAppearance, Tile.WIDTH, Tile.WIDTH).build(4, 1);
         this.addComponent(building);
+        this.addComponent(ResourceFactory.createGold(4,2, 200));
         this.addComponent(this.getMouse());
         
         addResourceMenu(new ResourcesMenu());
 		//Comment this out for seeing control panel
 		addControlPanel(game);
     }
+
+
 	public void addResourceMenu(ResourcesMenu menu){
 		setResourcesMenu(menu);
 		addComponent(menu);

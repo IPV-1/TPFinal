@@ -14,8 +14,10 @@ public class Resource extends TiledComponent {
 		}
 	}
 
-	public Resource(Appearance appearance, double tileX, double tileY) {
+	public Resource(Appearance appearance, double tileX, double tileY, int amount, String resourceName) {
 		super(appearance, tileX, tileY);
+		setResourceName(resourceName);
+		setAmount(amount);
 	}
 
 	public void addResourceToPlayer() {
