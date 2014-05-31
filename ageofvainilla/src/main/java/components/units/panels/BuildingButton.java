@@ -17,6 +17,10 @@ public class BuildingButton extends BasicAgeComponent{
 		setBuilder(builder);
 	}
 
+	public void onSceneActivated(ControlPanel panel){
+		setScene(panel.getScene());
+	}
+
 	//Helper method for appearance
 	public void select(){
 		setSelected(true);
