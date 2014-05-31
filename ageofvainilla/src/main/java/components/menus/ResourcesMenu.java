@@ -83,4 +83,12 @@ public class ResourcesMenu extends BasicAgeComponent {
 			}
 		}
 	}
+
+	public void addResource(String resourceName, int subtracted) {
+		for (ResourceBoard component : components) {
+			if (component.getTitle().equals(resourceName)) {
+				component.setValue(component.getValue() + subtracted);
+			}
+		}
+	}
 }
