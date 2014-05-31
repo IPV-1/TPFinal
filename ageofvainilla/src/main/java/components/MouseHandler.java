@@ -21,6 +21,7 @@ public class MouseHandler extends BasicAgeComponent {
 	
 	public MouseHandler() {
 		super(Configuration.getSprite("pointer"), 0, 0);
+		setZ(10);
 	}
 	
 	@Override
