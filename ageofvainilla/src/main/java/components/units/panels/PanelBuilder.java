@@ -16,7 +16,7 @@ public class PanelBuilder {
 		ControlPanel panel = new ControlPanel(getAppearance(), x, y);
 		panel.setZ(getZ());
 		panel.addButtons(getButtons());
-		panel.unitShower = getUnitShower();
+		panel.setUnitShower(getUnitShower());
 		return panel;
 	}
 

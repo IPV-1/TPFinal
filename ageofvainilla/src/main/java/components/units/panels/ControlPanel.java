@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ControlPanel extends DownMenu {
 	//TODO: Make this parametric.
-	UnitShower unitShower;
+	private UnitShower unitShower;
 
 	public ControlPanel(Appearance appearance, double x, double y) {
 		super(appearance, x, y);
@@ -16,7 +16,7 @@ public class ControlPanel extends DownMenu {
 	@Override
 	public void render(Graphics2D graphics) {
 		super.render(graphics);
-		unitShower.render(graphics);
+		getUnitShower().render(graphics);
 	}
 
 	public void addButtons(List<BuildingButton> buttons) {
@@ -29,5 +29,13 @@ public class ControlPanel extends DownMenu {
 			nextX += button.getWidth();
 			getComponents().add(button);
 		}
+	}
+
+	public UnitShower getUnitShower() {
+		return unitShower;
+	}
+
+	public void setUnitShower(UnitShower unitShower) {
+		this.unitShower = unitShower;
 	}
 }
