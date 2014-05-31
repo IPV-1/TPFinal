@@ -60,7 +60,6 @@ public class FieldScene extends GameScene {
 		PanelFactory panelFactory = new PanelFactory(new PanelBuilder());
 		ControlPanel panel = panelFactory.downPanelFullWith(game);
 		addComponent(panel);
-		addComponents(panel.getButtons());
 	}
 
 	private void addMovingUnit(MovingUnit unit) {

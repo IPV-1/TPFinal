@@ -9,7 +9,6 @@ import components.units.buildings.Builder;
 import map.tiles.Tile;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class PanelFactory {
 
@@ -21,6 +20,7 @@ public class PanelFactory {
 
 	public ControlPanel downPanelFullWith(Game game) {
 		// TODO: this method is painful, so much.
+		// Isn't  worse colours?
 		int height = Tile.HEIGHT * 3;
 		Appearance appearance = new Rectangle(Color.orange, game.getDisplayWidth(), height);
 		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH, Tile.WIDTH);

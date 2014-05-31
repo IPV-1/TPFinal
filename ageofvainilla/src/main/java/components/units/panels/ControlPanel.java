@@ -2,13 +2,11 @@ package components.units.panels;
 
 
 import com.uqbar.vainilla.appearances.Appearance;
-import components.BasicAgeComponent;
+import components.menus.DownMenu;
 
 import java.util.List;
 
-public class ControlPanel extends BasicAgeComponent {
-
-	private List<BuildingButton> buttons;
+public class ControlPanel extends DownMenu {
 
 	public ControlPanel(Appearance appearance, double x, double y) {
 		super(appearance, x, y);
@@ -22,15 +20,7 @@ public class ControlPanel extends BasicAgeComponent {
 			button.setY(nextY);
 			button.setZ(getZ() + 1);
 			nextX += button.getWidth() + 10;
+			getComponents().add(button);
 		}
-		setButtons(buttons);
-	}
-
-	public List<BuildingButton> getButtons() {
-		return buttons;
-	}
-
-	public void setButtons(List<BuildingButton> buttons) {
-		this.buttons = buttons;
 	}
 }

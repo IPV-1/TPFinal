@@ -16,6 +16,10 @@ public class DownMenu extends BasicAgeComponent {
 		super(appearance, 0, y);
 	}
 
+	public DownMenu(Appearance appearance, double x, double y) {
+		super(appearance,x,y);
+	}
+
 	@Override
 	public void update(DeltaState deltaState) {
 		super.update(deltaState);
@@ -32,5 +36,13 @@ public class DownMenu extends BasicAgeComponent {
 		for (BasicAgeComponent component : components) {
 			component.render(graphics);
 		}
+	}
+
+	public List<BasicAgeComponent> getComponents() {
+		return components;
+	}
+
+	public void setComponents(List<BasicAgeComponent> components) {
+		this.components = components;
 	}
 }
