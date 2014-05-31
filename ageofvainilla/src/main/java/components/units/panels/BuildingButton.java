@@ -5,12 +5,13 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import components.BasicAgeComponent;
 import components.units.Unit;
+import components.units.buildings.BasicBuilding;
 import components.units.buildings.Builder;
 
 /**
  * TODO: this class should be "clickable" by mouse handler, but that interface doesn't exist.
  */
-public class BuildingButton extends BasicAgeComponent{
+public class BuildingButton extends BasicAgeComponent {
 
 	private boolean selected;
 	private Builder builder;
@@ -20,27 +21,27 @@ public class BuildingButton extends BasicAgeComponent{
 		setBuilder(builder);
 	}
 
-	public void onSceneActivated(ControlPanel panel){
+	public void onSceneActivated(ControlPanel panel) {
 		setScene(panel.getScene());
 	}
 
-	public void update(DeltaState deltaState){
+	public void update(DeltaState deltaState) {
+		/**
+		 * Something like that?
+		 */
 //		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT) && getScene().getMouse().isSelected(this)) {
 //			this.interact(getScene().getMouse().getElementUnderMouse());
 //		}
 	}
 
-	//Helper method for appearance
-	public void select(){
-		setSelected(true);
-	}
-
-	public void unselect(){
-		setSelected(false);
-	}
-
-	public void buildIn(int posX, int posY){
-		getScene().addComponent(getBuilder().build(posX, posY));
+	public void buildIn(int posX, int posY) {
+		BasicBuilding building = getBuilder().build(posX, posY);
+		if (getScene().getResourcesMenu().canBuild(building)) {
+			getScene().addComponent(building);
+			getScene().getResourcesMenu().updateResources(building);
+		} else {
+			// Do what?
+		}
 	}
 
 	public Builder getBuilder() {
@@ -52,6 +53,10 @@ public class BuildingButton extends BasicAgeComponent{
 	}
 
 	public boolean isSelected() {
+		/**
+		 * Should be:
+		 * return getScene().getMouse().isSelected(this);
+		 */
 		return selected;
 	}
 
