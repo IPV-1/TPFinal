@@ -28,6 +28,7 @@ public class FieldScene extends GameScene {
 	
 	protected Map map;
 	protected PathFinder pathFinder;
+	private ResourcesMenu resourcesMenu;
 
 	private MouseHandler mouse = new MouseHandler();
 	public MovingUnit initialUnit1 = new MovingUnit(Color.BLACK, 200, 110);
@@ -49,10 +50,15 @@ public class FieldScene extends GameScene {
         this.addComponent(building);
         this.addComponent(this.getMouse());
         
-        this.addComponent(new ResourcesMenu());
+        addResourceMenu(new ResourcesMenu());
 		//Comment this out for seeing control panel
 		addControlPanel(game);
     }
+	public void addResourceMenu(ResourcesMenu menu){
+		setResourcesMenu(menu);
+		addComponent(menu);
+	}
+
 
 	private void addControlPanel(Game game) {
 		PanelFactory panelFactory = new PanelFactory(new PanelBuilder());
@@ -93,4 +99,11 @@ public class FieldScene extends GameScene {
     	return this.pathFinder;
     }
 
+	public ResourcesMenu getResourcesMenu() {
+		return resourcesMenu;
+	}
+
+	public void setResourcesMenu(ResourcesMenu resourcesMenu) {
+		this.resourcesMenu = resourcesMenu;
+	}
 }
