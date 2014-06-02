@@ -8,7 +8,6 @@ import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.events.constants.MouseButton;
-import com.uqbar.vainilla.space.Coord;
 import components.units.Flag;
 import components.units.MovingUnit;
 import components.units.Unit;
@@ -38,9 +37,8 @@ public class MouseHandler extends BasicAgeComponent {
 	}
 
 	public Unit getElementUnderMouse() {
-		Coord tileC = Coord.getTileCamera(this.getX(), this.getY(), Tile.WIDTH);
 		
-		Tile tile = getScene().getMap().get(tileC);
+		Tile tile = getScene().getMap().getTileCamera(this.getX(), this.getY());
 
 		if(! tile.isOccuppied()) {
 			return new Flag(this.getX(), this.getY());

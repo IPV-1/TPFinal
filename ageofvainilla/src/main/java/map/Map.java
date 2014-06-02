@@ -104,5 +104,10 @@ public class Map extends GameComponent<GameScene> {
 	public void setFree(int tileX, int tileY) {
 		this.get(tileX, tileY).setFree();
 	}
+
+	public Tile getTileCamera(double x, double y) {
+		Coord tileC = Coord.getTileCamera(this.getX(), this.getY(), Tile.WIDTH);
+		return this.get(tileC);
+	}
 	
 }
