@@ -106,8 +106,7 @@ public class Map extends GameComponent<GameScene> {
 	}
 
 	public Tile getTileCamera(double x, double y) {
-		Coord tileC = Coord.getTileCamera(this.getX(), this.getY(), Tile.WIDTH);
-		return this.get(tileC);
+		return this.get(Coord.getTileCamera(x, y, Tile.WIDTH));
 	}
 	
 }
