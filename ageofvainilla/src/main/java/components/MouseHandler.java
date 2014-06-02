@@ -38,8 +38,7 @@ public class MouseHandler extends BasicAgeComponent {
 	}
 
 	public Unit getElementUnderMouse() {
-		// TODO: get tile position teniendo en cuenta la camara
-		Coord tileC = new Coord(this.getX(), this.getY()).getTile(Tile.WIDTH);
+		Coord tileC = Coord.getTileCamera(this.getX(), this.getY(), Tile.WIDTH);
 		
 		Tile tile = getScene().getMap().get(tileC);
 

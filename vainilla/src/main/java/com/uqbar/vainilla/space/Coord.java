@@ -2,6 +2,8 @@ package com.uqbar.vainilla.space;
 
 import java.awt.geom.Point2D.Double;
 
+import com.uqbar.vainilla.Camera;
+
 public class Coord {
 	private double x;
 	private double y;
@@ -50,6 +52,10 @@ public class Coord {
 
 	public Coord getTile(double TILE_SIZE) {
 		return new Coord(this.getX() / TILE_SIZE, this.getY() / TILE_SIZE);
+	}
+
+	public static Coord getTileCamera(double xAbs, double yAbs, double TILE_SIZE) {
+		return new Coord(xAbs + Camera.INSTANCE.getX(), yAbs + Camera.INSTANCE.getY()).getTile(TILE_SIZE);
 	}
 
 }
