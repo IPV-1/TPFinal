@@ -65,7 +65,7 @@ public class MouseHandler extends BasicAgeComponent {
 		this.selected = selected;
 	}
 	
-	public boolean isSelected(MovingUnit unit) {
+	public boolean isSelected(MovingGameComponent unit) {
 		return this.getSelected().contains(unit);
 	}
 	

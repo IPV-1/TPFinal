@@ -30,7 +30,8 @@ public class Path {
 	}
 
 	public void update(DeltaState deltaState) {
-		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)) {
+		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT) &&
+				this.getComponent().getMouse().isSelected(this.getComponent())) {
 			Point2D.Double d = deltaState.getCurrentMousePosition();
 			int x = (int) ((d.x + Camera.INSTANCE.getX()) / Tile.WIDTH);
 			int y = (int) ((d.y + Camera.INSTANCE.getY()) / Tile.HEIGHT);

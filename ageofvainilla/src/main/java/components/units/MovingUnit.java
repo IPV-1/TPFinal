@@ -27,7 +27,6 @@ public class MovingUnit extends MovingGameComponent {
 	
 	public MovingUnit(Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
 		super(rectangle, xPos, yPos, unitVector2D, speed);
-		// TODO this.getScene().getMap().occupy(this, (int) (xPos / Tile.WIDTH), (int) (yPos / Tile.HEIGHT));
 	}
 
 	public MovingUnit(Color color, double xPos, double yPos) {
@@ -64,10 +63,6 @@ public class MovingUnit extends MovingGameComponent {
 
 	public void interact(Unit unit) {
 		this.getState().interact(this, unit);
-	}
-
-	public MouseHandler getMouse() {
-		return this.getScene().getMouse();
 	}
 	
 	public void attack(Unit unit) {

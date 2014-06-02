@@ -55,6 +55,10 @@ public class MovingGameComponent extends Unit {
     public void center() {
 		this.setX(this.getScene().getGame().getDisplayWidth() / 2 - (this.getWidth() / 2));
 	}
+    
+	public MouseHandler getMouse() {
+		return this.getScene().getMouse();
+	}
 
 	public double getSpeed() {
 		return this.speed;
