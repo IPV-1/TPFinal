@@ -1,10 +1,8 @@
-package components.units.panels;
+package components.menus.panels;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.events.constants.MouseButton;
 import components.BasicAgeComponent;
-import components.units.Unit;
 import components.units.buildings.BasicBuilding;
 import components.units.buildings.Builder;
 

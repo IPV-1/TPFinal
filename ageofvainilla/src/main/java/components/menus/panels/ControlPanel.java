@@ -1,4 +1,4 @@
-package components.units.panels;
+package components.menus.panels;
 
 import com.uqbar.vainilla.appearances.*;
 import components.menus.DownMenu;

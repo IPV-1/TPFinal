@@ -3,7 +3,8 @@ package components.units.panels.factories;
 
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Rectangle;
-import components.units.panels.UnitShower;
+
+import components.menus.panels.UnitShower;
 
 import java.awt.*;
 

@@ -5,10 +5,11 @@ import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
+
+import components.menus.panels.BuildingButton;
+import components.menus.panels.ControlPanel;
+import components.menus.panels.UnitShower;
 import components.units.buildings.Builder;
-import components.units.panels.BuildingButton;
-import components.units.panels.ControlPanel;
-import components.units.panels.UnitShower;
 import components.units.panels.factories.PanelBuilder;
 import components.units.panels.factories.UnitShowerFactory;
 import map.tiles.Tile;

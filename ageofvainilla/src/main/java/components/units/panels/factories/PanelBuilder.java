@@ -2,9 +2,10 @@ package components.units.panels.factories;
 
 
 import com.uqbar.vainilla.appearances.Appearance;
-import components.units.panels.BuildingButton;
-import components.units.panels.ControlPanel;
-import components.units.panels.UnitShower;
+
+import components.menus.panels.BuildingButton;
+import components.menus.panels.ControlPanel;
+import components.menus.panels.UnitShower;
 
 import java.util.ArrayList;
 import java.util.List;

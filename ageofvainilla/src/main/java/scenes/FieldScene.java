@@ -2,13 +2,6 @@ package scenes;
 
 import java.awt.Color;
 
-import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.appearances.Rectangle;
-import components.units.buildings.Builder;
-import components.units.panels.ControlPanel;
-import components.units.panels.factories.PanelBuilder;
-import components.units.panels.factories.PanelFactory;
-import components.units.resources.factory.ResourceFactory;
 import map.Map;
 import map.path.PathFinder;
 import map.tiles.Tile;
@@ -16,12 +9,18 @@ import map.tiles.Tile;
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
+import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.Coord;
-
 import components.MouseHandler;
 import components.menus.ResourcesMenu;
+import components.menus.panels.ControlPanel;
 import components.units.MovingUnit;
 import components.units.buildings.BasicBuilding;
+import components.units.buildings.Builder;
+import components.units.panels.factories.PanelBuilder;
+import components.units.panels.factories.PanelFactory;
+import components.units.resources.factory.ResourceFactory;
 
 public class FieldScene extends GameScene {
 
@@ -30,6 +29,7 @@ public class FieldScene extends GameScene {
 	protected Map map;
 	protected PathFinder pathFinder;
 	private ResourcesMenu resourcesMenu;
+	private ControlPanel controlPanel;
 
 	private MouseHandler mouse = new MouseHandler();
 	public MovingUnit initialUnit1 = new MovingUnit(Color.BLACK, 200, 110);
@@ -67,6 +67,7 @@ public class FieldScene extends GameScene {
 	private void addControlPanel(Game game) {
 		PanelFactory panelFactory = new PanelFactory(new PanelBuilder());
 		ControlPanel panel = panelFactory.downPanelFullWith(game);
+		this.setControlPanel(panel);
 		addComponent(panel);
 	}
 
@@ -109,5 +110,13 @@ public class FieldScene extends GameScene {
 
 	public void setResourcesMenu(ResourcesMenu resourcesMenu) {
 		this.resourcesMenu = resourcesMenu;
+	}
+
+	public ControlPanel getControlPanel() {
+		return controlPanel;
+	}
+
+	public void setControlPanel(ControlPanel controlPanel) {
+		this.controlPanel = controlPanel;
 	}
 }

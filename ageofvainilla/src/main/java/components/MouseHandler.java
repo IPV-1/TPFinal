@@ -32,7 +32,18 @@ public class MouseHandler extends BasicAgeComponent {
 		this.setY(position.getY());
 		
 		if(deltaState.isMouseButtonReleased(MouseButton.LEFT)) {
-			this.getElementUnderMouse().seleccionate(this, deltaState);
+			
+	    	if(this.getY() <= getScene().getResourcesMenu().getHeight()) {
+	    		// Si esta arriba del menu superior no hacer nada
+	    	} else if(this.getY() >= Configuration.getDisplayHeight() - getScene().getControlPanel().getHeight()) {
+	    		// Si esta arriba del menu inferior
+	    		
+	    		// Checkear clik en botones
+	    	
+	    	} else {
+	    		// Si esta arriba del mapa			
+	    		this.getElementUnderMouse().seleccionate(this, deltaState);
+	    	}
 		}
 	}
 
