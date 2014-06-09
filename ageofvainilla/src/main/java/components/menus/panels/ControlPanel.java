@@ -1,11 +1,13 @@
 package components.menus.panels;
 
-import com.uqbar.vainilla.appearances.*;
-import components.menus.DownMenu;
-
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.uqbar.vainilla.appearances.Appearance;
+import components.MouseHandler;
+import components.buttons.BasicAgeButton;
+import components.menus.DownMenu;
 
 public class ControlPanel extends DownMenu {
 	//TODO: Make this parametric.
@@ -64,5 +66,14 @@ public class ControlPanel extends DownMenu {
 
 	public void setButtons(List<BuildingButton> buttons) {
 		this.buttons = buttons;
+	}
+
+	public void clickedBy(MouseHandler mouseHandler) {
+		for (BasicAgeButton button : getButtons()) {
+			
+			if(mouseHandler.isClicking(button)) {
+				button.clickedBy(mouseHandler);
+			}
+		}
 	}
 }

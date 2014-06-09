@@ -7,7 +7,10 @@ import java.util.List;
 import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.events.constants.MouseButton;
+
+import components.buttons.BasicAgeButton;
 import components.units.Flag;
 import components.units.MovingUnit;
 import components.units.Unit;
@@ -33,18 +36,23 @@ public class MouseHandler extends BasicAgeComponent {
 		
 		if(deltaState.isMouseButtonReleased(MouseButton.LEFT)) {
 			
-	    	if(this.getY() <= getScene().getResourcesMenu().getHeight()) {
-	    		// Si esta arriba del menu superior no hacer nada
-	    	} else if(this.getY() >= Configuration.getDisplayHeight() - getScene().getControlPanel().getHeight()) {
+	    	if(this.inResourcesMenu()) {
+	    		// Si esta arriba del menu superior
+	    		// No hacer nada
+	    	} else if(this.inControlPanel()) {
 	    		// Si esta arriba del menu inferior
-	    		
-	    		// Checkear clik en botones
-	    	
+	    		// Checkear click en botones
+	    		this.checkClickControlPanel();
 	    	} else {
-	    		// Si esta arriba del mapa			
+	    		// Si esta arriba del mapa
+	    		// Seleccionar elemento
 	    		this.getElementUnderMouse().seleccionate(this, deltaState);
 	    	}
 		}
+	}
+
+	private void checkClickControlPanel() {
+		getScene().getControlPanel().clickedBy(this);
 	}
 
 	public Unit getElementUnderMouse() {
@@ -57,6 +65,23 @@ public class MouseHandler extends BasicAgeComponent {
 		
 		return tile.getOcuppant();
 	}
+
+
+	private boolean inControlPanel() {
+		return this.getY() >= Configuration.getDisplayHeight() - getScene().getControlPanel().getHeight();
+	}
+
+	private boolean inResourcesMenu() {
+		return this.getY() <= getScene().getResourcesMenu().getHeight();
+	}
+	
+	public boolean shouldInteract(MovingUnit unit, DeltaState deltaState) {
+		return !this.inControlPanel() &&
+				!this.inResourcesMenu() &&
+				deltaState.isMouseButtonReleased(MouseButton.RIGHT) &&
+				this.isSelected(unit);
+	}
+	
 	
 	/**********************
 	 ***    Selection   *** 
@@ -81,5 +106,12 @@ public class MouseHandler extends BasicAgeComponent {
 		this.getSelected().clear();
 		this.addSelected(unit);
 	}
-	
+
+	public boolean isClicking(BasicAgeButton button) {
+		return CollisionDetector.INSTANCE.collidesCircleAgainstRect(
+				this.getX(), this.getY(), 2,
+				button.getX(), button.getY(), button.getWidth(), button.getHeight()
+		);
+	}
+
 }

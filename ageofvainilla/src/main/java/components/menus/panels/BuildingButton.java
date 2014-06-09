@@ -2,14 +2,16 @@ package components.menus.panels;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
-import components.BasicAgeComponent;
+
+import components.MouseHandler;
+import components.buttons.BasicAgeButton;
 import components.units.buildings.BasicBuilding;
 import components.units.buildings.Builder;
 
 /**
  * TODO: this class should be "clickable" by mouse handler, but that interface doesn't exist.
  */
-public class BuildingButton extends BasicAgeComponent {
+public class BuildingButton extends BasicAgeButton {
 
 	private boolean selected;
 	private Builder builder;
@@ -40,6 +42,11 @@ public class BuildingButton extends BasicAgeComponent {
 		} else {
 			// Do what?
 		}
+	}
+	
+	@Override
+	public void clickedBy(MouseHandler mouse) {
+		// Set builder building selected
 	}
 
 	public Builder getBuilder() {

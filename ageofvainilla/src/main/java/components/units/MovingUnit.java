@@ -8,7 +8,6 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
-import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.UnitVector2D;
 import components.MouseHandler;
 import components.MovingGameComponent;
@@ -36,7 +35,7 @@ public class MovingUnit extends MovingGameComponent {
 	@Override
 	public void update(DeltaState deltaState) {
 
-		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT) && getMouse().isSelected(this)) {
+		if (getMouse().shouldInteract(this, deltaState)) {
 			this.interact(getMouse().getElementUnderMouse());
 		}
 
