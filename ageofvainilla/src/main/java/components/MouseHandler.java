@@ -19,7 +19,7 @@ import config.Configuration;
 
 public class MouseHandler extends BasicAgeComponent {
 	
-	private List<MovingUnit> selected = new ArrayList<MovingUnit>();
+	private List<Unit> selected = new ArrayList<Unit>();
 	
 	public MouseHandler() {
 		super(Configuration.getSprite("pointer"), 0, 0);
@@ -75,7 +75,7 @@ public class MouseHandler extends BasicAgeComponent {
 		return this.getY() <= getScene().getResourcesMenu().getHeight();
 	}
 	
-	public boolean shouldInteract(MovingUnit unit, DeltaState deltaState) {
+	public boolean shouldInteract(Unit unit, DeltaState deltaState) {
 		return !this.inControlPanel() &&
 				!this.inResourcesMenu() &&
 				deltaState.isMouseButtonReleased(MouseButton.RIGHT) &&
@@ -86,23 +86,23 @@ public class MouseHandler extends BasicAgeComponent {
 	/**********************
 	 ***    Selection   *** 
 	 **********************/
-	public void addSelected(MovingUnit unit) {
+	public void addSelected(Unit unit) {
 		this.getSelected().add(unit);
 	}
 
-	public List<MovingUnit> getSelected() {
+	public List<Unit> getSelected() {
 		return selected;
 	}
 
-	public void setSelected(List<MovingUnit> selected) {
+	public void setSelected(List<Unit> selected) {
 		this.selected = selected;
 	}
 	
-	public boolean isSelected(MovingGameComponent unit) {
+	public boolean isSelected(Unit unit) {
 		return this.getSelected().contains(unit);
 	}
 	
-	public void singleSelect(MovingUnit unit) {
+	public void singleSelect(Unit unit) {
 		this.getSelected().clear();
 		this.addSelected(unit);
 	}

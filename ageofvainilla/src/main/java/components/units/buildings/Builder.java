@@ -1,31 +1,47 @@
 package components.units.buildings;
 
 
-import com.uqbar.vainilla.appearances.Appearance;
+import java.awt.geom.Point2D.Double;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Builder {
-	private Appearance appearance;
+import map.tiles.Tile;
+
+import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.space.Coord;
+
+import components.interfaces.Selectable;
+import components.units.Unit;
+
+public class Builder extends Unit implements Selectable {
 	private int widthInTiles;
 	private int longInTiles;
 
 	public Builder(Appearance appearance, int widthInTiles, int longInTiles) {
-		setAppearance(appearance);
+		super(appearance, 0, 0);
 		setWidthInTiles(widthInTiles);
 		setLongInTiles(longInTiles);
 	}
 
-	public BasicBuilding build(int x, int y) {
-		return new BasicBuilding(getAppearance().copy(), x, y, getWidthInTiles(), getLongInTiles());
+	public BasicBuilding build(double x, double y) {
+		BasicBuilding b = new BasicBuilding(getAppearance().copy(), x, y, getWidthInTiles(), getLongInTiles());
+		b.setCost(new HashMap<String, Integer>());
+		return b;
+	}
+	
+	public void buildIn(double  tileX, double tileY) {
+		BasicBuilding building = this.build(tileX, tileY);
+		if (getScene().getResourcesMenu().canBuild(building)) {
+		
+		getScene().getMap().occupy(building, (int)tileX, (int)tileY);
+		getScene().addComponent(building);
+			getScene().getResourcesMenu().updateResources(building);
+		} else {
+			// Do what?
+		}
 	}
 
-
-	public Appearance getAppearance() {
-		return appearance;
-	}
-
-	public void setAppearance(Appearance appearance) {
-		this.appearance = appearance;
-	}
 
 	public int getWidthInTiles() {
 		return widthInTiles;
@@ -41,5 +57,17 @@ public class Builder {
 
 	public void setLongInTiles(int longInTiles) {
 		this.longInTiles = longInTiles;
+	}
+	
+	@Override
+	public void update(DeltaState deltaState) {
+		super.update(deltaState);
+		if (getScene().getMouse().shouldInteract(this, deltaState)) {
+			Coord tile = Coord.getTileCamera(getScene().getMouse().getX(), getScene().getMouse().getY(), Tile.WIDTH);
+			buildIn(tile.getX(), tile.getY());
+		}		
+		Double position = deltaState.getCurrentMousePosition();
+		this.setX(position.getX());
+		this.setY(position.getY());
 	}
 }

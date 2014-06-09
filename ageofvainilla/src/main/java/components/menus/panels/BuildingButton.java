@@ -2,10 +2,8 @@ package components.menus.panels;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
-
 import components.MouseHandler;
 import components.buttons.BasicAgeButton;
-import components.units.buildings.BasicBuilding;
 import components.units.buildings.Builder;
 
 /**
@@ -33,20 +31,12 @@ public class BuildingButton extends BasicAgeButton {
 //			this.interact(getScene().getMouse().getElementUnderMouse());
 //		}
 	}
-
-	public void buildIn(int posX, int posY) {
-		BasicBuilding building = getBuilder().build(posX, posY);
-		if (getScene().getResourcesMenu().canBuild(building)) {
-			getScene().addComponent(building);
-			getScene().getResourcesMenu().updateResources(building);
-		} else {
-			// Do what?
-		}
-	}
 	
 	@Override
 	public void clickedBy(MouseHandler mouse) {
 		// Set builder building selected
+		getScene().addComponent(getBuilder());
+		mouse.singleSelect(getBuilder());
 	}
 
 	public Builder getBuilder() {

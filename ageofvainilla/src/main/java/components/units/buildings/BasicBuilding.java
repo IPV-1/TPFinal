@@ -20,7 +20,7 @@ public class BasicBuilding extends TiledComponent {
 		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos);
 	}
 
-	public BasicBuilding(Appearance appearance, int positionX, int positionY, int widthInTiles, int longInTiles) {
+	public BasicBuilding(Appearance appearance, double positionX, double positionY, int widthInTiles, int longInTiles) {
 		super(appearance, positionX, positionY);
 		setWidthInTiles(widthInTiles);
 		setLongInTiles(longInTiles);
@@ -44,19 +44,24 @@ public class BasicBuilding extends TiledComponent {
 
 	public boolean enough(ResourcesMenu menu) {
 		boolean hasEnough = true;
-		for (Map.Entry<String, Integer> cursor : cost.entrySet()) {
+		for (Map.Entry<String, Integer> cursor : getCost().entrySet()) {
 			hasEnough &= menu.hasEnoughOf(cursor.getKey(), cursor.getValue());
 		}
 		return hasEnough;
 	}
 
 	public void subtract(ResourcesMenu menu) {
-		for (Map.Entry<String, Integer> cursor : cost.entrySet()) {
+		for (Map.Entry<String, Integer> cursor : getCost().entrySet()) {
 			menu.subtract(cursor.getKey(), cursor.getValue());
 		}
 	}
 
+	public Map<String, Integer> getCost() {
+		return cost;
+	}
 
-//	@Override
-//	public void hasKilled(Unit unit) {}
+	public void setCost(Map<String, Integer> cost) {
+		this.cost = cost;
+	}
+
 }
