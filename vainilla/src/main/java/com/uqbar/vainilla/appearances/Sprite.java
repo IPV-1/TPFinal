@@ -169,7 +169,7 @@ public class Sprite extends SimpleAppearance<Sprite> {
 	}
 
 	@Override
-	protected void doRenderAt(int x, int y, Graphics2D graphics) {
+	public void doRenderAt(int x, int y, Graphics2D graphics) {
 		graphics.drawImage(this.getImage(), x, y, null);
 	}
 	
@@ -202,7 +202,7 @@ public class Sprite extends SimpleAppearance<Sprite> {
 	// ** ACCESSORS
 	// ****************************************************************
 
-	protected BufferedImage getImage() {
+	public BufferedImage getImage() {
 		return this.image;
 	}
 
