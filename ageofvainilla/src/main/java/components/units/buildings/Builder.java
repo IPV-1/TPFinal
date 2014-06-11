@@ -3,7 +3,6 @@ package components.units.buildings;
 
 import java.awt.geom.Point2D.Double;
 import java.util.HashMap;
-import java.util.Map;
 
 import map.tiles.Tile;
 
@@ -11,10 +10,10 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.space.Coord;
 
-import components.interfaces.Selectable;
+import components.MouseHandler;
 import components.units.Unit;
 
-public class Builder extends Unit implements Selectable {
+public class Builder extends Unit {
 	private int widthInTiles;
 	private int longInTiles;
 
@@ -70,4 +69,18 @@ public class Builder extends Unit implements Selectable {
 		this.setX(position.getX());
 		this.setY(position.getY());
 	}
+	
+	@Override
+	public void seleccionate(MouseHandler mouse) {
+		mouse.getScene().addComponent(this);
+		mouse.singleSelect(this);
+	}
+
+	@Override
+	public void deseleccionate(MouseHandler mouse) {
+		super.deseleccionate(mouse);
+		
+		mouse.getScene().removeComponent(this);
+	}
+	
 }

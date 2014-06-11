@@ -9,10 +9,8 @@ import map.tiles.Tile;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.events.constants.MouseButton;
-
 import components.buttons.BasicAgeButton;
 import components.units.Flag;
-import components.units.MovingUnit;
 import components.units.Unit;
 
 import config.Configuration;
@@ -93,25 +91,30 @@ public class MouseHandler extends BasicAgeComponent {
 	public List<Unit> getSelected() {
 		return selected;
 	}
-
-	public void setSelected(List<Unit> selected) {
-		this.selected = selected;
-	}
 	
 	public boolean isSelected(Unit unit) {
 		return this.getSelected().contains(unit);
 	}
 	
 	public void singleSelect(Unit unit) {
-		this.getSelected().clear();
+		this.clearSelected();
 		this.addSelected(unit);
 	}
 
+	public void clearSelected() {
+		for (Unit selected : this.getSelected()) {
+			selected.deseleccionate(this);
+		}
+		
+		this.getSelected().clear();
+	}
+	
 	public boolean isClicking(BasicAgeButton button) {
 		return CollisionDetector.INSTANCE.collidesCircleAgainstRect(
 				this.getX(), this.getY(), 2,
 				button.getX(), button.getY(), button.getWidth(), button.getHeight()
 		);
 	}
+
 
 }

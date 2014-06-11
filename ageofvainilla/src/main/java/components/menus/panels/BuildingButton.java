@@ -35,8 +35,7 @@ public class BuildingButton extends BasicAgeButton {
 	@Override
 	public void clickedBy(MouseHandler mouse) {
 		// Set builder building selected
-		getScene().addComponent(getBuilder());
-		mouse.singleSelect(getBuilder());
+		this.getBuilder().seleccionate(mouse);
 	}
 
 	public Builder getBuilder() {

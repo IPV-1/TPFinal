@@ -26,7 +26,7 @@ public class Flag extends TiledComponent {
 	public void seleccionate(MouseHandler mouseHandler, DeltaState deltaState) {
 		super.seleccionate(mouseHandler, deltaState);
 		
-		mouseHandler.getSelected().clear();
+		mouseHandler.clearSelected();
 	}
 	
 }

@@ -4,8 +4,9 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import components.CameraRelativeComponent;
 import components.MouseHandler;
+import components.interfaces.Selectable;
 
-public abstract class Unit extends CameraRelativeComponent {
+public abstract class Unit extends CameraRelativeComponent implements Selectable {
 
 	private int lifePoint = 1000;
 	private int powerAttack = 10;
@@ -63,7 +64,16 @@ public abstract class Unit extends CameraRelativeComponent {
 		this.powerAttack = powerAttack;
 	}
 
-	public void seleccionate(MouseHandler mouseHandler, DeltaState deltaState) {
+	@Override
+	public void seleccionate(MouseHandler mouse, DeltaState deltaState) {
+	}
+	
+	@Override
+	public void seleccionate(MouseHandler mouse) {
+	}
+
+	@Override
+	public void deseleccionate(MouseHandler mouse) {
 	}
 
 }
