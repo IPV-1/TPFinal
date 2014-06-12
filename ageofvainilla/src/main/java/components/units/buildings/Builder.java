@@ -74,8 +74,10 @@ public class Builder extends Unit {
 	
 	@Override
 	public void seleccionate(MouseHandler mouse) {
-		mouse.getScene().addComponent(this);
+		super.seleccionate(mouse);
+		
 		mouse.singleSelect(this);
+		mouse.getScene().addComponent(this);
 	}
 
 	@Override
