@@ -20,7 +20,7 @@ public class MovingUnit extends MovingGameComponent {
 
 	public static final int SPEED = 200;
 
-	private UnitState state = new Waiting();
+	protected UnitState state = new Waiting();
 	
 	protected final Path path = new Path(this);
 	

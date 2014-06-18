@@ -46,10 +46,11 @@ public class Path {
 			for (int j = 0, i = l.size() - 1; i >= 0; j++, i--) {
 				ll.add(j, l.get(i));
 			}
-			this.setCurrentStep(1);
-			// TODO reuse one same list. first it will be cleaned then
+			this.setCurrentStep(0);
+			// TODO reuse the same list. first it will be cleaned then
 			this.setPoints(ll);
 			if (ll.size() > 1) {
+				this.setCurrentStep(1);
 				this.moveTo(ll.get(1));// ll.size() - 1));
 			} else {
 				this.stop();

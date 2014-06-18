@@ -8,11 +8,11 @@ public class Waiting extends UnitState {
 
 	@Override
 	public void interact(MovingUnit self, Unit unit) {
-		if(self.collides(unit)) {
-			self.attack(unit);
-		} else {
+//		if(self.collides(unit)) {
+//			self.attack(unit);
+//		} else {
 			self.setMoveTo(unit);
-		}
+//		}
 	}
 
 	@Override
