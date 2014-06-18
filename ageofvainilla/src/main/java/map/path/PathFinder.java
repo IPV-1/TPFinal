@@ -37,18 +37,19 @@ public class PathFinder {
 
 	public void findPath(int xFrom, int yFrom, int xTo, int yTo,
 			List<ImmutablePoint> path) {
-		//TODO if (xTo,yTo) is blocked and a close (x,y) is not but is unreachable, new calculation is needed
-		//Calculating x,y to go
+		// TODO if (xTo,yTo) is blocked and a close (x,y) is not but is
+		// unreachable, new calculation is needed
+		// Calculating x,y to go
 		int xT = xTo, yT = yTo;
 		if (this.getMap().isBlocked(xT, yT)) {
 			int y = yT - 1;
 			int x = xT;
-			search : for (int m = 0; ; m++) {
+			search: for (int m = 0;; m++) {
 				y = yT - (m + 1);
 				x = xT - m;
 				for (int i = 0; i < 2; i++) {
 					for (int j = 0; j <= m * 2; j++) {
-						if(this.notBlocked(x, y)) {
+						if (this.notBlocked(x, y)) {
 							break search;
 						}
 						x++;
@@ -60,7 +61,7 @@ public class PathFinder {
 				y = yT - (m + 1);
 				for (int i = 0; i < 2; i++) {
 					for (int j = 0; j <= (m + 1) * 2; j++) {
-						if(this.notBlocked(x, y)) {
+						if (this.notBlocked(x, y)) {
 							break search;
 						}
 						y++;
@@ -72,12 +73,12 @@ public class PathFinder {
 			xT = x;
 			yT = y;
 		}
-		
+
 		this.findPathToCalculated(xFrom, yFrom, xT, yT, path);
 	}
-				
+
 	protected void findPathToCalculated(int xFrom, int yFrom, int xTo, int yTo,
-				List<ImmutablePoint> path) {
+			List<ImmutablePoint> path) {
 		// TODO binary heaps
 		Node current = this.get(xFrom, yFrom);
 		current.clear();
@@ -101,7 +102,10 @@ public class PathFinder {
 					if (this.insideMap(x, y)
 							&& !this.getMap().isBlocked(x, y)
 							&& !this.getClosedList().contains(
-									node = this.get(x, y))) {
+									node = this.get(x, y))
+							&& !(cost == DIAGONAL_COST && !(this.notBlocked(x,
+									current.getY()) && this.notBlocked(
+									current.getX(), y)))) {
 						int g = current.getG() + cost;
 						if (!this.getOpenList().contains(node)) {
 							this.getOpenList().add(node);
