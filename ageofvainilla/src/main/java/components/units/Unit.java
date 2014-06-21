@@ -4,12 +4,15 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import components.CameraRelativeComponent;
 import components.MouseHandler;
+import components.factors.Factor;
 import components.interfaces.Selectable;
 
 public abstract class Unit extends CameraRelativeComponent implements Selectable {
 
-	private int lifePoint = 1000;
-	private int powerAttack = 10;
+	protected int lifePoint = 1000;
+	protected int powerAttack = 10;
+	
+	protected Factor factor;
 
 	public Unit() {
 		super();
@@ -22,12 +25,24 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	public Unit(double x, double y) {
 		super(x, y);
 	}
+	
+	public boolean isEnemy(Unit unit) {
+		return this.getFactor().isEnemy(unit.getFactor());
+	}
+	
+	public boolean isResource(Unit unit) {
+		return this.getFactor().isResource();
+	}
 
 	public void interactedBy(Unit unit) {
-		this.decrementLife(unit.getPowerAttack());
-
-		if(!this.isDead()) {
-			unit.decrementLife(this.getPowerAttack());
+		if(this.isEnemy(unit)) {
+			this.decrementLife(unit.getPowerAttack());
+	
+			if(!this.isDead()) {
+				unit.decrementLife(this.getPowerAttack());
+			} else {
+				unit.hasKilled(this);
+			}
 		} else {
 			unit.hasKilled(this);
 		}
@@ -47,6 +62,18 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	public boolean isDead() {
 		return this.getLifePoint() <= 0;
 	}
+	
+	@Override
+	public void seleccionate(MouseHandler mouse, DeltaState deltaState) {
+	}
+	
+	@Override
+	public void seleccionate(MouseHandler mouse) {
+	}
+
+	@Override
+	public void deseleccionate(MouseHandler mouse) {
+	}
 
 	public int getLifePoint() {
 		return lifePoint;
@@ -64,16 +91,12 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 		this.powerAttack = powerAttack;
 	}
 
-	@Override
-	public void seleccionate(MouseHandler mouse, DeltaState deltaState) {
-	}
-	
-	@Override
-	public void seleccionate(MouseHandler mouse) {
+	public Factor getFactor() {
+		return factor;
 	}
 
-	@Override
-	public void deseleccionate(MouseHandler mouse) {
+	public void setFactor(Factor factor) {
+		this.factor = factor;
 	}
 
 }

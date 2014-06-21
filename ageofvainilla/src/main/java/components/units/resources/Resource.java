@@ -2,22 +2,25 @@ package components.units.resources;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
+
+import components.factors.Factor;
 import components.recursos.TiledComponent;
 
 public class Resource extends TiledComponent {
 	private int amount;
 	private String resourceName;
 
-	public void update(DeltaState deltaState) {
-		if (getAmount() <= 0) {
-			destroy();
-		}
-	}
-
 	public Resource(Appearance appearance, double tileX, double tileY, int amount, String resourceName) {
 		super(appearance, tileX, tileY);
 		setResourceName(resourceName);
 		setAmount(amount);
+		this.factor = Factor.RES;
+	}
+	
+	public void update(DeltaState deltaState) {
+		if (getAmount() <= 0) {
+			destroy();
+		}
 	}
 
 	public void addResourceToPlayer() {

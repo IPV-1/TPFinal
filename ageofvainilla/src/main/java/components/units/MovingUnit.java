@@ -11,7 +11,8 @@ import com.uqbar.vainilla.events.constants.Key;
 import com.uqbar.vainilla.space.UnitVector2D;
 import components.MouseHandler;
 import components.MovingGameComponent;
-import components.units.states.Atacking;
+import components.factors.Factor;
+import components.units.states.Attacking;
 import components.units.states.Moving;
 import components.units.states.UnitState;
 import components.units.states.Waiting;
@@ -24,12 +25,13 @@ public class MovingUnit extends MovingGameComponent {
 	
 	protected final Path path = new Path(this);
 	
-	public MovingUnit(Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
+	public MovingUnit(Factor factor, Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
 		super(rectangle, xPos, yPos, unitVector2D, speed);
+		this.factor = factor;
 	}
 
-	public MovingUnit(Color color, double xPos, double yPos) {
-		this(new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
+	public MovingUnit(Factor factor, Color color, double xPos, double yPos) {
+		this(factor, new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
 	}
 
 	@Override
@@ -69,7 +71,7 @@ public class MovingUnit extends MovingGameComponent {
 	}
 
 	public void setMoveTo(Unit unit) {
-		this.setState(new Moving(new Atacking(unit)));
+		this.setState(new Moving(new Attacking(unit)));
 	}
 
 	public UnitState getState() {

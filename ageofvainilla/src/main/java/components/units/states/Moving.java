@@ -15,7 +15,7 @@ public class Moving extends UnitState {
 
 	@Override
 	public void interact(MovingUnit self, Unit unit) {
-		this.setNextState(new Atacking(unit));
+		this.setNextState(new Attacking(unit));
 	}
 
 	@Override

@@ -39,6 +39,8 @@ public class PathFinder {
 			List<ImmutablePoint> path) {
 		// TODO if (xTo,yTo) is blocked and a close (x,y) is not but is
 		// unreachable, new calculation is needed
+		// TODO if new route calculated leaves unit at the same distance from
+		// current one, it should not be traveled
 		// Calculating x,y to go
 		int xT = xTo, yT = yTo;
 		if (this.getMap().isBlocked(xT, yT)) {
