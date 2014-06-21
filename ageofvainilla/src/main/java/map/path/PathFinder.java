@@ -39,44 +39,45 @@ public class PathFinder {
 			List<ImmutablePoint> path) {
 		// TODO if (xTo,yTo) is blocked and a close (x,y) is not but is
 		// unreachable, new calculation is needed
-		// TODO if new route calculated leaves unit at the same distance from
-		// current one, it should not be traveled
 		// Calculating x,y to go
-		int xT = xTo, yT = yTo;
-		if (this.getMap().isBlocked(xT, yT)) {
-			int y = yT - 1;
-			int x = xT;
-			search: for (int m = 0;; m++) {
-				y = yT - (m + 1);
-				x = xT - m;
-				for (int i = 0; i < 2; i++) {
-					for (int j = 0; j <= m * 2; j++) {
-						if (this.notBlocked(x, y)) {
-							break search;
-						}
-						x++;
-					}
-					y = yT + (m + 1);
-					x = xT - m;
-				}
-				x = xT - (m + 1);
-				y = yT - (m + 1);
-				for (int i = 0; i < 2; i++) {
-					for (int j = 0; j <= (m + 1) * 2; j++) {
-						if (this.notBlocked(x, y)) {
-							break search;
-						}
-						y++;
-					}
-					x = xT + (m + 1);
+		if (xFrom != xTo || yFrom != yTo) {
+			int xT = xTo, yT = yTo;
+			if (this.getMap().isBlocked(xT, yT)) {
+				int y = yT - 1;
+				int x = xT;
+				search: for (int m = 0;; m++) {
 					y = yT - (m + 1);
+					x = xT - m;
+					for (int i = 0; i < 2; i++) {
+						for (int j = 0; j <= m * 2; j++) {
+							if (this.notBlocked(x, y)) {
+								break search;
+							}
+							x++;
+						}
+						y = yT + (m + 1);
+						x = xT - m;
+					}
+					x = xT - (m + 1);
+					y = yT - (m + 1);
+					for (int i = 0; i < 2; i++) {
+						for (int j = 0; j <= (m + 1) * 2; j++) {
+							if (this.notBlocked(x, y)) {
+								break search;
+							}
+							y++;
+						}
+						x = xT + (m + 1);
+						y = yT - (m + 1);
+					}
 				}
+				xT = x;
+				yT = y;
 			}
-			xT = x;
-			yT = y;
+			if(this.getH(xT, yT, xTo, yTo) < this.getH(xFrom, yFrom, xTo, yTo)) {
+				this.findPathToCalculated(xFrom, yFrom, xT, yT, path);
+			}
 		}
-
-		this.findPathToCalculated(xFrom, yFrom, xT, yT, path);
 	}
 
 	protected void findPathToCalculated(int xFrom, int yFrom, int xTo, int yTo,
