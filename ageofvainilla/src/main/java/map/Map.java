@@ -84,7 +84,7 @@ public class Map extends GameComponent<GameScene> {
 				Sprite sprite = this.get(x, y).getSprite();
 				int mapX = (int)((x * Tile.WIDTH));
 				int mapY = (int)((y * Tile.HEIGHT));
-				graphics.drawImage(sprite.getImage(), null, mapX, mapY);
+				graphics.drawImage(sprite.scaleTo(Tile.WIDTH, Tile.HEIGHT).getImage(), null, mapX, mapY);
 			}
 		}
 		
