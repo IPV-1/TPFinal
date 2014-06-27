@@ -11,7 +11,7 @@ public class Flag extends TiledComponent {
 
 	public Flag(double x, double y) {
 		super(new Invisible(), x, y);
-		this.factor = Factor.NEU;
+		this.setFactor(Factor.NEU);
 	}
 
 	@Override

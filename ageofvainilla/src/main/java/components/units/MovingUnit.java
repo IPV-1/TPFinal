@@ -21,13 +21,13 @@ public class MovingUnit extends MovingGameComponent {
 
 	public static final int SPEED = 200;
 
-	protected UnitState state = new Waiting();
+	private UnitState state = new Waiting();
 	
-	protected final Path path = new Path(this);
+	private final Path path = new Path(this);
 	
 	public MovingUnit(Factor factor, Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
 		super(rectangle, xPos, yPos, unitVector2D, speed);
-		this.factor = factor;
+		this.setFactor(factor);
 	}
 
 	public MovingUnit(Factor factor, Color color, double xPos, double yPos) {

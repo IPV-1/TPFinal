@@ -14,7 +14,7 @@ public class Resource extends TiledComponent {
 		super(appearance, tileX, tileY);
 		setResourceName(resourceName);
 		setAmount(amount);
-		this.factor = Factor.RES;
+		this.setFactor(Factor.RES);
 	}
 	
 	public void update(DeltaState deltaState) {
