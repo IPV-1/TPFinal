@@ -1,9 +1,11 @@
 package map.path;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.uqbar.vainilla.space.ImmutablePoint;
+import components.factors.Factor;
 
 import map.Map;
 
@@ -74,10 +76,45 @@ public class PathFinder {
 				xT = x;
 				yT = y;
 			}
-			if(this.getH(xT, yT, xTo, yTo) < this.getH(xFrom, yFrom, xTo, yTo)) {
+			if (this.getH(xT, yT, xTo, yTo) < this.getH(xFrom, yFrom, xTo, yTo)) {
 				this.findPathToCalculated(xFrom, yFrom, xT, yT, path);
 			}
 		}
+	}
+
+	public Point closestTo(Factor factor, int xTo, int yTo) {
+		int xT = xTo, yT = yTo;
+		int y = yT - 1;
+		int x = xT;
+		search: for (int m = 0;; m++) {
+			y = yT - (m + 1);
+			x = xT - m;
+			for (int i = 0; i < 2; i++) {
+				for (int j = 0; j <= m * 2; j++) {
+					if (this.notBlocked(x, y)
+							&& !this.getMap().get(x, y).getOcuppant()
+									.getFactor().equals(factor)) {
+						break search;
+					}
+					x++;
+				}
+				y = yT + (m + 1);
+				x = xT - m;
+			}
+			x = xT - (m + 1);
+			y = yT - (m + 1);
+			for (int i = 0; i < 2; i++) {
+				for (int j = 0; j <= (m + 1) * 2; j++) {
+					if (this.notBlocked(x, y)) {
+						break search;
+					}
+					y++;
+				}
+				x = xT + (m + 1);
+				y = yT - (m + 1);
+			}
+		}
+		return new Point(x, y);
 	}
 
 	protected void findPathToCalculated(int xFrom, int yFrom, int xTo, int yTo,
@@ -134,7 +171,7 @@ public class PathFinder {
 		}
 	}
 
-	protected boolean notBlocked(int x, int y) {
+	public boolean notBlocked(int x, int y) {
 		return this.insideMap(x, y) && !this.getMap().isBlocked(x, y);
 	}
 

@@ -1,5 +1,6 @@
 package map.path;
 
+import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class Path {
 	protected final MovingGameComponent component;
 	protected List<ImmutablePoint> points = new ArrayList<ImmutablePoint>();
 	protected int currentStep = 0;
+	
+	protected Point destiny = new Point();
 
 	// TODO to remove
 	private Circle currentBreak;
@@ -28,36 +31,64 @@ public class Path {
 	public Path(MovingGameComponent component) {
 		this.component = component;
 	}
-
+	
 	public void update(DeltaState deltaState) {
-		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT) &&
-				this.getComponent().getMouse().isSelected(this.getComponent())) {
+		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)
+				&& this.getComponent().getMouse()
+						.isSelected(this.getComponent())) {
 			Point2D.Double d = deltaState.getCurrentMousePosition();
 			int x = (int) ((d.x + Camera.INSTANCE.getX()) / Tile.WIDTH);
 			int y = (int) ((d.y + Camera.INSTANCE.getY()) / Tile.HEIGHT);
-			List<ImmutablePoint> l = new ArrayList<ImmutablePoint>();
-			this.getComponent()
-					.getScene()
-					.getPathFinder()
-					.findPath((int) this.getComponent().getX() / Tile.WIDTH,
-							(int) this.getComponent().getY() / Tile.HEIGHT, x,
-							y, l);
-			List<ImmutablePoint> ll = new ArrayList<ImmutablePoint>();
-			for (int j = 0, i = l.size() - 1; i >= 0; j++, i--) {
-				ll.add(j, l.get(i));
+			this.getDestiny().setLocation(x, y);
+			if(!this.isTravelingToDestiny()) {
+				this.setPathTo(x, y);
 			}
-			this.setCurrentStep(0);
-			// TODO reuse the same list. first it will be cleaned then
-			this.setPoints(ll);
-			if (ll.size() > 1) {
-				this.setCurrentStep(1);
-				this.moveTo(ll.get(1));// ll.size() - 1));
-			} else {
-				this.stop();
-			}
+		}
+		if (this.isTravelingToDestiny()) {
+			this.checkBreak();
+		}
+	}
+	
+	public boolean isTravelingToDestiny() {
+		return this.getPoints().size() > 1;
+		//this.getComponent().getX() * Tile.WIDTH != this.getDestiny().x ||
+				//this.getComponent().getY() * Tile.HEIGHT != this.getDestiny().y;
+	}
+
+	public void update2(DeltaState deltaState) {
+		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)
+				&& this.getComponent().getMouse()
+						.isSelected(this.getComponent())) {
+			Point2D.Double d = deltaState.getCurrentMousePosition();
+			int x = (int) ((d.x + Camera.INSTANCE.getX()) / Tile.WIDTH);
+			int y = (int) ((d.y + Camera.INSTANCE.getY()) / Tile.HEIGHT);
+			this.setPathTo(x, y);
 		}
 		if (this.isTraveling()) {
 			this.checkBreak();
+		}
+	}
+	
+	protected void setPathTo(int x, int y) {
+		List<ImmutablePoint> l = new ArrayList<ImmutablePoint>();
+		this.getComponent()
+				.getScene()
+				.getPathFinder()
+				.findPath((int) this.getComponent().getX() / Tile.WIDTH,
+						(int) this.getComponent().getY() / Tile.HEIGHT, x,
+						y, l);
+		List<ImmutablePoint> ll = new ArrayList<ImmutablePoint>();
+		for (int j = 0, i = l.size() - 1; i >= 0; j++, i--) {
+			ll.add(j, l.get(i));
+		}
+		this.setCurrentStep(0);
+		// TODO reuse the same list. first it will be cleaned then
+		this.setPoints(ll);
+		if (ll.size() > 1) {
+			this.setCurrentStep(1);
+			this.moveTo(ll.get(1));// ll.size() - 1));
+		} else {
+			this.stop();
 		}
 	}
 
@@ -71,6 +102,9 @@ public class Path {
 		this.getComponent().setSpeed(MovingUnit.SPEED); // TODO change state
 														// instead
 		this.currentBreak = new Circle(x + 2, y + 2, 4);
+		
+		Map map = this.getComponent().getScene().getMap();
+		map.occupy(this.getComponent(), this.getMoveTo().x, this.getMoveTo().y);
 	}
 
 	public void checkBreak() {
@@ -78,15 +112,50 @@ public class Path {
 				this.currentBreak, this.getComponent().getRect())) {
 			this.getComponent().setX(this.getMoveTo().x * Tile.WIDTH);
 			this.getComponent().setY(this.getMoveTo().y * Tile.HEIGHT);
-			this.applyChangesOnMap();
+			
+			Map map = this.getComponent().getScene().getMap();
+			map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
 			this.setCurrentStep(this.getCurrentStep() + 1);
-			if (!this.isTraveling()) {
-				this.getComponent().setSpeed(0);
-			} else {
-				this.moveTo(this.getMoveTo());
-			}
+			this.setPathTo(this.getDestiny().x, this.getDestiny().y);
+			
+			/*
+			
+//			ImmutablePoint destination = this.destination();
+			
+//			boolean destinyOcuppied = this.getComponent().getScene().getMap()
+//					.isBlocked(destination.x, destination.y);
+				this.applyChangesOnMap();
+//				if(destinyOcuppied) {
+//					this.moveTo(destination);
+//				} else {
+					this.setCurrentStep(this.getCurrentStep() + 1);
+					if (!this.isTraveling()) {
+						this.getComponent().setSpeed(0);
+					} else {
+						this.moveTo(this.getMoveTo());
+					}
+				}
+//			}
+//			else {
+//				ImmutablePoint destination = this.destination();
+////				this.moveTo(destination);
+//				if(!this.getComponent().getScene().getMap()
+//						.isBlocked(destination.x, destination.y)) {
+//					this.moveTo(destination);
+//				} else {
+//					this.setPathToClosestFreeTileFrom(this.getMoveTo().x, this.getMoveTo().y);
+//				}
+//			} */
 		}
 	}
+	
+//	protected void setPathToClosestFreeTileFrom(int xTo, int yTo) {
+//		//TODO
+//		Point p = this.getComponent()
+//				.getScene()
+//				.getPathFinder().closestTo(xTo, yTo);
+//		this.setPathTo(p.x, p.y);
+//	}
 
 	protected void applyChangesOnMap() {
 		Map map = this.getComponent().getScene().getMap();
@@ -97,9 +166,13 @@ public class Path {
 	public ImmutablePoint getMoveTo() {
 		return this.getPoints().get(this.getCurrentStep());
 	}
-	
+
 	public ImmutablePoint getPreviousPoint() {
 		return this.getPoints().get(this.getCurrentStep() - 1);
+	}
+	
+	public ImmutablePoint destination() {
+		return this.getPoints().get(this.getPoints().size() - 1);
 	}
 
 	public boolean isTraveling() {
@@ -130,6 +203,10 @@ public class Path {
 
 	protected void setCurrentStep(int currentStep) {
 		this.currentStep = currentStep;
+	}
+	
+	protected Point getDestiny() {
+		return destiny;
 	}
 
 }
