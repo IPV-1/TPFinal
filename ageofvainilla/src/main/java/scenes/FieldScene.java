@@ -47,8 +47,7 @@ public class FieldScene extends GameScene {
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
 
-		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH, Tile.WIDTH);
-		BasicBuilding building = new Builder(buildingAppearance, Tile.WIDTH, Tile.WIDTH).build(4, 1);
+		BasicBuilding building = new Builder(1, 1).build(4, 1);
         this.addComponent(building);
         this.addComponent(ResourceFactory.createGold(4,2, 200));
         this.addComponent(this.getMouse());

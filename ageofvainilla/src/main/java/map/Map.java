@@ -17,6 +17,7 @@ import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.space.Coord;
 import components.units.Unit;
+import components.units.buildings.BasicBuilding;
 
 public class Map extends GameComponent<GameScene> {
 
@@ -143,6 +144,19 @@ public class Map extends GameComponent<GameScene> {
 
 	public void setField(Sprite field) {
 		this.field = field;
+	}
+
+	public boolean canBuild(BasicBuilding building) {
+		for(double i=building.getX(); i < building.getX() + building.getWidthInTiles(); i++) {
+			for(double j=building.getY(); j < building.getY() + building.getHeightInTiles(); j++) {
+				//if(this.isBlocked((int) i, (int) j)) {
+					System.out.println("Esta bloquedo: "+ i +" - "+ j);
+					//return false;
+				//}
+			}
+		}
+		
+		return true;
 	}
 	
 }

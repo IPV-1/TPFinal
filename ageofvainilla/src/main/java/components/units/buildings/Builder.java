@@ -1,6 +1,7 @@
 package components.units.buildings;
 
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
 import components.units.Unit;
@@ -16,8 +18,16 @@ import components.units.Unit;
 public class Builder extends Unit {
 	private int widthInTiles;
 	private int longInTiles;
+	
+	public Builder(int widthInTiles, int heightInTiles) {
+		super(0, 0);
+		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH * widthInTiles, Tile.WIDTH * heightInTiles);
+		setAppearance(buildingAppearance);
+		setWidthInTiles(widthInTiles);
+		setLongInTiles(heightInTiles);
+	}
 
-	public Builder(Appearance appearance, int widthInTiles, int longInTiles) {
+	protected Builder(Appearance appearance, int widthInTiles, int longInTiles) {
 		super(appearance, 0, 0);
 		setWidthInTiles(widthInTiles);
 		setLongInTiles(longInTiles);
@@ -31,16 +41,20 @@ public class Builder extends Unit {
 	
 	public void buildIn(double  tileX, double tileY) {
 		BasicBuilding building = this.build(tileX, tileY);
-		if (getScene().getResourcesMenu().canBuild(building)) {
+		if (this.canBuild(building)) {
 		
-		getScene().getMap().occupy(building, (int)tileX, (int)tileY);
-		getScene().addComponent(building);
+			getScene().getMap().occupy(building, (int)tileX, (int)tileY);
+			getScene().addComponent(building);
 			getScene().getResourcesMenu().updateResources(building);
 		} else {
 			// Do what?
 		}
 	}
 
+	private boolean canBuild(BasicBuilding building) {
+		return getScene().getResourcesMenu().canBuild(building) &&
+				getScene().getMap().canBuild(building);
+	}
 
 	public int getWidthInTiles() {
 		return widthInTiles;

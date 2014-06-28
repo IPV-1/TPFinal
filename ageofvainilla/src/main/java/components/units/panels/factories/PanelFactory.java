@@ -29,12 +29,16 @@ public class PanelFactory {
 		// Isn't  worse colours?
 		int height = Tile.HEIGHT * 3;
 		Appearance appearance = new Rectangle(Color.orange, game.getDisplayWidth(), height);
-		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH, Tile.WIDTH);
-		Builder buildingBuilder = new Builder(buildingAppearance, Tile.WIDTH, Tile.WIDTH);
+		
+		Builder buildingBuilder = new Builder(1, 1);
 		Appearance buttonAp = new Circle(Color.red, 40);
-		for (int i = 0; i < 2; i++) {
-			getBuilder().withButton(new BuildingButton(buildingBuilder, buttonAp, 0, 1));
-		}
+		getBuilder().withButton(new BuildingButton(buildingBuilder, buttonAp, 0, 1));
+		
+		Builder buildingBuilder2 = new Builder(2, 2);
+		Appearance buttonAp2 = new Circle(Color.blue, 40);
+		getBuilder().withButton(new BuildingButton(buildingBuilder2, buttonAp2, 0, 1));
+		
+		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(game, 200, game.getDisplayHeight() - height, game.getDisplayWidth() - 200, game.getDisplayHeight() - height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, game.getDisplayHeight() - height);
 		unitShower.setPanel(panel);
