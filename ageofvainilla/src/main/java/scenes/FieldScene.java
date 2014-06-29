@@ -36,7 +36,7 @@ public class FieldScene extends GameScene {
     public FieldScene(Game game) {
         super();
         this.addComponent(Camera.INSTANCE);
-        Map map = new Map(28,21,"map");
+        Map map = new Map("map");
         this.map = map;
         this.pathFinder = new PathFinder(map);
         this.addComponent(map);

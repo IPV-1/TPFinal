@@ -17,14 +17,12 @@ import components.units.buildings.BasicBuilding;
 
 public class Map extends GameComponent<GameScene> {
 
-	protected List<List<Tile>> tiles;
+	private List<List<Tile>> tiles;
 	
 	private Sprite field;
 
-	public Map(int width, int height, String file) {
-		
-		tiles = FileParser.parse(file);
-		
+	public Map(String file) {
+		this.setTiles(FileParser.parse(file));
 		this.setField(this.buildMapSprite());
 	}
 
@@ -123,6 +121,10 @@ public class Map extends GameComponent<GameScene> {
 			}
 		}
 		
+	}
+
+	protected void setTiles(List<List<Tile>> tiles) {
+		this.tiles = tiles;
 	}
 	
 }
