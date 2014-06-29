@@ -5,28 +5,21 @@ import components.units.MovingUnit;
 import components.units.Unit;
 import components.units.resources.Resource;
 
-import config.ResourceType;
-
 public class Farming extends UnitState {
 	
 	private Resource resource;
 	
 	public Farming(Unit unit) {
-		this.setResource((Resource) unit);
+		resource = (Resource) unit;
 	}
 
 	@Override
 	public void update(MovingUnit movingUnit, DeltaState deltaState) {
-		movingUnit.getScene().getResourcesMenu().addResource(ResourceType.GOLD, 10);
-	}
-
-	
-	public Resource getResource() {
-		return resource;
-	}
-
-	public void setResource(Resource resource) {
-		this.resource = resource;
+		if(resource.getAmount() == 0) {
+			movingUnit.setState(new Waiting());
+		} else {
+			resource.addResourceToPlayer();
+		}
 	}
 
 }

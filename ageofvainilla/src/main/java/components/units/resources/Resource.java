@@ -19,6 +19,7 @@ public class Resource extends TiledComponent {
 	
 	public void update(DeltaState deltaState) {
 		if (getAmount() <= 0) {
+			this.removeFromMap();
 			destroy();
 		}
 	}

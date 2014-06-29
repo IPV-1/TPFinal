@@ -1,5 +1,7 @@
 package components.units;
 
+import map.tiles.Tile;
+
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.events.constants.Key;
@@ -106,6 +108,10 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 
 	public void setFactor(Factor factor) {
 		this.factor = factor;
+	}
+	
+	public void removeFromMap() {
+		getScene().getMap().setFree((int)(this.getX() / Tile.WIDTH), (int)(this.getY() / Tile.HEIGHT));
 	}
 
 }
