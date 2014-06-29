@@ -81,7 +81,7 @@ public class MovingUnit extends MovingGameComponent {
 	}
 	
 	@Override
-	public void setFree() {
+	public void removeFromMap() {
 		this.getPath().setFree();
 	}
 	
