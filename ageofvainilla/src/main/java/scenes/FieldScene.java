@@ -9,8 +9,6 @@ import map.tiles.Tile;
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
-import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
 import components.factors.Factor;

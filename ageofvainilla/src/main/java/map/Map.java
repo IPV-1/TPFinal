@@ -147,16 +147,24 @@ public class Map extends GameComponent<GameScene> {
 	}
 
 	public boolean canBuild(BasicBuilding building) {
-		for(double i=building.getX(); i < building.getX() + building.getWidthInTiles(); i++) {
-			for(double j=building.getY(); j < building.getY() + building.getHeightInTiles(); j++) {
-				//if(this.isBlocked((int) i, (int) j)) {
-					System.out.println("Esta bloquedo: "+ i +" - "+ j);
-					//return false;
-				//}
+		for(double i=building.getTileX(); i < building.getTileX() + building.getWidthInTiles(); i++) {
+			for(double j=building.getTileY(); j < building.getTileY() + building.getHeightInTiles(); j++) {
+				if(this.isBlocked((int) i, (int) j)) {
+					return false;
+				}
 			}
 		}
 		
 		return true;
+	}
+
+	public void occupyBuilding(BasicBuilding building) {
+		for(double i=building.getTileX(); i < building.getTileX() + building.getWidthInTiles(); i++) {
+			for(double j=building.getTileY(); j < building.getTileY() + building.getHeightInTiles(); j++) {
+				this.occupy(building, (int)i, (int)j);
+			}
+		}
+		
 	}
 	
 }

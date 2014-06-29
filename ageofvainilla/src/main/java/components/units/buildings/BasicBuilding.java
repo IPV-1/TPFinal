@@ -20,8 +20,8 @@ public class BasicBuilding extends TiledComponent {
 		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos);
 	}
 
-	public BasicBuilding(Appearance appearance, double positionX, double positionY, int widthInTiles, int heightInTiles) {
-		super(appearance, positionX, positionY);
+	public BasicBuilding(Appearance appearance, int tileX, int tileY, int widthInTiles, int heightInTiles) {
+		super(appearance, tileX, tileY);
 		setWidthInTiles(widthInTiles);
 		setHeightInTiles(heightInTiles);
 	}

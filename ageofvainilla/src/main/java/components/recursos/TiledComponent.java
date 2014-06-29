@@ -14,5 +14,14 @@ public class TiledComponent extends Unit {
 	public TiledComponent(double tileX, double tileY) {
 		super((int)tileX * Tile.WIDTH, (int)tileY * Tile.HEIGHT);
 	}
+	
+	public double getTileX() {
+		return super.getX() / Tile.WIDTH;
+	}
+	
+	public double getTileY() {
+		return super.getY() / Tile.HEIGHT;
+	}
+
 
 }

@@ -33,17 +33,17 @@ public class Builder extends Unit {
 		setLongInTiles(longInTiles);
 	}
 
-	public BasicBuilding build(double x, double y) {
-		BasicBuilding b = new BasicBuilding(getAppearance().copy(), x, y, getWidthInTiles(), getLongInTiles());
+	public BasicBuilding build(int tileX, int tileY) {
+		BasicBuilding b = new BasicBuilding(getAppearance().copy(), tileX, tileY, getWidthInTiles(), getLongInTiles());
 		b.setCost(new HashMap<String, Integer>());
 		return b;
 	}
 	
-	public void buildIn(double  tileX, double tileY) {
+	public void buildIn(int tileX, int tileY) {
 		BasicBuilding building = this.build(tileX, tileY);
 		if (this.canBuild(building)) {
 		
-			getScene().getMap().occupy(building, (int)tileX, (int)tileY);
+			getScene().getMap().occupyBuilding(building);
 			getScene().addComponent(building);
 			getScene().getResourcesMenu().updateResources(building);
 		} else {
@@ -78,7 +78,7 @@ public class Builder extends Unit {
 		
 		if (getScene().getMouse().shouldInteract(this, deltaState)) {
 			Coord tile = Coord.getTileCamera(getScene().getMouse().getX(), getScene().getMouse().getY(), Tile.WIDTH);
-			buildIn(tile.getX(), tile.getY());
+			buildIn((int)tile.getX(), (int)tile.getY());
 		}
 		
 		Double position = deltaState.getCurrentMousePosition();

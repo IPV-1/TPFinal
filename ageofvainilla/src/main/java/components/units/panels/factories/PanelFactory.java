@@ -38,7 +38,6 @@ public class PanelFactory {
 		Appearance buttonAp2 = new Circle(Color.blue, 40);
 		getBuilder().withButton(new BuildingButton(buildingBuilder2, buttonAp2, 0, 1));
 		
-		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(game, 200, game.getDisplayHeight() - height, game.getDisplayWidth() - 200, game.getDisplayHeight() - height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, game.getDisplayHeight() - height);
 		unitShower.setPanel(panel);
