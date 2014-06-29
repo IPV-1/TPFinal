@@ -75,6 +75,14 @@ public class MovingUnit extends MovingGameComponent {
 		if(this.getFactor().isEnemy()) {
 			this.getPath().setDestiny((int) (unit.getX() / Tile.WIDTH), (int) (unit.getY() / Tile.HEIGHT));
 		}
+		if(! unit.getFactor().isNeutral()) {
+			this.getPath().setFollowing(unit);
+		}
+	}
+	
+	@Override
+	public void removeFromMap() {
+		this.getPath().setFree();
 	}
 	
 	public void attack(Unit unit) {

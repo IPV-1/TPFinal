@@ -57,6 +57,10 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 
 	public void hasKilled(Unit unit){}
 
+	public void setFree() {
+		this.getScene().getMap().setFree(this.getXTile(), this.getYTile());
+	}
+	
 	public void decrementLife(int points) {
 		this.setLifePoint(this.getLifePoint() - points);
 
@@ -65,6 +69,11 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 			this.removeFromMap();
 			this.destroy();
 		}
+	}
+	
+	public boolean isMoving() {
+		return this.getX() / Tile.WIDTH % 1 != 0 ||
+				this.getY() / Tile.HEIGHT % 1 != 0;
 	}
 
 	public boolean isDead() {

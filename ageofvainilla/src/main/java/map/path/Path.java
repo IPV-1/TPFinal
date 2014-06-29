@@ -16,6 +16,7 @@ import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.ImmutablePoint;
 import components.MovingGameComponent;
 import components.units.MovingUnit;
+import components.units.Unit;
 
 public class Path {
 
@@ -24,6 +25,7 @@ public class Path {
 	protected int currentStep = 0;
 	
 	protected Point destiny = new Point();
+	protected Unit following;
 
 	// TODO to remove
 	private Circle currentBreak;
@@ -120,6 +122,9 @@ public class Path {
 			Map map = this.getComponent().getScene().getMap();
 			map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
 			this.setCurrentStep(this.getCurrentStep() + 1);
+			if(this.isFollowing()) {
+				this.setDestiny(this.getFollowing().getXTile(), this.getFollowing().getYTile());
+			}
 			this.setPathTo(this.getDestiny().x, this.getDestiny().y);
 			
 			/*
@@ -161,6 +166,16 @@ public class Path {
 //		this.setPathTo(p.x, p.y);
 //	}
 
+	public void setFree() {
+		Map map = this.getComponent().getScene().getMap();
+		if(this.getComponent().isMoving()) {
+			map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
+			map.setFree(this.getMoveTo().x, this.getMoveTo().y);
+		} else {
+			map.setFree(this.getComponent().getXTile(), this.getComponent().getYTile());
+		}
+	}
+	
 	protected void applyChangesOnMap() {
 		Map map = this.getComponent().getScene().getMap();
 		map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
@@ -187,6 +202,15 @@ public class Path {
 		// TODO component should move to a valid tile position
 		this.setCurrentStep(this.getPoints().size());
 		this.getComponent().setSpeed(0);
+		this.stopFollowing();
+	}
+	
+	public boolean isFollowing() {
+		return this.getFollowing() != null;
+	}
+	
+	public void stopFollowing() {
+		this.setFollowing(null);
 	}
 
 	public MovingGameComponent getComponent() {
@@ -211,6 +235,14 @@ public class Path {
 	
 	public Point getDestiny() {
 		return destiny;
+	}
+
+	public Unit getFollowing() {
+		return following;
+	}
+
+	public void setFollowing(Unit following) {
+		this.following = following;
 	}
 
 }

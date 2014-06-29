@@ -24,7 +24,7 @@ public class TiledComponent extends Unit {
 	}
 	
 	@Override
-	public void removeFromMap() {
+	public void setFree() {
 		getScene().getMap().setFree((int)this.getTileX(), (int)this.getTileY());
 	}
 
