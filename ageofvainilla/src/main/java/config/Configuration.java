@@ -10,6 +10,7 @@ import java.util.Properties;
 import resource.ResourceUtils;
 
 import com.uqbar.vainilla.appearances.Sprite;
+import com.uqbar.vainilla.sound.Sound;
 
 public class Configuration {
 
@@ -17,6 +18,7 @@ public class Configuration {
     
 	private static Map<String, Sprite> sprites = new HashMap<String, Sprite>();
 	private static Map<String, Double> values = new HashMap<String, Double>();
+	private static Map<String, Sound> sounds = new HashMap<String, Sound>();
 	
     private static void loadConfiguration() {
 		addSprite("pointer");
@@ -33,6 +35,8 @@ public class Configuration {
 		addValue("tileHeight");
 		
 		addValue("withEnemyIA?");
+		
+		addSound("intro_sound");
     }
     
     public static void LOAD(String file) {
@@ -48,6 +52,9 @@ public class Configuration {
 		return values.get(key);
 	}
 	
+	public static Sound getSound(String key) {
+		return sounds.get(key);
+	}
 
     private static String FETCH(String key){
         return (String) properties.get(key);
@@ -73,6 +80,10 @@ public class Configuration {
 
 	private static void addSprite(String key) {
 		sprites.put(key, ResourceUtils.getSprite(FETCH(key)));
+	}
+	
+	private static void addSound(String key) {
+		sounds.put(key, ResourceUtils.getSound(FETCH(key)));
 	}
 
 	public static int getDisplayWidth() {

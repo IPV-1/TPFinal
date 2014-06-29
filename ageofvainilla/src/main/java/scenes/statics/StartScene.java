@@ -23,6 +23,8 @@ public class StartScene extends GameScene {
 
         this.addComponent(new TextSelector(selectableTexts));
         this.addComponents(selectableTexts);
+        
+//        Configuration.getSound("intro_sound").play();
     }
 
 }
