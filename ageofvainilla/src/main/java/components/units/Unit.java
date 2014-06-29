@@ -139,7 +139,7 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 
 	public void renderInPanel(UnitShower panel, Graphics2D graphics) {
 		panel.renderLife(this, graphics);
-		panel.renderAttack(this, graphics);		
+		panel.renderAttack(this, graphics);
 	}
 
 }
