@@ -1,40 +1,49 @@
 package map.parser;
 
-import java.io.BufferedReader;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 
-import config.Configuration;
+import javax.imageio.ImageIO;
 
 import map.tiles.Tile;
 import resource.Resource;
+import utils.ColorCSS;
+import config.Configuration;
 
-public class ImageParser {
+public class ImageParser implements MapParser {
 	
-	private static List<List<Tile>> resultado = new ArrayList<List<Tile>>();
+	private List<List<Tile>> resultado = new ArrayList<List<Tile>>();
+	
+	@SuppressWarnings("serial")
+	private Map<Integer, String> COLOR_HASH = new HashMap<Integer, String>() {{
+        put(ColorCSS.GREEN.getRGB(),  "G");
+        put(ColorCSS.YELLOW.getRGB(), "P");
+        put(ColorCSS.BROWN.getRGB(),  "M");
+        put(ColorCSS.BLUE.getRGB(),   "W");
+    }};
 
-	public static List<List<Tile>> parse() {
+	public List<List<Tile>> parse() {
 		
 		String file = Configuration.getString("map_img");
 		
-		BufferedReader br = null;
+		InputStream input = null;
 		try {
-			String line;
-			InputStream input = Resource.class.getResourceAsStream(file);
-			br = new BufferedReader(new InputStreamReader(input));
-			for (int y = 0; (line = br.readLine()) != null; y++) {
-				process(line, y, resultado);
+			input = Resource.class.getResourceAsStream(file);
+			BufferedImage image = ImageIO.read(input);
+			for (int y = 0; y < image.getHeight(); y++) {
+				createRow(y, image.getWidth(), image);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (br != null)
-					br.close();
+				if (input != null)
+					input.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
@@ -43,21 +52,26 @@ public class ImageParser {
 		return resultado;
 	}
 	
-	private static void process(String line, int y, List<List<Tile>> resultado) {
-		Scanner scanner = new Scanner(line);
-		for (int x = 0; scanner.hasNext(); x++) {
-			set(Tile.getTile(scanner.next()), x, y);
+	private void createRow(int y, int width, BufferedImage image) {
+		for(int x = 0; x < width; x++) {
+			int pixel = image.getRGB(x, y);
+			
+			String pixelString = "G"; 
+			
+			if(COLOR_HASH.containsKey(pixel)) {
+				pixelString = COLOR_HASH.get(pixel);
+			}
+			
+			set(Tile.getTile(pixelString), x, y);
 		}
-		scanner.close();
 	}
 	
-	private static void set(Tile tile, int x, int y) {
+	private void set(Tile tile, int x, int y) {
 		if(resultado.size() == y) {
 			resultado.add(new ArrayList<Tile>());
 		}
 		
 		resultado.get(y).add(tile);
 	}
-
 
 }

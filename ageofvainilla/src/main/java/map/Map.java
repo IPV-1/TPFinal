@@ -4,7 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import map.parser.FileParser;
+import map.parser.ImageParser;
+import map.parser.MapParser;
 import map.tiles.Tile;
 
 import com.uqbar.vainilla.Camera;
@@ -20,9 +21,11 @@ public class Map extends GameComponent<GameScene> {
 	private List<List<Tile>> tiles;
 	
 	private Sprite field;
+	
+	private MapParser parser = new ImageParser();
 
 	public Map() {
-		this.setTiles(FileParser.parse());
+		this.setTiles(parser.parse());
 		this.setField(this.buildMapSprite());
 	}
 

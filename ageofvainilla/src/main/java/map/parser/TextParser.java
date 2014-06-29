@@ -13,11 +13,11 @@ import config.Configuration;
 import map.tiles.Tile;
 import resource.Resource;
 
-public class FileParser {
+public class TextParser implements MapParser {
 	
-	private static List<List<Tile>> resultado = new ArrayList<List<Tile>>();
+	private List<List<Tile>> resultado = new ArrayList<List<Tile>>();
 
-	public static List<List<Tile>> parse() {
+	public List<List<Tile>> parse() {
 		
 		String file = Configuration.getString("map_txt");
 		
@@ -43,7 +43,7 @@ public class FileParser {
 		return resultado;
 	}
 	
-	private static void process(String line, int y, List<List<Tile>> resultado) {
+	private void process(String line, int y, List<List<Tile>> resultado) {
 		Scanner scanner = new Scanner(line);
 		for (int x = 0; scanner.hasNext(); x++) {
 			set(Tile.getTile(scanner.next()), x, y);
@@ -51,7 +51,7 @@ public class FileParser {
 		scanner.close();
 	}
 	
-	private static void set(Tile tile, int x, int y) {
+	private void set(Tile tile, int x, int y) {
 		if(resultado.size() == y) {
 			resultado.add(new ArrayList<Tile>());
 		}
