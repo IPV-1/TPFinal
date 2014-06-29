@@ -17,7 +17,7 @@ public class House extends Builder {
 	@Override
 	public Map<String, Integer> getCost() {
 		HashMap<String, Integer> costo = new HashMap<String, Integer>();
-		costo.put(ResourceType.ROCK, 10);
+		costo.put(ResourceType.GOLD, 20);
 		costo.put(ResourceType.LUMBER, 10);
 		
 		return costo;

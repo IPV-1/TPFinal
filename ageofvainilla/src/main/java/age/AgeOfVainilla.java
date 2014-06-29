@@ -21,7 +21,6 @@ public class AgeOfVainilla extends Game {
     
     public AgeOfVainilla() {
     	super();
-    	Configuration.LOAD(CONFIG_FILE);
 	}
 
 	@Override
@@ -53,6 +52,7 @@ public class AgeOfVainilla extends Game {
 
 	@Override
 	protected void initializeResources() {
+		Configuration.LOAD(CONFIG_FILE);
 	}
 
 }

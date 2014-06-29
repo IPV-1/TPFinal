@@ -1,9 +1,12 @@
 package components.units.resources;
 
+import java.awt.Graphics2D;
+
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 
 import components.factors.Factor;
+import components.menus.panels.UnitShower;
 import components.recursos.TiledComponent;
 
 public class Resource extends TiledComponent {
@@ -41,6 +44,11 @@ public class Resource extends TiledComponent {
 		return subtracted;
 
 	}
+	
+	@Override
+	public void renderInPanel(UnitShower panel, Graphics2D graphics) {
+		panel.renderResource(this, graphics);
+	} 
 
 	public int getAmount() {
 		return amount;
