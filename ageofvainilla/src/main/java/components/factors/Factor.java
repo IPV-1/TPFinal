@@ -1,5 +1,10 @@
 package components.factors;
 
+import components.units.Unit;
+import components.units.states.Attacking;
+import components.units.states.UnitState;
+import components.units.states.Waiting;
+
 public abstract class Factor {
 	
 	public static final Factor RED = new RedFactor();
@@ -28,6 +33,16 @@ public abstract class Factor {
 	
 	public boolean isResource() {
 		return false;
+	}
+
+	public UnitState nextState(Unit unit) {
+		if(this.isEnemy(unit.getFactor())) {
+			return new Attacking(unit);
+		} else if(unit.getFactor().isResource()) {
+			return new Waiting();
+		}
+		
+		return new Waiting();
 	}
 
 }

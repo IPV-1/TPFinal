@@ -12,7 +12,6 @@ import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.UnitVector2D;
 import components.MovingGameComponent;
 import components.factors.Factor;
-import components.units.states.Attacking;
 import components.units.states.Moving;
 import components.units.states.UnitState;
 import components.units.states.Waiting;
@@ -78,7 +77,7 @@ public class MovingUnit extends MovingGameComponent {
 	}
 
 	public void setMoveTo(Unit unit) {
-		this.setState(new Moving(new Attacking(unit)));
+		this.setState(new Moving(this.getFactor().nextState(unit)));
 	}
 
 	public UnitState getState() {
