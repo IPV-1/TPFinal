@@ -13,14 +13,16 @@
     <entry key="plain">map/tiles/plain.png</entry>
     <entry key="rock">map/tiles/rock.png</entry>
     <entry key="water">map/tiles/water.png</entry>
+
+    <entry key="gold_res">map/resources/gold.png</entry>
     
     <entry key="house">map/tiles/enemy.png</entry>
     <entry key="wall">units/wall.png</entry>
     <entry key="delete">buttons/delete.png</entry>
     <entry key="stop">buttons/stop.png</entry>
     
-    <entry key="tileWidth">32</entry>
-    <entry key="tileHeight">32</entry>
+    <entry key="tileWidth">20</entry>
+    <entry key="tileHeight">20</entry>
 
     <entry key="withEnemyIA?">0</entry>
     

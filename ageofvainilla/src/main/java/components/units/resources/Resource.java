@@ -4,17 +4,17 @@ import java.awt.Graphics2D;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
-
 import components.factors.Factor;
 import components.menus.panels.UnitShower;
-import components.recursos.TiledComponent;
+import components.units.buildings.BasicBuilding;
 
-public class Resource extends TiledComponent {
+public class Resource extends BasicBuilding {
 	private int amount;
 	private String resourceName;
 
-	public Resource(Appearance appearance, double tileX, double tileY, int amount, String resourceName) {
-		super(appearance, tileX, tileY);
+	public Resource(Appearance appearance, int tileX, int tileY, int amount, String resourceName) {
+		super(appearance, tileX, tileY, 2, 2);
+		setAppearance(this.getScaledAppearance(appearance));
 		setResourceName(resourceName);
 		setAmount(amount);
 		this.setFactor(Factor.RES);

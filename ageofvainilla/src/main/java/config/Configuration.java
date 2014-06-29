@@ -28,6 +28,8 @@ public class Configuration {
 		addSprite("rock");
 		addSprite("water");
 		
+		addSprite("gold_res");
+		
 		addSprite("house");
 		addSprite("wall");
 		addSprite("delete");

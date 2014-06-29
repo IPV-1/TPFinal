@@ -12,12 +12,10 @@ public class DownMenu extends BasicAgeComponent {
 	
 	private List<BasicAgeComponent> components = new ArrayList<BasicAgeComponent>();
 
-	public DownMenu(Appearance appearance, int y) {
-		super(appearance, 0, y);
-	}
-
 	public DownMenu(Appearance appearance, double x, double y) {
 		super(appearance,x,y);
+		
+		this.setZ(10);
 	}
 
 	@Override

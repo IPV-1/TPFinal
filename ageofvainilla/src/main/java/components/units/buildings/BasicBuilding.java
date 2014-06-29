@@ -7,6 +7,8 @@ import map.tiles.Tile;
 
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
+import com.uqbar.vainilla.appearances.Sprite;
+
 import components.factors.Factor;
 import components.menus.ResourcesMenu;
 import components.recursos.TiledComponent;
@@ -78,6 +80,16 @@ public class BasicBuilding extends TiledComponent {
 	@Override
 	public void removeFromMap() {
 		getScene().getMap().freeBuilding(this);
+	}
+	
+	public Appearance getScaledAppearance(Appearance appearance) {
+		Appearance app = appearance.copy();
+		
+		if(app instanceof Sprite) {
+			app = ((Sprite)app).scaleTo(Tile.WIDTH * getWidthInTiles(), Tile.HEIGHT * getHeightInTiles());
+		}
+		
+		return app;
 	}
 
 }
