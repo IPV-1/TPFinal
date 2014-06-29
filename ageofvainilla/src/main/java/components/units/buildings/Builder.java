@@ -1,6 +1,7 @@
 package components.units.buildings;
 
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
 import components.units.Unit;
@@ -16,31 +18,43 @@ import components.units.Unit;
 public class Builder extends Unit {
 	private int widthInTiles;
 	private int longInTiles;
+	
+	public Builder(int widthInTiles, int heightInTiles) {
+		super(0, 0);
+		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH * widthInTiles, Tile.WIDTH * heightInTiles);
+		setAppearance(buildingAppearance);
+		setWidthInTiles(widthInTiles);
+		setLongInTiles(heightInTiles);
+	}
 
-	public Builder(Appearance appearance, int widthInTiles, int longInTiles) {
+	protected Builder(Appearance appearance, int widthInTiles, int longInTiles) {
 		super(appearance, 0, 0);
 		setWidthInTiles(widthInTiles);
 		setLongInTiles(longInTiles);
 	}
 
-	public BasicBuilding build(double x, double y) {
-		BasicBuilding b = new BasicBuilding(getAppearance().copy(), x, y, getWidthInTiles(), getLongInTiles());
+	public BasicBuilding build(int tileX, int tileY) {
+		BasicBuilding b = new BasicBuilding(getAppearance().copy(), tileX, tileY, getWidthInTiles(), getLongInTiles());
 		b.setCost(new HashMap<String, Integer>());
 		return b;
 	}
 	
-	public void buildIn(double  tileX, double tileY) {
+	public void buildIn(int tileX, int tileY) {
 		BasicBuilding building = this.build(tileX, tileY);
-		if (getScene().getResourcesMenu().canBuild(building)) {
+		if (this.canBuild(building)) {
 		
-		getScene().getMap().occupy(building, (int)tileX, (int)tileY);
-		getScene().addComponent(building);
+			getScene().getMap().occupyBuilding(building);
+			getScene().addComponent(building);
 			getScene().getResourcesMenu().updateResources(building);
 		} else {
 			// Do what?
 		}
 	}
 
+	private boolean canBuild(BasicBuilding building) {
+		return getScene().getResourcesMenu().canBuild(building) &&
+				getScene().getMap().canBuild(building);
+	}
 
 	public int getWidthInTiles() {
 		return widthInTiles;
@@ -64,7 +78,7 @@ public class Builder extends Unit {
 		
 		if (getScene().getMouse().shouldInteract(this, deltaState)) {
 			Coord tile = Coord.getTileCamera(getScene().getMouse().getX(), getScene().getMouse().getY(), Tile.WIDTH);
-			buildIn(tile.getX(), tile.getY());
+			buildIn((int)tile.getX(), (int)tile.getY());
 		}
 		
 		Double position = deltaState.getCurrentMousePosition();

@@ -12,7 +12,7 @@ import components.recursos.TiledComponent;
 
 public class BasicBuilding extends TiledComponent {
 	private int widthInTiles;
-	private int longInTiles;
+	private int heightInTiles;
 	private Map<String, Integer> cost;
 
 	//I let this here for backward compatibility
@@ -20,18 +20,18 @@ public class BasicBuilding extends TiledComponent {
 		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos);
 	}
 
-	public BasicBuilding(Appearance appearance, double positionX, double positionY, int widthInTiles, int longInTiles) {
-		super(appearance, positionX, positionY);
+	public BasicBuilding(Appearance appearance, int tileX, int tileY, int widthInTiles, int heightInTiles) {
+		super(appearance, tileX, tileY);
 		setWidthInTiles(widthInTiles);
-		setLongInTiles(longInTiles);
+		setHeightInTiles(heightInTiles);
 	}
 
-	public int getLongInTiles() {
-		return longInTiles;
+	public int getHeightInTiles() {
+		return heightInTiles;
 	}
 
-	public void setLongInTiles(int longInTiles) {
-		this.longInTiles = longInTiles;
+	public void setHeightInTiles(int heightInTiles) {
+		this.heightInTiles = heightInTiles;
 	}
 
 	public int getWidthInTiles() {

@@ -9,8 +9,6 @@ import map.tiles.Tile;
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
-import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
 import components.menus.ResourcesMenu;
@@ -46,8 +44,7 @@ public class FieldScene extends GameScene {
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
 
-		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH, Tile.WIDTH);
-		BasicBuilding building = new Builder(buildingAppearance, Tile.WIDTH, Tile.WIDTH).build(4, 1);
+		BasicBuilding building = new Builder(1, 1).build(4, 1);
         this.addComponent(building);
         this.addComponent(ResourceFactory.createGold(4,2, 200));
         this.addComponent(this.getMouse());
