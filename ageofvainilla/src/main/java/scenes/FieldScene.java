@@ -117,4 +117,12 @@ public class FieldScene extends GameScene {
 	public void setControlPanel(ControlPanel controlPanel) {
 		this.controlPanel = controlPanel;
 	}
+	
+	public double getTerrainWidth() {
+		return getGame().getDisplayWidth();
+	}
+	
+	public double getTerrainHeight() {
+		return getGame().getDisplayHeight() - getResourcesMenu().getHeight() - getControlPanel().getHeight();
+	}
 }
