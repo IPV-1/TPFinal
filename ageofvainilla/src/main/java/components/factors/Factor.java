@@ -35,6 +35,10 @@ public abstract class Factor {
 	public boolean isResource() {
 		return false;
 	}
+	
+	public boolean isNeutral() {
+		return false;
+	}
 
 	public UnitState nextState(Unit unit) {
 		if(this.isEnemy(unit.getFactor())) {

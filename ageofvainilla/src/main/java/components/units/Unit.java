@@ -131,8 +131,8 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 		this.factor = factor;
 	}
 	
-//	public void removeFromMap() {
-//		getScene().getMap().setFree((int)(this.getX() / Tile.WIDTH), (int)(this.getY() / Tile.HEIGHT));
-//	}
+	public void removeFromMap() {
+		getScene().getMap().setFree((int)(this.getX() / Tile.WIDTH), (int)(this.getY() / Tile.HEIGHT));
+	}
 
 }
