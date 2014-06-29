@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.Map;
 
 import com.uqbar.vainilla.appearances.Appearance;
+
+import components.factors.Factor;
 import components.menus.ResourcesMenu;
 import map.tiles.Tile;
 
@@ -18,12 +20,14 @@ public class BasicBuilding extends TiledComponent {
 	//I let this here for backward compatibility
 	public BasicBuilding(Color color, double xPos, double yPos) {
 		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos);
+		this.setFactor(Factor.BLUE);
 	}
 
 	public BasicBuilding(Appearance appearance, int tileX, int tileY, int widthInTiles, int heightInTiles) {
 		super(appearance, tileX, tileY);
 		setWidthInTiles(widthInTiles);
 		setHeightInTiles(heightInTiles);
+		this.setFactor(Factor.BLUE);
 	}
 
 	public BasicBuilding(Builder builder, int tileX, int tileY) {
