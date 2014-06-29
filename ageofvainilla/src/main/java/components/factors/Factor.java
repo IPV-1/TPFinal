@@ -10,6 +10,10 @@ public abstract class Factor {
 	protected Factor() {
 	}
 	
+	public boolean isEnemy() {
+		return false;
+	}
+	
 	public boolean isEnemy(Factor factor){
 		return false;
 	}

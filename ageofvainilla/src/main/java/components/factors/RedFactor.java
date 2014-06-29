@@ -6,6 +6,11 @@ public class RedFactor extends Factor {
 	}
 	
 	@Override
+	public boolean isEnemy() {
+		return true;
+	}
+	
+	@Override
 	public boolean isEnemy(Factor factor) {
 		return factor.isEnemyOfRedFactor();
 	}

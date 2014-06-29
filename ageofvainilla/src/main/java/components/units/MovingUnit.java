@@ -81,7 +81,9 @@ public class MovingUnit extends MovingGameComponent {
 
 	public void interact(Unit unit) {
 		this.getState().interact(this, unit);
-		this.getPath().setDestiny((int) (unit.getX() / Tile.WIDTH), (int) (unit.getY() / Tile.HEIGHT));
+		if(this.getFactor().isEnemy()) {
+			this.getPath().setDestiny((int) (unit.getX() / Tile.WIDTH), (int) (unit.getY() / Tile.HEIGHT));
+		}
 	}
 	
 	public void attack(Unit unit) {
