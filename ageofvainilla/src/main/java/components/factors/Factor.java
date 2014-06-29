@@ -2,6 +2,7 @@ package components.factors;
 
 import components.units.Unit;
 import components.units.states.Attacking;
+import components.units.states.Farming;
 import components.units.states.UnitState;
 import components.units.states.Waiting;
 
@@ -39,7 +40,7 @@ public abstract class Factor {
 		if(this.isEnemy(unit.getFactor())) {
 			return new Attacking(unit);
 		} else if(unit.getFactor().isResource()) {
-			return new Waiting();
+			return new Farming(unit);
 		}
 		
 		return new Waiting();
