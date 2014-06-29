@@ -13,7 +13,6 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
-import components.factors.Factor;
 import components.menus.ResourcesMenu;
 import components.menus.panels.ControlPanel;
 import components.units.MovingUnit;
@@ -33,8 +32,8 @@ public class FieldScene extends GameScene {
 	private ControlPanel controlPanel;
 
 	private MouseHandler mouse = new MouseHandler();
-	public MovingUnit initialUnit1 = new MovingUnit(Factor.BLUE, Color.BLACK, 200, 110);
-	public MovingUnit initialUnit2 = new MovingUnit(Factor.RED, Color.DARK_GRAY, 110, 110);
+	public MovingUnit initialUnit2 = MovingUnit.getAlly(3, 3);
+	public MovingUnit initialUnit1 = MovingUnit.getEnemy(6, 3);
 
     public FieldScene(Game game) {
         super();

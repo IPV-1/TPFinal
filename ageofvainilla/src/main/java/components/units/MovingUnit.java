@@ -3,6 +3,7 @@ package components.units;
 import java.awt.Color;
 
 import map.path.Path;
+import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
@@ -32,6 +33,14 @@ public class MovingUnit extends MovingGameComponent {
 
 	public MovingUnit(Factor factor, Color color, double xPos, double yPos) {
 		this(factor, new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
+	}
+	
+	public static MovingUnit getAlly(int xTile, int yTile) {
+		return new MovingUnit(Factor.BLUE, Color.BLUE, xTile * Tile.WIDTH, yTile * Tile.HEIGHT);
+	}
+	
+	public static MovingUnit getEnemy(int xTile, int yTile) {
+		return new MovingUnit(Factor.RED, Color.RED, xTile * Tile.WIDTH, yTile * Tile.HEIGHT);
 	}
 
 	@Override
