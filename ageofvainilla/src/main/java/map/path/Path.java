@@ -39,13 +39,17 @@ public class Path {
 			Point2D.Double d = deltaState.getCurrentMousePosition();
 			int x = (int) ((d.x + Camera.INSTANCE.getX()) / Tile.WIDTH);
 			int y = (int) ((d.y + Camera.INSTANCE.getY()) / Tile.HEIGHT);
-			this.getDestiny().setLocation(x, y);
-			if(!this.isTravelingToDestiny()) {
-				this.setPathTo(x, y);
-			}
+			this.setDestiny(x, y);
 		}
 		if (this.isTravelingToDestiny()) {
 			this.checkBreak();
+		}
+	}
+	
+	public void setDestiny(int x, int y) {
+		this.getDestiny().setLocation(x, y);
+		if(!this.isTravelingToDestiny()) {
+			this.setPathTo(x, y);
 		}
 	}
 	
@@ -205,7 +209,7 @@ public class Path {
 		this.currentStep = currentStep;
 	}
 	
-	protected Point getDestiny() {
+	public Point getDestiny() {
 		return destiny;
 	}
 
