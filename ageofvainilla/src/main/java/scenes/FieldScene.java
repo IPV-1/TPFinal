@@ -56,7 +56,7 @@ public class FieldScene extends GameScene {
 		
 		addResourceMenu(new ResourcesMenu());
 		//Comment this out for seeing control panel
-		addControlPanel(game);
+		addControlPanel();
 		
 		Builder.initialBuild(this, 4, 1);
 		
@@ -74,9 +74,9 @@ public class FieldScene extends GameScene {
 	}
 
 
-	private void addControlPanel(Game game) {
+	private void addControlPanel() {
 		PanelFactory panelFactory = new PanelFactory(new PanelBuilder());
-		ControlPanel panel = panelFactory.downPanelFullWith(game);
+		ControlPanel panel = panelFactory.downPanelFullWith();
 		this.setControlPanel(panel);
 		addComponent(panel);
 	}

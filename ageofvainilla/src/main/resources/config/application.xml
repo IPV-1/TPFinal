@@ -13,7 +13,9 @@
     <entry key="plain">map/tiles/plain.png</entry>
     <entry key="rock">map/tiles/rock.png</entry>
     <entry key="water">map/tiles/water.png</entry>
+    
     <entry key="house">map/tiles/enemy.png</entry>
+    <entry key="wall">units/wall.png</entry>
     
     
     <entry key="tileWidth">32</entry>

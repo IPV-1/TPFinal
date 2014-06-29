@@ -31,6 +31,10 @@ public class BasicBuilding extends TiledComponent {
 
 	public BasicBuilding(Builder builder, int tileX, int tileY) {
 		this(builder.getBuildingAppearance(), tileX, tileY, builder.getWidthInTiles(), builder.getHeightInTiles());
+		
+		this.setCost(builder.getCost());
+		this.setLifePoint(builder.getLifePoint());
+		this.setPowerAttack(builder.getPowerAttack());
 	}
 
 	public int getHeightInTiles() {

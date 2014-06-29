@@ -5,7 +5,6 @@ import java.awt.Color;
 
 import map.tiles.Tile;
 
-import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
@@ -14,6 +13,9 @@ import components.menus.panels.ControlPanel;
 import components.menus.panels.UnitShower;
 import components.units.buildings.Builder;
 import components.units.buildings.House;
+import components.units.buildings.Wall;
+
+import config.Configuration;
 
 public class PanelFactory {
 
@@ -23,11 +25,11 @@ public class PanelFactory {
 		this.builder = builder;
 	}
 
-	public ControlPanel downPanelFullWith(Game game) {
+	public ControlPanel downPanelFullWith() {
 		// TODO: this method is painful, so much.
 		// Isn't  worse colours?
 		int height = Tile.HEIGHT * 3;
-		Appearance appearance = new Rectangle(Color.orange, game.getDisplayWidth(), height);
+		Appearance appearance = new Rectangle(Color.orange, Configuration.getDisplayWidth(), height);
 		
 		Builder buildingBuilder = new Builder(1, 1);
 		Appearance buttonAp = new Circle(Color.red, 40);
@@ -41,8 +43,12 @@ public class PanelFactory {
 		Appearance buttonAp3 = new Circle(Color.GREEN, 40);
 		getBuilder().withButton(new BuildingButton(buildingBuilder3, buttonAp3, 0, 1));
 		
-		UnitShower unitShower = UnitShowerFactory.createRectangle(game, 200, game.getDisplayHeight() - height, game.getDisplayWidth() - 200, game.getDisplayHeight() - height);
-		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, game.getDisplayHeight() - height);
+		Builder buildingBuilder4 = new Wall();
+		Appearance buttonAp4 = Configuration.getSprite("wall").scaleTo(40, 40);
+		getBuilder().withButton(new BuildingButton(buildingBuilder4, buttonAp4, 0, 1));
+		
+		UnitShower unitShower = UnitShowerFactory.createRectangle(200, Configuration.getDisplayHeight() - height, Configuration.getDisplayWidth() - 200, Configuration.getDisplayHeight() - height);
+		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, Configuration.getDisplayHeight() - height);
 		unitShower.setPanel(panel);
 		return panel;
 	}

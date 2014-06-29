@@ -27,7 +27,9 @@ public class Configuration {
 		addSprite("plain");
 		addSprite("rock");
 		addSprite("water");
+		
 		addSprite("house");
+		addSprite("wall");
 	
 		addValue("screenWidth");
 		addValue("screenHeight");

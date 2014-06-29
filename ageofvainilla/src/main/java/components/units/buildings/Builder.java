@@ -36,9 +36,7 @@ public class Builder extends Unit {
 	}
 
 	public BasicBuilding build(int tileX, int tileY) {
-		BasicBuilding b = new BasicBuilding(this, tileX, tileY);
-		b.setCost(this.getCost());
-		return b;
+		return new BasicBuilding(this, tileX, tileY);
 	}
 	
 	public Map<String, Integer> getCost() {
