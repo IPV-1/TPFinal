@@ -31,6 +31,8 @@ public class Configuration {
 		
 		addValue("tileWidth");
 		addValue("tileHeight");
+		
+		addValue("withEnemyIA?");
     }
     
     public static void LOAD(String file) {
@@ -79,6 +81,10 @@ public class Configuration {
 
 	public static int getDisplayHeight() {
 		return getValue("screenHeight").intValue();
+	}
+
+	public static boolean getBoolean(String string) {
+		return getValue(string) > 0;
 	}
     
 }

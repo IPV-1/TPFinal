@@ -17,6 +17,7 @@ import components.units.MovingUnit;
 import components.units.buildings.Builder;
 import components.units.panels.factories.PanelBuilder;
 import components.units.panels.factories.PanelFactory;
+import config.Configuration;
 
 public class FieldScene extends GameScene {
 
@@ -49,7 +50,9 @@ public class FieldScene extends GameScene {
 		//Comment this out for seeing control panel
 		addControlPanel(game);
 		
-		this.addComponent(this.getEnemyController());
+		if(Configuration.getBoolean("withEnemyIA?")) {
+			this.addComponent(this.getEnemyController());
+		}
 		
 		Builder.initialBuild(this, 4, 1);
 		
