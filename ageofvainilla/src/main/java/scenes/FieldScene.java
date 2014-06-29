@@ -14,7 +14,6 @@ import components.MouseHandler;
 import components.menus.ResourcesMenu;
 import components.menus.panels.ControlPanel;
 import components.units.MovingUnit;
-import components.units.buildings.BasicBuilding;
 import components.units.buildings.Builder;
 import components.units.panels.factories.PanelBuilder;
 import components.units.panels.factories.PanelFactory;
@@ -37,7 +36,7 @@ public class FieldScene extends GameScene {
     public FieldScene(Game game) {
         super();
         this.addComponent(Camera.INSTANCE);
-        Map map = new Map(28,21,"map");
+        Map map = new Map("map");
         this.map = map;
         this.pathFinder = new PathFinder(map);
         this.addComponent(map);
@@ -45,8 +44,6 @@ public class FieldScene extends GameScene {
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
 
-		BasicBuilding building = new Builder(1, 1).build(4, 1);
-        this.addComponent(building);
         this.addComponent(ResourceFactory.createGold(4,2, 200));
         this.addComponent(this.getMouse());
         
@@ -55,6 +52,8 @@ public class FieldScene extends GameScene {
 		addControlPanel(game);
 		
 		this.addComponent(this.getEnemyController());
+		Builder.initialBuild(this, 4, 1);
+		
     }
 
 
@@ -129,4 +128,12 @@ public class FieldScene extends GameScene {
 		this.enemyController = enemyController;
 	}
 	
+	public double getTerrainWidth() {
+		return getGame().getDisplayWidth();
+	}
+	
+	public double getTerrainHeight() {
+		return getGame().getDisplayHeight() - getResourcesMenu().getHeight() - getControlPanel().getHeight();
+	}
+
 }

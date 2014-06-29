@@ -26,6 +26,10 @@ public class BasicBuilding extends TiledComponent {
 		setHeightInTiles(heightInTiles);
 	}
 
+	public BasicBuilding(Builder builder, int tileX, int tileY) {
+		this(builder.getBuildingAppearance(), tileX, tileY, builder.getWidthInTiles(), builder.getHeightInTiles());
+	}
+
 	public int getHeightInTiles() {
 		return heightInTiles;
 	}

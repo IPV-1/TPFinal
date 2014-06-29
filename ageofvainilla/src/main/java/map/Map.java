@@ -2,14 +2,10 @@ package map;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.util.List;
 
+import map.parser.FileParser;
 import map.tiles.Tile;
-import resource.Resource;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.GameComponent;
@@ -21,49 +17,13 @@ import components.units.buildings.BasicBuilding;
 
 public class Map extends GameComponent<GameScene> {
 
-	protected final int xTiles;
-	protected final int yTiles;
-	protected Tile[][] tiles;
+	private List<List<Tile>> tiles;
 	
 	private Sprite field;
 
-	public Map(int width, int height, String file) {
-		this.xTiles = width;
-		this.yTiles = height;
-		tiles = new Tile[yTiles][xTiles];
-		
-		this.parseMap(file);
-		
+	public Map(String file) {
+		this.setTiles(FileParser.parse(file));
 		this.setField(this.buildMapSprite());
-	}
-
-	private void parseMap(String file) {
-		BufferedReader br = null;
-		try {
-			String line;
-			InputStream input = Resource.class.getResourceAsStream(file);
-			br = new BufferedReader(new InputStreamReader(input));
-			for (int y = 0; (line = br.readLine()) != null; y++) {
-				this.process(line, y);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null)
-					br.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
-	}
-
-	protected void process(String line, int y) {
-		Scanner scanner = new Scanner(line);
-		for (int x = 0; scanner.hasNext(); x++) {
-			this.set(Tile.getTile(scanner.next()), x, y);
-		}
-		scanner.close();
 	}
 
 	@Override
@@ -72,15 +32,15 @@ public class Map extends GameComponent<GameScene> {
 	}
 	
 	private Sprite buildMapSprite() {
-		int mapWidth = this.getTiles()[0].length * Tile.WIDTH;
-		int mapHeight = this.getTiles().length * Tile.HEIGHT;
+		int mapWidth = this.getTileWidth() * Tile.WIDTH;
+		int mapHeight = this.getTileHeight() * Tile.HEIGHT;
 		
 		BufferedImage newImage = new BufferedImage(mapWidth, mapHeight, BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D graphics = newImage.createGraphics();
 		
-		for (int y = 0; y < this.getTiles().length; y++) {
-			for (int x = 0; x < this.getTiles()[0].length; x++) {
+		for (int y = 0; y < this.getTileHeight(); y++) {
+			for (int x = 0; x < this.getTileWidth(); x++) {
 				
 				Sprite sprite = this.get(x, y).getSprite();
 				int mapX = (int)((x * Tile.WIDTH));
@@ -101,25 +61,21 @@ public class Map extends GameComponent<GameScene> {
 	public boolean isWalkable(int x, int y) {
 		return this.get(x, y).isEmpty();
 	}
-
+	
 	public Tile get(int x, int y) {
-		return this.getTiles()[y][x];
+		return this.getTiles().get(y).get(x);
 	}
 
-	public void set(Tile tile, int x, int y) {
-		this.getTiles()[y][x] = tile;
-	}
-
-	public Tile[][] getTiles() {
+	public List<List<Tile>> getTiles() {
 		return this.tiles;
 	}
 
-	public int getxTiles() {
-		return xTiles;
+	public int getTileWidth() {
+		return this.getTiles().get(0).size();
 	}
 
-	public int getyTiles() {
-		return yTiles;
+	public int getTileHeight() {
+		return this.getTiles().size();
 	}
 
 	public Tile get(Coord tile) {
@@ -165,6 +121,10 @@ public class Map extends GameComponent<GameScene> {
 			}
 		}
 		
+	}
+
+	protected void setTiles(List<List<Tile>> tiles) {
+		this.tiles = tiles;
 	}
 	
 }

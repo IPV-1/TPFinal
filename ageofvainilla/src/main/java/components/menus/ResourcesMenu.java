@@ -13,6 +13,7 @@ import components.boards.ResourceBoardFactory;
 
 import components.units.buildings.BasicBuilding;
 import config.Configuration;
+import config.ResourceType;
 
 public class ResourcesMenu extends BasicAgeComponent {
 
@@ -22,16 +23,16 @@ public class ResourcesMenu extends BasicAgeComponent {
 		super(0, 0);
 		this.setAppearance(new Rectangle(Color.BLACK, Configuration.getDisplayWidth(), 30));
 
-		ResourceBoard gold = new ResourceBoardFactory().withX(15).withLabel("GOLD").build();
+		ResourceBoard gold = new ResourceBoardFactory().withX(15).withLabel(ResourceType.GOLD).build();
 		components.add(gold);
 
-		ResourceBoard lumber = new ResourceBoardFactory().withX(155).withLabel("LUMBER").build();
+		ResourceBoard lumber = new ResourceBoardFactory().withX(155).withLabel(ResourceType.LUMBER).build();
 		components.add(lumber);
 
-		ResourceBoard food = new ResourceBoardFactory().withX(355).withLabel("FOOD").build();
+		ResourceBoard food = new ResourceBoardFactory().withX(355).withLabel(ResourceType.FOOD).build();
 		components.add(food);
 
-		ResourceBoard rock = new ResourceBoardFactory().withX(555).withLabel("ROCK").build();
+		ResourceBoard rock = new ResourceBoardFactory().withX(555).withLabel(ResourceType.ROCK).build();
 		components.add(rock);
 
 	}

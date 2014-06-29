@@ -30,7 +30,6 @@ public abstract class Tile {
         put("P", new TileBuilder().forTile(Plain.class));
         put("M", new TileBuilder().forTile(Mountain.class));
         put("W", new TileBuilder().forTile(Water.class));
-        put("H", new TileBuilder().forTile(House.class));
     }};
 	
 	public boolean isBlocked() {
