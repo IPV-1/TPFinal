@@ -1,7 +1,5 @@
 package scenes;
 
-import java.awt.Color;
-
 import map.Map;
 import map.path.PathFinder;
 import map.tiles.Tile;
@@ -10,6 +8,8 @@ import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.space.Coord;
+
+import components.EnemyController;
 import components.MouseHandler;
 import components.menus.ResourcesMenu;
 import components.menus.panels.ControlPanel;
@@ -28,6 +28,7 @@ public class FieldScene extends GameScene {
 	protected PathFinder pathFinder;
 	private ResourcesMenu resourcesMenu;
 	private ControlPanel controlPanel;
+	private EnemyController enemyController = new EnemyController();
 
 	private MouseHandler mouse = new MouseHandler();
 	public MovingUnit initialUnit2 = MovingUnit.getAlly(3, 3);
@@ -52,6 +53,8 @@ public class FieldScene extends GameScene {
         addResourceMenu(new ResourcesMenu());
 		//Comment this out for seeing control panel
 		addControlPanel(game);
+		
+		this.addComponent(this.getEnemyController());
     }
 
 
@@ -68,7 +71,7 @@ public class FieldScene extends GameScene {
 		addComponent(panel);
 	}
 
-	private void addMovingUnit(MovingUnit unit) {
+	public void addMovingUnit(MovingUnit unit) {
 		this.addComponent(unit);
 		
 		Coord tileCoord = new Coord(unit.getX(), unit.getY()).getTile(Tile.WIDTH);
@@ -116,4 +119,14 @@ public class FieldScene extends GameScene {
 	public void setControlPanel(ControlPanel controlPanel) {
 		this.controlPanel = controlPanel;
 	}
+
+	public EnemyController getEnemyController() {
+		return enemyController;
+	}
+
+
+	public void setEnemyController(EnemyController enemyController) {
+		this.enemyController = enemyController;
+	}
+	
 }

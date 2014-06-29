@@ -55,12 +55,23 @@ public class PathFinder {
 			}
 		}
 	}
+	
+	public Point closestTo(Point p) {
+		return this.closestTo(p.x, p.y);
+	}
 
 	public Point closestTo(int x, int y) {
 		return this.closestTo(null, x, y);
 	}
+	
+	public Point closestTo(Factor factor, Point p) {
+		return this.closestTo(factor, p.x, p.y);
+	}
 
 	public Point closestTo(Factor factor, int xTo, int yTo) {
+		if(this.tileFound(factor, xTo, yTo)) {
+			return new Point(xTo, yTo);
+		}
 		int xT = xTo, yT = yTo;
 		int y = yT - 1;
 		int x = xT;
@@ -69,9 +80,7 @@ public class PathFinder {
 			x = xT - m;
 			for (int i = 0; i < 2; i++) {
 				for (int j = 0; j <= m * 2; j++) {
-					Unit u = this.getMap().get(x, y).getOcuppant();
-					if (this.notBlocked(x, y) && u != null
-							&& !u.getFactor().equals(factor)) {
+					if (this.tileFound(factor, x, y)) {
 						break search;
 					}
 					x++;
@@ -83,7 +92,7 @@ public class PathFinder {
 			y = yT - (m + 1);
 			for (int i = 0; i < 2; i++) {
 				for (int j = 0; j <= (m + 1) * 2; j++) {
-					if (this.notBlocked(x, y)) {
+					if (this.tileFound(factor, x, y)) {
 						break search;
 					}
 					y++;
@@ -93,6 +102,19 @@ public class PathFinder {
 			}
 		}
 		return new Point(x, y);
+	}
+	
+	protected boolean tileFound(Factor factor, int xTo, int yTo) {
+		boolean found = false;
+		if(this.insideMap(xTo, yTo)) {
+			if(factor == null && !this.getMap().isBlocked(xTo, yTo)) {
+				found = true;
+			} else {
+				Unit u = this.getMap().get(xTo, yTo).getOcuppant();
+				found = u != null && u.getFactor().equals(factor);
+			}
+		}
+		return found;
 	}
 
 	protected void findPathToCalculated(int xFrom, int yFrom, int xTo, int yTo,

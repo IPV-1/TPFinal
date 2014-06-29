@@ -1,6 +1,7 @@
 package components.units;
 
 import java.awt.Color;
+import java.awt.Point;
 
 import map.path.Path;
 import map.tiles.Tile;
@@ -41,6 +42,10 @@ public class MovingUnit extends MovingGameComponent {
 	
 	public static MovingUnit getEnemy(int xTile, int yTile) {
 		return new MovingUnit(Factor.RED, Color.RED, xTile * Tile.WIDTH, yTile * Tile.HEIGHT);
+	}
+	
+	public static MovingUnit getEnemy(Point point) {
+		return MovingUnit.getEnemy(point.x, point.y);
 	}
 
 	@Override
