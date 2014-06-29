@@ -59,6 +59,7 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 
 		if(isDead()) {
 			// estado = muerto
+			this.removeFromMap();
 			this.destroy();
 		}
 	}
