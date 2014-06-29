@@ -113,6 +113,14 @@ public class Map extends GameComponent<GameScene> {
 		
 		return true;
 	}
+	
+	public void freeBuilding(BasicBuilding building) {
+		for(double i=building.getTileX(); i < building.getTileX() + building.getWidthInTiles(); i++) {
+			for(double j=building.getTileY(); j < building.getTileY() + building.getHeightInTiles(); j++) {
+				this.setFree((int)i, (int)j);
+			}
+		}
+	}
 
 	public void occupyBuilding(BasicBuilding building) {
 		for(double i=building.getTileX(); i < building.getTileX() + building.getWidthInTiles(); i++) {

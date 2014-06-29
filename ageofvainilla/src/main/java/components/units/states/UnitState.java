@@ -7,7 +7,9 @@ import components.units.Unit;
 
 public abstract class UnitState {
 	
-	public abstract void interact(MovingUnit self, Unit unit);
+	public void interact(MovingUnit self, Unit unit) {
+		self.setMoveTo(unit);
+	}
 
 	public abstract void update(MovingUnit movingUnit, DeltaState deltaState);
 	

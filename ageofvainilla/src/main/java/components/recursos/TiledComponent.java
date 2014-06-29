@@ -22,6 +22,11 @@ public class TiledComponent extends Unit {
 	public double getTileY() {
 		return super.getY() / Tile.HEIGHT;
 	}
+	
+	@Override
+	public void setFree() {
+		getScene().getMap().setFree((int)this.getTileX(), (int)this.getTileY());
+	}
 
 
 }

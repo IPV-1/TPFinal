@@ -70,5 +70,10 @@ public class BasicBuilding extends TiledComponent {
 	public void setCost(Map<String, Integer> cost) {
 		this.cost = cost;
 	}
+	
+	@Override
+	public void removeFromMap() {
+		getScene().getMap().freeBuilding(this);
+	}
 
 }
