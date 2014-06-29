@@ -62,7 +62,12 @@ public class MovingUnit extends MovingGameComponent {
 	
 	@Override
 	public void hasKilled(Unit unit) {
-		this.setState(new Waiting());
+		if(this.getFactor().isEnemy()) {
+			this.setState(new Waiting());
+			this.interact(this.getScene().getEnemyController().getUnitToAttack());
+		} else {
+			this.setState(new Waiting());
+		}
 	}
 
 	public void interact(Unit unit) {

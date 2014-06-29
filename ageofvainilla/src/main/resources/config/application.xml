@@ -16,6 +16,6 @@
     <entry key="tileWidth">32</entry>
     <entry key="tileHeight">32</entry>
 
-    <entry key="withEnemyIA?">0</entry>
+    <entry key="withEnemyIA?">1</entry>
     
 </properties>

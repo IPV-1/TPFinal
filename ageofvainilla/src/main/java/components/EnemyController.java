@@ -12,7 +12,7 @@ public class EnemyController extends BasicAgeComponent {
 	
 	protected int pc = 0;
 	protected Point spawnPoint = new Point(10, 2);
-	protected final int PC_LIMIT = 200;
+	protected final int PC_LIMIT = 100;
 	
 	@Override
 	public void update(DeltaState deltaState) {
@@ -39,7 +39,7 @@ public class EnemyController extends BasicAgeComponent {
 		unit.interact(this.getUnitToAttack());
 	}
 	
-	protected Unit getUnitToAttack() {
+	public Unit getUnitToAttack() {
 		Point point = this.getScene().getPathFinder().closestTo(Factor.BLUE, this.getSpawnPoint());
 		return this.getScene().getMap().get(point.x, point.y).getOcuppant();
 	}

@@ -39,11 +39,14 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	}
 
 	public void interactedBy(Unit unit) {
-		if(this.isEnemy(unit)) {
+		if(this.isEnemy(unit) && !unit.isDead() && !this.isDead()) {
 			this.decrementLife(unit.getPowerAttack());
 	
 			if(!this.isDead()) {
 				unit.decrementLife(this.getPowerAttack());
+				if(unit.isDead()) {
+					this.hasKilled(unit);
+				}
 			} else {
 				unit.hasKilled(this);
 			}
@@ -66,6 +69,14 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 
 	public boolean isDead() {
 		return this.getLifePoint() <= 0;
+	}
+	
+	public int getXTile() {
+		return (int) (this.getX() / Tile.WIDTH);
+	}
+	
+	public int getYTile() {
+		return (int) (this.getY() / Tile.HEIGHT);
 	}
 	
 	@Override

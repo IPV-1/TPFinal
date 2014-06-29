@@ -31,7 +31,7 @@ public class FieldScene extends GameScene {
 
 	private MouseHandler mouse = new MouseHandler();
 	public MovingUnit initialUnit2 = MovingUnit.getAlly(3, 3);
-	public MovingUnit initialUnit1 = MovingUnit.getEnemy(6, 3);
+	public MovingUnit initialUnit1 = MovingUnit.getAlly(8, 3);
 
     public FieldScene(Game game) {
         super();
