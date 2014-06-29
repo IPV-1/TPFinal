@@ -5,40 +5,45 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
 import java.util.HashMap;
+import java.util.Map;
 
 import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
+import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
 import components.units.Unit;
 
 public class Builder extends Unit {
 	private int widthInTiles;
-	private int longInTiles;
+	private int heightInTiles;
 	
 	public Builder(int widthInTiles, int heightInTiles) {
 		super(0, 0);
 		Appearance buildingAppearance = new Rectangle(Color.RED, Tile.WIDTH * widthInTiles, Tile.WIDTH * heightInTiles);
 		setAppearance(buildingAppearance);
 		setWidthInTiles(widthInTiles);
-		setLongInTiles(heightInTiles);
+		setHeightInTiles(heightInTiles);
 	}
 
 	protected Builder(Appearance appearance, int widthInTiles, int longInTiles) {
-		super(appearance, 0, 0);
-		setWidthInTiles(widthInTiles);
-		setLongInTiles(longInTiles);
+		this(0, 0);
+		this.setAppearance(appearance);
 	}
 
 	public BasicBuilding build(int tileX, int tileY) {
-		BasicBuilding b = new BasicBuilding(getAppearance().copy(), tileX, tileY, getWidthInTiles(), getLongInTiles());
-		b.setCost(new HashMap<String, Integer>());
+		BasicBuilding b = new BasicBuilding(this, tileX, tileY);
+		b.setCost(this.getCost());
 		return b;
 	}
 	
+	public Map<String, Integer> getCost() {
+		return 	new HashMap<String, Integer>();
+	}
+
 	public void buildIn(int tileX, int tileY) {
 		BasicBuilding building = this.build(tileX, tileY);
 		if (this.canBuild(building)) {
@@ -64,12 +69,12 @@ public class Builder extends Unit {
 		this.widthInTiles = widthInTiles;
 	}
 
-	public int getLongInTiles() {
-		return longInTiles;
+	public int getHeightInTiles() {
+		return heightInTiles;
 	}
 
-	public void setLongInTiles(int longInTiles) {
-		this.longInTiles = longInTiles;
+	public void setHeightInTiles(int heightInTiles) {
+		this.heightInTiles = heightInTiles;
 	}
 	
 	@Override
@@ -104,6 +109,20 @@ public class Builder extends Unit {
 	@Override
 	public void render(Graphics2D graphics) {
 		this.getAppearance().render(this, graphics);
+	}
+
+	public Appearance getBuildingAppearance() {
+		return this.getAppearance().copy();
+	}
+	
+	public Appearance getScaledAppearance(Appearance appearance) {
+		Appearance app = appearance.copy();
+		
+		if(app instanceof Sprite) {
+			app = ((Sprite)app).scaleTo(Tile.WIDTH * getWidthInTiles(), Tile.HEIGHT * getHeightInTiles());
+		}
+		
+		return app;
 	}
 	
 }

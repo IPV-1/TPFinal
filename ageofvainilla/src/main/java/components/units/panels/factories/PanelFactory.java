@@ -1,20 +1,19 @@
 package components.units.panels.factories;
 
 
+import java.awt.Color;
+
+import map.tiles.Tile;
+
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
-
 import components.menus.panels.BuildingButton;
 import components.menus.panels.ControlPanel;
 import components.menus.panels.UnitShower;
 import components.units.buildings.Builder;
-import components.units.panels.factories.PanelBuilder;
-import components.units.panels.factories.UnitShowerFactory;
-import map.tiles.Tile;
-
-import java.awt.*;
+import components.units.buildings.House;
 
 public class PanelFactory {
 
@@ -37,6 +36,10 @@ public class PanelFactory {
 		Builder buildingBuilder2 = new Builder(2, 2);
 		Appearance buttonAp2 = new Circle(Color.blue, 40);
 		getBuilder().withButton(new BuildingButton(buildingBuilder2, buttonAp2, 0, 1));
+		
+		Builder buildingBuilder3 = new House();
+		Appearance buttonAp3 = new Circle(Color.GREEN, 40);
+		getBuilder().withButton(new BuildingButton(buildingBuilder3, buttonAp3, 0, 1));
 		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(game, 200, game.getDisplayHeight() - height, game.getDisplayWidth() - 200, game.getDisplayHeight() - height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, game.getDisplayHeight() - height);
