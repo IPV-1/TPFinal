@@ -166,6 +166,16 @@ public class Path {
 //		this.setPathTo(p.x, p.y);
 //	}
 
+	public void setFree() {
+		Map map = this.getComponent().getScene().getMap();
+		if(this.getComponent().isMoving()) {
+			map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
+			map.setFree(this.getMoveTo().x, this.getMoveTo().y);
+		} else {
+			map.setFree(this.getComponent().getXTile(), this.getComponent().getYTile());
+		}
+	}
+	
 	protected void applyChangesOnMap() {
 		Map map = this.getComponent().getScene().getMap();
 		map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
