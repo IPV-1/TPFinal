@@ -12,7 +12,7 @@ public class EnemyController extends BasicAgeComponent {
 	
 	protected int pc = 0;
 	protected Point spawnPoint = new Point(10, 2);
-	protected final int PC_LIMIT = 100;
+	protected final int PC_LIMIT = 1000;
 	
 	@Override
 	public void update(DeltaState deltaState) {

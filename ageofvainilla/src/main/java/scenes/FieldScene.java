@@ -35,29 +35,36 @@ public class FieldScene extends GameScene {
 
     public FieldScene(Game game) {
         super();
+        this.setGame(game);
+        
         this.addComponent(Camera.INSTANCE);
         Map map = new Map("map");
         this.map = map;
         this.pathFinder = new PathFinder(map);
         this.addComponent(map);
         
+        
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
 
         this.addComponent(this.getMouse());
         
-        addResourceMenu(new ResourcesMenu());
-		//Comment this out for seeing control panel
-		addControlPanel(game);
 		
 		if(Configuration.getBoolean("withEnemyIA?")) {
 			this.addComponent(this.getEnemyController());
 		}
 		
+		addResourceMenu(new ResourcesMenu());
+		//Comment this out for seeing control panel
+		addControlPanel(game);
+		
 		Builder.initialBuild(this, 4, 1);
 		
 		ResourcesBuilder.initialBuild(this);
 		
+		Camera.INSTANCE.setLimits(this.getTerrainUpperX(), this.getTerrainUpperY(),
+				this.getTerrainLowerX(), this.getTerrainLowerY(), 
+				this.getGame().getDisplayWidth(), this.getGame().getDisplayHeight());
     }
 
 
@@ -132,12 +139,20 @@ public class FieldScene extends GameScene {
 		this.enemyController = enemyController;
 	}
 	
-	public double getTerrainWidth() {
-		return getGame().getDisplayWidth();
+	public double getTerrainLowerX() {
+		return 0;
 	}
 	
-	public double getTerrainHeight() {
-		return getGame().getDisplayHeight() - getResourcesMenu().getHeight() - getControlPanel().getHeight();
+	public double getTerrainUpperX() {
+		return this.getMap().getTileWidth() * Tile.WIDTH;
+	}
+	
+	public double getTerrainLowerY() {
+		return -getResourcesMenu().getHeight();
+	}
+	
+	public double getTerrainUpperY() {
+		return this.getMap().getTileHeight() * Tile.HEIGHT + getControlPanel().getHeight();
 	}
 
 }
