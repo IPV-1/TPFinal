@@ -14,7 +14,7 @@ public class Farming extends UnitState {
 	
 	public Farming(Unit unit) {
 		resource = (Resource) unit;
-		timer.setLimit(1);
+		timer.setLimit(unit.getFarmSpeed() / 60);
 	}
 
 	@Override

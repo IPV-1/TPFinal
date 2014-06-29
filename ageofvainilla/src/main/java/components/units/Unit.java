@@ -12,6 +12,7 @@ import components.MouseHandler;
 import components.factors.Factor;
 import components.interfaces.Selectable;
 import components.menus.panels.UnitShower;
+import config.Configuration;
 
 public abstract class Unit extends CameraRelativeComponent implements Selectable {
 
@@ -140,6 +141,10 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	public void renderInPanel(UnitShower panel, Graphics2D graphics) {
 		panel.renderLife(this, graphics);
 		panel.renderAttack(this, graphics);
+	}
+	
+	public Double getFarmSpeed() {
+		return Configuration.getValue("farmPerMinute_unit");
 	}
 
 }

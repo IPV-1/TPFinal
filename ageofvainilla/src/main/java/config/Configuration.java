@@ -35,6 +35,8 @@ public class Configuration {
 		addValue("tileWidth");
 		addValue("tileHeight");
 		
+		addValue("farmPerMinute_unit");
+		
 		addValue("withEnemyIA?");
 		
 		addString("map_txt");

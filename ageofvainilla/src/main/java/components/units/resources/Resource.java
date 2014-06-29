@@ -28,7 +28,7 @@ public class Resource extends TiledComponent {
 	}
 
 	public void addResourceToPlayer() {
-		int subtracted = subtractResource(10);  //Why 10? I dont know.
+		int subtracted = subtractResource(1);
 		getScene().getResourcesMenu().addResource(getResourceName(), subtracted);
 	}
 
