@@ -8,12 +8,12 @@ import map.tiles.Tile;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
-import components.menus.panels.BuildingButton;
+import components.buttons.BuildingButton;
+import components.buttons.HouseButton;
+import components.buttons.WallButton;
 import components.menus.panels.ControlPanel;
 import components.menus.panels.UnitShower;
 import components.units.buildings.Builder;
-import components.units.buildings.House;
-import components.units.buildings.Wall;
 
 import config.Configuration;
 
@@ -39,13 +39,9 @@ public class PanelFactory {
 		Appearance buttonAp2 = new Circle(Color.blue, 40);
 		getBuilder().withButton(new BuildingButton(buildingBuilder2, buttonAp2, 0, 1));
 		
-		Builder buildingBuilder3 = new House();
-		Appearance buttonAp3 = new Circle(Color.GREEN, 40);
-		getBuilder().withButton(new BuildingButton(buildingBuilder3, buttonAp3, 0, 1));
+		getBuilder().withButton(new HouseButton());
 		
-		Builder buildingBuilder4 = new Wall();
-		Appearance buttonAp4 = Configuration.getSprite("wall").scaleTo(40, 40);
-		getBuilder().withButton(new BuildingButton(buildingBuilder4, buttonAp4, 0, 1));
+		getBuilder().withButton(new WallButton());
 		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(200, Configuration.getDisplayHeight() - height, Configuration.getDisplayWidth() - 200, Configuration.getDisplayHeight() - height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, Configuration.getDisplayHeight() - height);

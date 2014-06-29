@@ -7,6 +7,7 @@ import java.util.List;
 import com.uqbar.vainilla.appearances.Appearance;
 import components.MouseHandler;
 import components.buttons.BasicAgeButton;
+import components.buttons.BuildingButton;
 import components.menus.DownMenu;
 
 public class ControlPanel extends DownMenu {

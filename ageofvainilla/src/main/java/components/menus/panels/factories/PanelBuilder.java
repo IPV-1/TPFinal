@@ -3,7 +3,7 @@ package components.menus.panels.factories;
 
 import com.uqbar.vainilla.appearances.Appearance;
 
-import components.menus.panels.BuildingButton;
+import components.buttons.BuildingButton;
 import components.menus.panels.ControlPanel;
 import components.menus.panels.UnitShower;
 

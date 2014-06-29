@@ -1,8 +1,8 @@
-package components.menus.panels;
+package components.buttons;
 
 import com.uqbar.vainilla.appearances.Appearance;
 import components.MouseHandler;
-import components.buttons.BasicAgeButton;
+import components.menus.panels.ControlPanel;
 import components.units.buildings.Builder;
 
 public class BuildingButton extends BasicAgeButton {
