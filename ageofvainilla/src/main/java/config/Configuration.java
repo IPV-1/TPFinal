@@ -19,6 +19,7 @@ public class Configuration {
 	private static Map<String, Sprite> sprites = new HashMap<String, Sprite>();
 	private static Map<String, Double> values = new HashMap<String, Double>();
 	private static Map<String, Sound> sounds = new HashMap<String, Sound>();
+	private static Map<String, String> strings = new HashMap<String, String>();
 	
     private static void loadConfiguration() {
 		addSprite("pointer");
@@ -35,6 +36,9 @@ public class Configuration {
 		addValue("tileHeight");
 		
 		addValue("withEnemyIA?");
+		
+		addString("map_txt");
+		addString("map_img");
 		
 		addSound("intro_sound");
     }
@@ -54,6 +58,10 @@ public class Configuration {
 	
 	public static Sound getSound(String key) {
 		return sounds.get(key);
+	}
+	
+	public static String getString(String key) {
+		return strings.get(key);
 	}
 
     private static String FETCH(String key){
@@ -84,6 +92,10 @@ public class Configuration {
 	
 	private static void addSound(String key) {
 		sounds.put(key, ResourceUtils.getSound(FETCH(key)));
+	}
+	
+	private static void addString(String key) {
+		strings.put(key, FETCH(key));
 	}
 
 	public static int getDisplayWidth() {

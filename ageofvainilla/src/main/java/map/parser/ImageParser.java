@@ -13,13 +13,13 @@ import config.Configuration;
 import map.tiles.Tile;
 import resource.Resource;
 
-public class FileParser {
+public class ImageParser {
 	
 	private static List<List<Tile>> resultado = new ArrayList<List<Tile>>();
 
 	public static List<List<Tile>> parse() {
 		
-		String file = Configuration.getString("map_txt");
+		String file = Configuration.getString("map_img");
 		
 		BufferedReader br = null;
 		try {

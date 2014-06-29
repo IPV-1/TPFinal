@@ -21,8 +21,8 @@ public class Map extends GameComponent<GameScene> {
 	
 	private Sprite field;
 
-	public Map(String file) {
-		this.setTiles(FileParser.parse(file));
+	public Map() {
+		this.setTiles(FileParser.parse());
 		this.setField(this.buildMapSprite());
 	}
 
