@@ -8,16 +8,15 @@ import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.space.Coord;
-
 import components.EnemyController;
 import components.MouseHandler;
 import components.menus.ResourcesMenu;
 import components.menus.panels.ControlPanel;
+import components.recursos.ResourcesBuilder;
 import components.units.MovingUnit;
 import components.units.buildings.Builder;
 import components.units.panels.factories.PanelBuilder;
 import components.units.panels.factories.PanelFactory;
-import components.units.resources.factory.ResourceFactory;
 
 public class FieldScene extends GameScene {
 
@@ -44,7 +43,6 @@ public class FieldScene extends GameScene {
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
 
-        this.addComponent(ResourceFactory.createGold(4,2, 200));
         this.addComponent(this.getMouse());
         
         addResourceMenu(new ResourcesMenu());
@@ -52,7 +50,10 @@ public class FieldScene extends GameScene {
 		addControlPanel(game);
 		
 		this.addComponent(this.getEnemyController());
+		
 		Builder.initialBuild(this, 4, 1);
+		
+		ResourcesBuilder.initialBuild(this);
 		
     }
 

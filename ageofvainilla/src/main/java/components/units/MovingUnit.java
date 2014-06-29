@@ -30,6 +30,9 @@ public class MovingUnit extends MovingGameComponent {
 	public MovingUnit(Factor factor, Appearance rectangle, double xPos, double yPos, UnitVector2D unitVector2D, int speed) {
 		super(rectangle, xPos, yPos, unitVector2D, speed);
 		this.setFactor(factor);
+		
+		this.setLifePoint(1000);
+		this.setPowerAttack(10);
 	}
 
 	public MovingUnit(Factor factor, Color color, double xPos, double yPos) {

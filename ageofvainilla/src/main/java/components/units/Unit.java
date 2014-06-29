@@ -10,7 +10,7 @@ import components.interfaces.Selectable;
 public abstract class Unit extends CameraRelativeComponent implements Selectable {
 
 	private int lifePoint = 1000;
-	private int powerAttack = 10;
+	private int powerAttack = 0;
 	
 	private Factor factor;
 

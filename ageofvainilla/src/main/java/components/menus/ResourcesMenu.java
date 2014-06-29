@@ -70,7 +70,7 @@ public class ResourcesMenu extends BasicAgeComponent {
 	 */
 	public boolean hasEnoughOf(String key, Integer value) {
 		for (ResourceBoard component : components) {
-			if (component.getTitle().equals(key) && component.getValue() > value) {
+			if (component.getTitle().equals(key) && component.getValue() >= value) {
 				return true;
 			}
 		}
