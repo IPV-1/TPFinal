@@ -15,7 +15,6 @@ import components.factors.Factor;
 import components.menus.ResourcesMenu;
 import components.menus.panels.ControlPanel;
 import components.units.MovingUnit;
-import components.units.buildings.BasicBuilding;
 import components.units.buildings.Builder;
 import components.units.panels.factories.PanelBuilder;
 import components.units.panels.factories.PanelFactory;
@@ -45,14 +44,15 @@ public class FieldScene extends GameScene {
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
 
-		BasicBuilding building = new Builder(1, 1).build(4, 1);
-        this.addComponent(building);
         this.addComponent(ResourceFactory.createGold(4,2, 200));
         this.addComponent(this.getMouse());
         
         addResourceMenu(new ResourcesMenu());
 		//Comment this out for seeing control panel
 		addControlPanel(game);
+		
+		Builder.initialBuild(this, 4, 1);
+		
     }
 
 

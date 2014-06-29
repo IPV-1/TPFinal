@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import map.tiles.Tile;
+import scenes.FieldScene;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
@@ -47,10 +48,7 @@ public class Builder extends Unit {
 	public void buildIn(int tileX, int tileY) {
 		BasicBuilding building = this.build(tileX, tileY);
 		if (this.canBuild(building)) {
-		
-			getScene().getMap().occupyBuilding(building);
-			getScene().addComponent(building);
-			getScene().getResourcesMenu().updateResources(building);
+			effectiveBuildIn(this.getScene(), building);
 		} else {
 			// Do what?
 		}
@@ -123,6 +121,16 @@ public class Builder extends Unit {
 		}
 		
 		return app;
+	}
+	
+	public static void effectiveBuildIn(FieldScene scene, BasicBuilding building) {
+		scene.getMap().occupyBuilding(building);
+		scene.addComponent(building);
+		scene.getResourcesMenu().updateResources(building);
+	}
+
+	public static void initialBuild(FieldScene scene, int tileX, int tileY) {
+		effectiveBuildIn(scene, new Builder(1, 1).build(tileX, tileY));
 	}
 	
 }
