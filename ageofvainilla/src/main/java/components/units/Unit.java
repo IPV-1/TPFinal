@@ -4,6 +4,8 @@ import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.events.constants.Key;
+
 import components.CameraRelativeComponent;
 import components.MouseHandler;
 import components.factors.Factor;
@@ -79,10 +81,17 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	
 	@Override
 	public void seleccionate(MouseHandler mouse, DeltaState deltaState) {
+		
+		if(deltaState.isKeyBeingHold(Key.CTRL) && !mouse.isSelected(this)) {
+			mouse.addSelected(this);
+		} else {
+			mouse.singleSelect(this);
+		}
 	}
 	
 	@Override
 	public void seleccionate(MouseHandler mouse) {
+		mouse.singleSelect(this);
 	}
 
 	@Override

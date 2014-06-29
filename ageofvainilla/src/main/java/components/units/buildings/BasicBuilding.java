@@ -3,13 +3,12 @@ package components.units.buildings;
 import java.awt.Color;
 import java.util.Map;
 
-import com.uqbar.vainilla.appearances.Appearance;
-
-import components.factors.Factor;
-import components.menus.ResourcesMenu;
 import map.tiles.Tile;
 
+import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
+import components.factors.Factor;
+import components.menus.ResourcesMenu;
 import components.recursos.TiledComponent;
 
 public class BasicBuilding extends TiledComponent {
