@@ -9,9 +9,7 @@ import map.tiles.Tile;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
-import com.uqbar.vainilla.events.constants.Key;
 import com.uqbar.vainilla.space.UnitVector2D;
-import components.MouseHandler;
 import components.MovingGameComponent;
 import components.factors.Factor;
 import components.units.states.Attacking;
@@ -66,17 +64,6 @@ public class MovingUnit extends MovingGameComponent {
 	@Override
 	public void hasKilled(Unit unit) {
 		this.setState(new Waiting());
-	}
-
-	@Override
-	public void seleccionate(MouseHandler mouseHandler, DeltaState deltaState) {
-		super.seleccionate(mouseHandler, deltaState);
-		
-		if(deltaState.isKeyBeingHold(Key.CTRL) && !mouseHandler.isSelected(this)) {
-			mouseHandler.addSelected(this);
-		} else {
-			mouseHandler.singleSelect(this);
-		}
 	}
 
 	public void interact(Unit unit) {
