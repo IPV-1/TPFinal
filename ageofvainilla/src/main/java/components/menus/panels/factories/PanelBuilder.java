@@ -1,4 +1,4 @@
-package components.units.panels.factories;
+package components.menus.panels.factories;
 
 
 import com.uqbar.vainilla.appearances.Appearance;

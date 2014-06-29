@@ -1,15 +1,17 @@
 package components.units;
 
+import java.awt.Graphics2D;
+
 import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.events.constants.Key;
-
 import components.CameraRelativeComponent;
 import components.MouseHandler;
 import components.factors.Factor;
 import components.interfaces.Selectable;
+import components.menus.panels.UnitShower;
 
 public abstract class Unit extends CameraRelativeComponent implements Selectable {
 
@@ -133,6 +135,11 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	
 	public void removeFromMap() {
 		getScene().getMap().setFree((int)(this.getX() / Tile.WIDTH), (int)(this.getY() / Tile.HEIGHT));
+	}
+
+	public void renderInPanel(UnitShower panel, Graphics2D graphics) {
+		panel.renderLife(this, graphics);
+		panel.renderAttack(this, graphics);		
 	}
 
 }

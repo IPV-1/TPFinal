@@ -12,11 +12,11 @@ import components.EnemyController;
 import components.MouseHandler;
 import components.menus.ResourcesMenu;
 import components.menus.panels.ControlPanel;
+import components.menus.panels.factories.PanelBuilder;
+import components.menus.panels.factories.PanelFactory;
 import components.recursos.ResourcesBuilder;
 import components.units.MovingUnit;
 import components.units.buildings.Builder;
-import components.units.panels.factories.PanelBuilder;
-import components.units.panels.factories.PanelFactory;
 import config.Configuration;
 
 public class FieldScene extends GameScene {

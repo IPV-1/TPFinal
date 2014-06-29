@@ -25,8 +25,8 @@ public class UnitShower extends BasicAgeComponent {
 		super.render(graphics);
 		if (getPanel().getScene().getMouse().getSelected().size() == 1) {
 			Unit unit = getPanel().getScene().getMouse().getSelected().get(0);
-			renderLife(unit, graphics);
-			renderAttack(unit, graphics);
+			
+			unit.renderInPanel(this, graphics);
 		}
 	}
 
