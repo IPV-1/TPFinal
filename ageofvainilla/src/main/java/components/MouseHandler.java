@@ -116,5 +116,13 @@ public class MouseHandler extends BasicAgeComponent {
 		);
 	}
 
+	public void deleteSelected() {
+		for(Unit unit : this.getSelected()) {
+			unit.removeFromMap();
+			unit.destroy();
+		}
+		
+		this.clearSelected();
+	}
 
 }

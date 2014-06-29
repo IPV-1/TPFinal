@@ -9,7 +9,9 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
 import components.buttons.BuildingButton;
+import components.buttons.DeleteButton;
 import components.buttons.HouseButton;
+import components.buttons.StopButton;
 import components.buttons.WallButton;
 import components.menus.panels.ControlPanel;
 import components.menus.panels.UnitShower;
@@ -42,6 +44,10 @@ public class PanelFactory {
 		getBuilder().withButton(new HouseButton());
 		
 		getBuilder().withButton(new WallButton());
+		
+		getBuilder().withButton(new DeleteButton());
+		
+		getBuilder().withButton(new StopButton());
 		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(200, Configuration.getDisplayHeight() - height, Configuration.getDisplayWidth() - 200, Configuration.getDisplayHeight() - height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, Configuration.getDisplayHeight() - height);

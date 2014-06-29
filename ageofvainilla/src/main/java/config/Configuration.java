@@ -30,6 +30,8 @@ public class Configuration {
 		
 		addSprite("house");
 		addSprite("wall");
+		addSprite("delete");
+		addSprite("stop");
 	
 		addValue("screenWidth");
 		addValue("screenHeight");
