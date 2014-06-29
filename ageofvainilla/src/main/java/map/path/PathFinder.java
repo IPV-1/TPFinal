@@ -28,7 +28,7 @@ public class PathFinder {
 
 	protected void setMap(Map map) {
 		this.map = map;
-		this.setNodes(new Node[map.getyTiles()][map.getxTiles()]);
+		this.setNodes(new Node[map.getTileHeight()][map.getTileWidth()]);
 		for (int y = 0; y < this.getNodes().length; y++) {
 			for (int x = 0; x < this.getNodes()[0].length; x++) {
 				if (map.isWalkable(x, y)) {
