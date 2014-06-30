@@ -13,7 +13,9 @@ public class DeleteButton extends BuildingButton {
 	@Override
 	public void clickedBy(MouseHandler mouse) {
 		// Delete selected units
-		mouse.deleteSelected();
+		if(mouse.shouldInteractSeleted()) {
+			mouse.deleteSelected();
+		}
 	}
 
 }

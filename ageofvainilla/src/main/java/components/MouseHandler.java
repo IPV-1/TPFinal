@@ -78,7 +78,7 @@ public class MouseHandler extends BasicAgeComponent {
 		return !this.inControlPanel() &&
 				!this.inResourcesMenu() &&
 				deltaState.isMouseButtonReleased(MouseButton.RIGHT) &&
-				unit.getFactor().equals(Factor.BLUE) &&
+				this.isMyUnit(unit) &&
 				this.isSelected(unit);
 	}
 	
@@ -125,6 +125,20 @@ public class MouseHandler extends BasicAgeComponent {
 		}
 		
 		this.clearSelected();
+	}
+	
+	public boolean shouldInteractSeleted() {
+		for(Unit unit : this.getSelected()) {
+			if(! this.isMyUnit(unit)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+	private boolean isMyUnit(Unit unit) {
+		return unit.getFactor().equals(Factor.BLUE);
 	}
 
 }
