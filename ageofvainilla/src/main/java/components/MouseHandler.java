@@ -13,6 +13,7 @@ import components.buttons.BasicAgeButton;
 import components.factors.Factor;
 import components.units.Flag;
 import components.units.Unit;
+import components.units.buildings.Builder;
 
 import config.Configuration;
 
@@ -129,7 +130,7 @@ public class MouseHandler extends BasicAgeComponent {
 	
 	public boolean shouldInteractSeleted() {
 		for(Unit unit : this.getSelected()) {
-			if(! this.isMyUnit(unit)) {
+			if(! this.isMyUnit(unit) || this.isABuilder(unit)) {
 				return false;
 			}
 		}
@@ -139,6 +140,10 @@ public class MouseHandler extends BasicAgeComponent {
 
 	private boolean isMyUnit(Unit unit) {
 		return unit.getFactor().equals(Factor.BLUE);
+	}
+	
+	private boolean isABuilder(Unit unit) {
+		return unit instanceof Builder;
 	}
 
 }
