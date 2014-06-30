@@ -39,6 +39,7 @@ public class Configuration {
 		
 		addSprite("house");
 		addSprite("wall");
+		addSprite("center");
 		
 		addSprite("delete");
 		addSprite("stop");

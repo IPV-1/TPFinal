@@ -128,10 +128,14 @@ public class Builder extends Unit {
 		scene.getMap().occupyBuilding(building);
 		scene.addComponent(building);
 		scene.getResourcesMenu().updateResources(building);
+		scene.increaseAlly();
 	}
 
-	public static void initialBuild(FieldScene scene, int tileX, int tileY) {
-		effectiveBuildIn(scene, new Builder(1, 1).build(tileX, tileY));
+	public static void initialBuild(FieldScene scene) {
+		int tileX = 7;
+		int tileY = 10;
+		
+		effectiveBuildIn(scene, new Center().build(tileX, tileY));
 	}
 
 	public boolean enough(ResourcesMenu menu) {

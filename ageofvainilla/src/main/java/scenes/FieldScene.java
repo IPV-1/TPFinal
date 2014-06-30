@@ -60,7 +60,7 @@ public class FieldScene extends GameScene {
 		//Comment this out for seeing control panel
 		addControlPanel();
 		
-		Builder.initialBuild(this, 4, 1);
+		Builder.initialBuild(this);
 		
 		ResourcesBuilder.initialBuild(this);
 		
