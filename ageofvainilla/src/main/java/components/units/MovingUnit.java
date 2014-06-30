@@ -85,8 +85,8 @@ public class MovingUnit extends MovingGameComponent {
 		this.getPath().setFree();
 	}
 	
-	public void attack(Unit unit) {
-		unit.interactedBy(this);
+	public void attack(Unit unit, DeltaState deltaState) {
+		unit.interactedBy(this, deltaState);
 	}
 
 	public void setMoveTo(Unit unit) {
