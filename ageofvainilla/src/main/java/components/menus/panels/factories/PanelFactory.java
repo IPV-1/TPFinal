@@ -11,6 +11,7 @@ import components.buttons.DeleteButton;
 import components.buttons.HouseButton;
 import components.buttons.StopButton;
 import components.buttons.WallButton;
+import components.buttons.WarriorButton;
 import components.menus.panels.ControlPanel;
 import components.menus.panels.UnitShower;
 import components.units.buildings.Builder;
@@ -46,6 +47,8 @@ public class PanelFactory {
 		getBuilder().withButton(new DeleteButton());
 		
 		getBuilder().withButton(new StopButton());
+		
+		getBuilder().withButton(new WarriorButton());
 		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(200, Configuration.getDisplayHeight() - height, Configuration.getDisplayWidth() - 200, Configuration.getDisplayHeight() - height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(9).withShower(unitShower).build(0, Configuration.getDisplayHeight() - height);

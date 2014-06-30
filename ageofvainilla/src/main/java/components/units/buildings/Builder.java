@@ -17,6 +17,7 @@ import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
 import components.factors.Factor;
+import components.menus.ResourcesMenu;
 import components.units.Unit;
 
 public class Builder extends Unit {
@@ -46,17 +47,17 @@ public class Builder extends Unit {
 	}
 
 	public void buildIn(int tileX, int tileY) {
-		BasicBuilding building = this.build(tileX, tileY);
-		if (this.canBuild(building)) {
+		if (this.canBuild(tileX, tileY)) {
+			BasicBuilding building = this.build(tileX, tileY);
 			effectiveBuildIn(this.getScene(), building);
 		} else {
 			// Do what?
 		}
 	}
 
-	private boolean canBuild(BasicBuilding building) {
-		return getScene().getResourcesMenu().canBuild(building) &&
-				getScene().getMap().canBuild(building);
+	protected boolean canBuild(int tileX, int tileY) {
+		return getScene().getResourcesMenu().canBuild(this) &&
+				getScene().getMap().canBuild(this, tileX, tileY);
 	}
 
 	public int getWidthInTiles() {
@@ -131,6 +132,20 @@ public class Builder extends Unit {
 
 	public static void initialBuild(FieldScene scene, int tileX, int tileY) {
 		effectiveBuildIn(scene, new Builder(1, 1).build(tileX, tileY));
+	}
+
+	public boolean enough(ResourcesMenu menu) {
+		boolean hasEnough = true;
+		for (Map.Entry<String, Integer> cursor : getCost().entrySet()) {
+			hasEnough &= menu.hasEnoughOf(cursor.getKey(), cursor.getValue());
+		}
+		return hasEnough;
+	}
+	
+	public void subtract(ResourcesMenu menu) {
+		for (Map.Entry<String, Integer> cursor : getCost().entrySet()) {
+			menu.subtract(cursor.getKey(), cursor.getValue());
+		}
 	}
 	
 }

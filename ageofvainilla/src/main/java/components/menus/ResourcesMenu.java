@@ -11,6 +11,7 @@ import components.BasicAgeComponent;
 import components.boards.ResourceBoard;
 import components.boards.ResourceBoardFactory;
 import components.units.buildings.BasicBuilding;
+import components.units.buildings.Builder;
 import components.units.resources.ResourceType;
 
 import config.Configuration;
@@ -56,14 +57,17 @@ public class ResourcesMenu extends BasicAgeComponent {
 		}
 	}
 
-	public boolean canBuild(BasicBuilding building) {
-		return building.enough(this);
+	public boolean canBuild(Builder builder) {
+		return builder.enough(this);
 	}
 
 	public void updateResources(BasicBuilding building) {
 		building.subtract(this);
 	}
 
+	public void updateResources(Builder builder) {
+		builder.subtract(this);
+	}
 
 	/**
 	 * These methods are not my best code, but i didn't want to modify
@@ -93,4 +97,5 @@ public class ResourcesMenu extends BasicAgeComponent {
 			}
 		}
 	}
+	
 }

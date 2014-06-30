@@ -55,14 +55,6 @@ public class BasicBuilding extends TiledComponent {
 		this.widthInTiles = widthInTiles;
 	}
 
-	public boolean enough(ResourcesMenu menu) {
-		boolean hasEnough = true;
-		for (Map.Entry<String, Integer> cursor : getCost().entrySet()) {
-			hasEnough &= menu.hasEnoughOf(cursor.getKey(), cursor.getValue());
-		}
-		return hasEnough;
-	}
-
 	public void subtract(ResourcesMenu menu) {
 		for (Map.Entry<String, Integer> cursor : getCost().entrySet()) {
 			menu.subtract(cursor.getKey(), cursor.getValue());

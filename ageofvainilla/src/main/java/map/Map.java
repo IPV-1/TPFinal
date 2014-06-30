@@ -15,6 +15,7 @@ import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.space.Coord;
 import components.units.Unit;
 import components.units.buildings.BasicBuilding;
+import components.units.buildings.Builder;
 
 public class Map extends GameComponent<GameScene> {
 
@@ -105,9 +106,9 @@ public class Map extends GameComponent<GameScene> {
 		this.field = field;
 	}
 
-	public boolean canBuild(BasicBuilding building) {
-		for(double i=building.getTileX(); i < building.getTileX() + building.getWidthInTiles(); i++) {
-			for(double j=building.getTileY(); j < building.getTileY() + building.getHeightInTiles(); j++) {
+	public boolean canBuild(Builder builder, int tileX, int tileY) {
+		for(double i=tileX; i < tileX + builder.getWidthInTiles(); i++) {
+			for(double j=tileY; j < tileY + builder.getHeightInTiles(); j++) {
 				if(this.isBlocked((int) i, (int) j)) {
 					return false;
 				}

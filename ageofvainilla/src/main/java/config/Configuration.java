@@ -140,13 +140,7 @@ public class Configuration {
 	}
 
 	public static Appearance getScaledAppearance(Appearance appearance) {
-		Appearance app = appearance.copy();
-		
-		if(app instanceof Sprite) {
-			app = ((Sprite)app).scaleTo(Tile.WIDTH, Tile.HEIGHT);
-		}
-		
-		return app;
+		return getScaledAppearance(appearance, Tile.WIDTH, Tile.HEIGHT);
 	}
 
 	public static Appearance getScaledAnimation(String imgID, int widthSprite, int heightSprite) {
@@ -155,6 +149,16 @@ public class Configuration {
 		Sprite img = Configuration.getSprite(imgID);
 		
 		return AnimationGenerator.createScaledAnimation(0.2, img, widthSprite, heightSprite, Tile.WIDTH, Tile.HEIGHT);
+	}
+
+	public static Appearance getScaledAppearance(Appearance appearance, int width, int height) {
+		Appearance app = appearance.copy();
+		
+		if(app instanceof Sprite) {
+			app = ((Sprite)app).scaleTo(width, height);
+		}
+		
+		return app;
 	}
     
 }
