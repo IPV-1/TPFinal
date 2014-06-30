@@ -10,7 +10,7 @@ import config.Configuration;
 public class House extends Builder {
 
 	public House() {
-		super(2, 2);
+		super(3, 3);
 		
 		this.setAppearance(this.getScaledAppearance(Configuration.getSprite("house")));
 	}
@@ -19,7 +19,6 @@ public class House extends Builder {
 	@Override
 	public Map<String, Integer> getCost() {
 		return new HashMap<String, Integer>() {{
-			put(ResourceType.GOLD, 20);
 			put(ResourceType.LUMBER, 10);
 		}};
 	}

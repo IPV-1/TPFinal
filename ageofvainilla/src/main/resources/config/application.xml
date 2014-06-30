@@ -27,7 +27,7 @@
     <entry key="lumber_res">map/resources/lumber.png</entry>
     <entry key="food_res">map/resources/food.png</entry>
     
-    <entry key="house">map/tiles/enemy.png</entry>
+    <entry key="house">units/house.png</entry>
     <entry key="wall">units/wall.png</entry>
     <entry key="delete">buttons/delete.png</entry>
     <entry key="stop">buttons/stop.png</entry>

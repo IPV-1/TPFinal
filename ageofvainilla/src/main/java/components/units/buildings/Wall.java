@@ -21,7 +21,7 @@ public class Wall extends Builder {
 	@Override
 	public Map<String, Integer> getCost() {
 		return new HashMap<String, Integer>() {{
-			put(ResourceType.ROCK, 20);
+			put(ResourceType.ROCK, 1);
 		}};
 	}
 
