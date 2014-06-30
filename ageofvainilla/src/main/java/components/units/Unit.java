@@ -41,12 +41,12 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 		return this.getFactor().isResource();
 	}
 
-	public void interactedBy(Unit unit) {
+	public void interactedBy(Unit unit, DeltaState deltaState) {
 		if(this.isEnemy(unit) && !unit.isDead() && !this.isDead()) {
-			this.decrementLife(unit.getPowerAttack());
+			this.decrementLife((int) (unit.getPowerAttack() * deltaState.getDelta() * 32));
 	
 			if(!this.isDead()) {
-				unit.decrementLife(this.getPowerAttack());
+				unit.decrementLife((int) (this.getPowerAttack() * deltaState.getDelta() * 32));
 				if(unit.isDead()) {
 					this.hasKilled(unit);
 				}

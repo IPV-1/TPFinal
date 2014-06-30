@@ -14,7 +14,7 @@ public class Attacking extends UnitState {
 
 	@Override
 	public void update(MovingUnit movingUnit, DeltaState deltaState) {
-		movingUnit.attack(this.enemy);
+		movingUnit.attack(this.enemy, deltaState);
 	}
 
 }
