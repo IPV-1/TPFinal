@@ -7,8 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import map.tiles.Tile;
+
+import resource.AnimationGenerator;
 import resource.ResourceUtils;
 
+import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.sound.Sound;
 
@@ -40,6 +44,7 @@ public class Configuration {
 		addSprite("stop");
 		
 		addSprite("stand");
+		addSprite("walking_unit");
 	
 		addValue("screenWidth");
 		addValue("screenHeight");
@@ -122,6 +127,24 @@ public class Configuration {
 
 	public static boolean getBoolean(String string) {
 		return getValue(string) > 0;
+	}
+
+	public static Appearance getScaledAppearance(Appearance appearance) {
+		Appearance app = appearance.copy();
+		
+		if(app instanceof Sprite) {
+			app = ((Sprite)app).scaleTo(Tile.WIDTH, Tile.HEIGHT);
+		}
+		
+		return app;
+	}
+
+	public static Appearance getScaledAnimation(String imgID, int widthSprite, int heightSprite) {
+//		AnimationGenerator.createAnimation(0.2, 1, Configuration.getSprite("walking_unit"), 29, 29);
+		
+		Sprite img = Configuration.getSprite(imgID);
+		
+		return AnimationGenerator.createScaledAnimation(0.2, img, widthSprite, heightSprite, Tile.WIDTH, Tile.HEIGHT);
 	}
     
 }

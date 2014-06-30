@@ -30,12 +30,12 @@ public class MovingUnit extends MovingGameComponent {
 		
 		this.setLifePoint(1000);
 		this.setPowerAttack(10);
+		
+		this.setState(state);
 	}
 
 	public MovingUnit(Factor factor, Color color, double xPos, double yPos) {
 		this(factor, new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
-		
-//		this.setAppearance(getScaledAppearance(Configuration.getSprite("stand")));
 	}
 	
 	public static MovingUnit getAlly(int xTile, int yTile) {
@@ -101,6 +101,7 @@ public class MovingUnit extends MovingGameComponent {
 
 	public void setState(UnitState state) {
 		this.state = state;
+		this.setAppearance(state.getAppearance());
 	}
 
 	public Path getPath() {

@@ -1,9 +1,11 @@
 package components.units.states;
 
 import com.uqbar.vainilla.DeltaState;
-
+import com.uqbar.vainilla.appearances.Appearance;
 import components.units.MovingUnit;
 import components.units.Unit;
+
+import config.Configuration;
 
 public class Moving extends UnitState {
 	
@@ -11,6 +13,11 @@ public class Moving extends UnitState {
 
 	public Moving(UnitState state) {
 		this.setNextState(state);
+	}
+	
+	@Override
+	public Appearance getAppearance() {
+		return Configuration.getScaledAnimation("walking_unit", 29, 29);
 	}
 
 	@Override

@@ -10,6 +10,7 @@
     <entry key="map_img">map.png</entry>
     
     <entry key="stand">units/stand.png</entry>
+    <entry key="walking_unit">units/walking.png</entry>
     
     <entry key="grass">map/tiles/grass.png</entry>
     <entry key="plain">map/tiles/sand.png</entry>
