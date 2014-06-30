@@ -9,6 +9,8 @@
     <entry key="map_txt">map</entry>
     <entry key="map_img">map.png</entry>
     
+    <entry key="stand">units/stand.png</entry>
+    
     <entry key="grass">map/tiles/grass.png</entry>
     <entry key="plain">map/tiles/sand.png</entry>
     <entry key="rock">map/tiles/rock.png</entry>

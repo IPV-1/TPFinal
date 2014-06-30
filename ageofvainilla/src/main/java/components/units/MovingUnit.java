@@ -34,6 +34,8 @@ public class MovingUnit extends MovingGameComponent {
 
 	public MovingUnit(Factor factor, Color color, double xPos, double yPos) {
 		this(factor, new Rectangle(color, 10, 12), xPos, yPos, new UnitVector2D(1, 1), 0);//SPEED);
+		
+//		this.setAppearance(getScaledAppearance(Configuration.getSprite("stand")));
 	}
 	
 	public static MovingUnit getAlly(int xTile, int yTile) {

@@ -6,6 +6,7 @@ import map.tiles.Tile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.events.constants.Key;
 import components.CameraRelativeComponent;
 import components.MouseHandler;
@@ -145,6 +146,16 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	
 	public Double getFarmSpeed() {
 		return Configuration.getValue("farmPerMinute_unit");
+	}
+	
+	public Appearance getScaledAppearance(Appearance appearance) {
+		Appearance app = appearance.copy();
+		
+		if(app instanceof Sprite) {
+			app = ((Sprite)app).scaleTo(Tile.WIDTH, Tile.HEIGHT);
+		}
+		
+		return app;
 	}
 
 }

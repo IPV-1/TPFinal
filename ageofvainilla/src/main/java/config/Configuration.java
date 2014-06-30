@@ -38,6 +38,8 @@ public class Configuration {
 		
 		addSprite("delete");
 		addSprite("stop");
+		
+		addSprite("stand");
 	
 		addValue("screenWidth");
 		addValue("screenHeight");

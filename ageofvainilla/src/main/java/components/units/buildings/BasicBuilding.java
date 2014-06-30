@@ -82,6 +82,7 @@ public class BasicBuilding extends TiledComponent {
 		getScene().getMap().freeBuilding(this);
 	}
 	
+	@Override
 	public Appearance getScaledAppearance(Appearance appearance) {
 		Appearance app = appearance.copy();
 		

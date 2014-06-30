@@ -16,6 +16,14 @@ public class ResourcesBuilder {
 		effectiveBuildIn(scene, ResourceFactory.createFood(17, 4, 200));
 		
 		effectiveBuildIn(scene, ResourceFactory.createLumber(17, 7, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(17, 9, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(17, 11, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(19, 7, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(19, 9, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(19, 11, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(21, 7, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(21, 9, 200));
+		effectiveBuildIn(scene, ResourceFactory.createLumber(21, 11, 200));
 	}
 	
 	public static void effectiveBuildIn(FieldScene scene, Resource resource) {
