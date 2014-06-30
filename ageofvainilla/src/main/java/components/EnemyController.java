@@ -7,12 +7,14 @@ import com.uqbar.vainilla.DeltaState;
 import components.factors.Factor;
 import components.units.MovingUnit;
 import components.units.Unit;
+import config.Configuration;
 
 public class EnemyController extends BasicAgeComponent {
 	
 	protected int pc = 0;
-	protected Point spawnPoint = new Point(10, 2);
-	protected final int PC_LIMIT = 1000;
+	protected Point spawnPoint = new Point(Configuration.getValue("enemySpawnX").intValue(), 
+			Configuration.getValue("enemySpawnY").intValue());
+	protected final int PC_LIMIT = Configuration.getValue("enemyDelay").intValue();
 	
 	@Override
 	public void update(DeltaState deltaState) {

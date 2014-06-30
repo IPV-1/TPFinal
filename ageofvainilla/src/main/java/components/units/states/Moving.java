@@ -2,6 +2,8 @@ package components.units.states;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Appearance;
+
+import components.factors.Factor;
 import components.units.MovingUnit;
 import components.units.Unit;
 
@@ -16,8 +18,12 @@ public class Moving extends UnitState {
 	}
 	
 	@Override
-	public Appearance getAppearance() {
-		return Configuration.getScaledAnimation("walking_unit", 29, 29);
+	public Appearance getAppearance(Factor factor) {
+		String spriteName = "walking_unit";
+		if(factor.isEnemy()) {
+			spriteName += "E";
+		}
+		return Configuration.getScaledAnimation(spriteName, 29, 29);
 	}
 
 	@Override

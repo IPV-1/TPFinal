@@ -20,6 +20,10 @@ public abstract class Factor {
 		return false;
 	}
 	
+	public boolean isAlly() {
+		return false;
+	}
+	
 	public boolean isEnemy(Factor factor){
 		return false;
 	}

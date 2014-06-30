@@ -44,7 +44,9 @@ public class Configuration {
 		addSprite("stop");
 		
 		addSprite("stand");
+		addSprite("standE");
 		addSprite("walking_unit");
+		addSprite("walking_unitE");
 	
 		addValue("screenWidth");
 		addValue("screenHeight");
@@ -55,6 +57,14 @@ public class Configuration {
 		addValue("farmPerMinute_unit");
 		
 		addValue("withEnemyIA?");
+		
+		addValue("movingUnitSpeed");
+		addValue("unitHP");
+		addValue("unitPA");
+		
+		addValue("enemyDelay");
+		addValue("enemySpawnX");
+		addValue("enemySpawnY");
 		
 		addString("map_txt");
 		addString("map_img");

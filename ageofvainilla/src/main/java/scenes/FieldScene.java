@@ -32,6 +32,8 @@ public class FieldScene extends GameScene {
 	private MouseHandler mouse = new MouseHandler();
 	public MovingUnit initialUnit2 = MovingUnit.getAlly(3, 3);
 	public MovingUnit initialUnit1 = MovingUnit.getAlly(8, 3);
+	
+	private int allies = 0;
 
     public FieldScene(Game game) {
         super();
@@ -87,6 +89,10 @@ public class FieldScene extends GameScene {
 		Coord tileCoord = new Coord(unit.getX(), unit.getY()).getTile(Tile.WIDTH);
 		this.getMap().occupy(unit, (int)tileCoord.getX(), (int)tileCoord.getY());
 		
+		if(unit.getFactor().isAlly()) {
+			this.increaseAlly();
+		}
+		
 		//this.getMouse().addSelected(unit);
 	}
 
@@ -101,7 +107,23 @@ public class FieldScene extends GameScene {
 //	private GameComponent<?> getBackground() {
 //        return new GameComponent<GameScene>(Resource.getSprite(backgroundPath), 0, 0);
 //	}
-    
+	
+	public int getAllies() {
+		return allies;
+	}
+	
+	public void setAllies(int allies) {
+		this.allies = allies;
+	}
+	
+	public void increaseAlly() {
+		this.setAllies(this.getAllies() + 1);
+	}
+	
+	public void decreaseAlly() {
+		this.setAllies(this.getAllies() - 1);
+	}
+	    
     public Map getMap() {
     	return this.map;
     }

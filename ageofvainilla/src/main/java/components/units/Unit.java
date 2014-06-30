@@ -59,7 +59,11 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 		}
 	}
 
-	public void hasKilled(Unit unit){}
+	public void hasKilled(Unit unit){
+		if(unit.getFactor().isAlly()) {
+			this.getScene().decreaseAlly();
+		}
+	}
 
 	public void setFree() {
 		this.getScene().getMap().setFree(this.getXTile(), this.getYTile());

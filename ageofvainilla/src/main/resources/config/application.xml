@@ -10,7 +10,9 @@
     <entry key="map_img">map.png</entry>
     
     <entry key="stand">units/stand.png</entry>
+	<entry key="standE">units/standE.png</entry>
     <entry key="walking_unit">units/walking.png</entry>
+    <entry key="walking_unitE">units/walkingE.png</entry>
     
     <entry key="grass">map/tiles/grass.png</entry>
     <entry key="plain">map/tiles/sand.png</entry>
@@ -30,8 +32,17 @@
     <entry key="tileWidth">20</entry>
     <entry key="tileHeight">20</entry>
 
-    <entry key="withEnemyIA?">0</entry>
+    <entry key="withEnemyIA?">1</entry>
     
+	<entry key="movingUnitSpeed">200</entry>
+	<entry key="unitHP">1000</entry>
+	<entry key="unitPA">10</entry>
+	
+	<entry key="enemyDelay">10000</entry>
+	<entry key="enemySpawnX">10</entry>
+	<entry key="enemySpawnY">2</entry>
+	
+	    
     <entry key="farmPerMinute_unit">60</entry>
     
     <entry key="intro_sound">intro_age.wav</entry>
