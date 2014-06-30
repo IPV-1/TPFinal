@@ -34,6 +34,15 @@
 
     <entry key="withEnemyIA?">1</entry>
     
+	<entry key="movingUnitSpeed">200</entry>
+	<entry key="unitHP">1000</entry>
+	<entry key="unitPA">10</entry>
+	
+	<entry key="enemyDelay">10000</entry>
+	<entry key="enemySpawnX">10</entry>
+	<entry key="enemySpawnY">2</entry>
+	
+	    
     <entry key="farmPerMinute_unit">60</entry>
     
     <entry key="intro_sound">intro_age.wav</entry>

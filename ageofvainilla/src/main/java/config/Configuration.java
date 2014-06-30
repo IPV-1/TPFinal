@@ -58,6 +58,14 @@ public class Configuration {
 		
 		addValue("withEnemyIA?");
 		
+		addValue("movingUnitSpeed");
+		addValue("unitHP");
+		addValue("unitPA");
+		
+		addValue("enemyDelay");
+		addValue("enemySpawnX");
+		addValue("enemySpawnY");
+		
 		addString("map_txt");
 		addString("map_img");
 		

@@ -15,10 +15,11 @@ import components.factors.Factor;
 import components.units.states.Moving;
 import components.units.states.UnitState;
 import components.units.states.Waiting;
+import config.Configuration;
 
 public class MovingUnit extends MovingGameComponent {
 
-	public static final int SPEED = 200;
+	public static final int SPEED = Configuration.getValue("movingUnitSpeed").intValue();
 
 	private UnitState state = new Waiting();
 	
@@ -28,8 +29,8 @@ public class MovingUnit extends MovingGameComponent {
 		super(rectangle, xPos, yPos, unitVector2D, speed);
 		this.setFactor(factor);
 		
-		this.setLifePoint(1000);
-		this.setPowerAttack(10);
+		this.setLifePoint(Configuration.getValue("unitHP").intValue());
+		this.setPowerAttack(Configuration.getValue("unitPA").intValue());
 		
 		this.setState(state);
 	}
