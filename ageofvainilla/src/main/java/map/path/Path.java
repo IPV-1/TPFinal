@@ -12,6 +12,7 @@ import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.colissions.Circle;
 import com.uqbar.vainilla.colissions.CollisionDetector;
+import com.uqbar.vainilla.colissions.Rectangle;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.ImmutablePoint;
 import components.MovingGameComponent;
@@ -114,8 +115,10 @@ public class Path {
 	}
 
 	public void checkBreak() {
+		MovingGameComponent c = this.getComponent();
 		if (CollisionDetector.INSTANCE.collidesCircleAgainstRect(
-				this.currentBreak, this.getComponent().getRect())) {
+				this.currentBreak, new Rectangle(c.getX(), c.getY(), c.getWidth() / 3,
+						c.getHeight() / 3))) {//this.getComponent().getRect())) {
 			this.getComponent().setX(this.getMoveTo().x * Tile.WIDTH);
 			this.getComponent().setY(this.getMoveTo().y * Tile.HEIGHT);
 			
