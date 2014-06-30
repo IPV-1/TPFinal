@@ -4,13 +4,14 @@ import com.uqbar.vainilla.appearances.Appearance;
 import components.MouseHandler;
 import components.menus.panels.ControlPanel;
 import components.units.buildings.Builder;
+import config.Configuration;
 
 public class BuildingButton extends BasicAgeButton {
 
 	private Builder builder;
 
 	public BuildingButton(Builder builder, Appearance appearance, double x, double y) {
-		super(appearance, x, y);
+		super(Configuration.getScaledDownButton(appearance), x, y);
 		setBuilder(builder);
 	}
 

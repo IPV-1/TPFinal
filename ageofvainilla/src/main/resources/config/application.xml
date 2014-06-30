@@ -4,6 +4,9 @@
     <entry key="screenWidth">800</entry>
     <entry key="screenHeight">600</entry>
     
+    <entry key="downButtonWidth">40</entry>
+    <entry key="downButtonHeight">40</entry>
+    
     <entry key="pointer">extras/pointer.png</entry>
     
     <entry key="map_txt">map</entry>

@@ -7,7 +7,7 @@ import config.Configuration;
 public class DeleteButton extends BuildingButton {
 	
 	public DeleteButton() {
-		super(null, Configuration.getSprite("delete").scaleTo(40, 40), 0, 1);
+		super(null, Configuration.getSprite("delete"), 0, 1);
 	}
 	
 	@Override

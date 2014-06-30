@@ -66,6 +66,9 @@ public class Configuration {
 		addValue("enemySpawnX");
 		addValue("enemySpawnY");
 		
+		addValue("downButtonWidth");
+		addValue("downButtonHeight");
+		
 		addString("map_txt");
 		addString("map_img");
 		
@@ -159,6 +162,13 @@ public class Configuration {
 		}
 		
 		return app;
+	}
+
+	public static Appearance getScaledDownButton(Appearance appearance) {
+		int WIDTH = Configuration.getValue("downButtonWidth").intValue();
+		int HEIGHT = Configuration.getValue("downButtonHeight").intValue();
+		
+		return Configuration.getScaledAppearance(appearance, WIDTH, HEIGHT);
 	}
     
 }

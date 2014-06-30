@@ -7,7 +7,7 @@ import config.Configuration;
 public class StopButton extends BuildingButton {
 	
 	public StopButton() {
-		super(null, Configuration.getSprite("stop").scaleTo(40, 40), 0, 1);
+		super(null, Configuration.getSprite("stop"), 0, 1);
 	}
 	
 	@Override
