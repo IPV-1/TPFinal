@@ -125,7 +125,7 @@ public class Animation implements Appearance {
 		this.meantime = meantime;
 	}
 
-	protected Sprite[] getSprites() {
+	public Sprite[] getSprites() {
 		return this.sprites;
 	}
 
