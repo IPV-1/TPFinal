@@ -15,6 +15,9 @@
     <entry key="water">map/tiles/water.png</entry>
 
     <entry key="gold_res">map/resources/gold.png</entry>
+    <entry key="rock_res">map/resources/rock.png</entry>
+    <entry key="lumber_res">map/resources/lumber.png</entry>
+    <entry key="food_res">map/resources/food.png</entry>
     
     <entry key="house">map/tiles/enemy.png</entry>
     <entry key="wall">units/wall.png</entry>

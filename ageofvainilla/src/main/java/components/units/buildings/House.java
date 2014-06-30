@@ -3,8 +3,9 @@ package components.units.buildings;
 import java.util.HashMap;
 import java.util.Map;
 
+import components.units.resources.ResourceType;
+
 import config.Configuration;
-import config.ResourceType;
 
 public class House extends Builder {
 

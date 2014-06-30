@@ -29,6 +29,9 @@ public class Configuration {
 		addSprite("water");
 		
 		addSprite("gold_res");
+		addSprite("rock_res");
+		addSprite("lumber_res");
+		addSprite("food_res");
 		
 		addSprite("house");
 		addSprite("wall");

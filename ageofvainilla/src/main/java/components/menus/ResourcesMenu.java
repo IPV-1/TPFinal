@@ -10,10 +10,10 @@ import com.uqbar.vainilla.appearances.Rectangle;
 import components.BasicAgeComponent;
 import components.boards.ResourceBoard;
 import components.boards.ResourceBoardFactory;
-
 import components.units.buildings.BasicBuilding;
+import components.units.resources.ResourceType;
+
 import config.Configuration;
-import config.ResourceType;
 
 public class ResourcesMenu extends BasicAgeComponent {
 
