@@ -6,6 +6,11 @@ public class BlueFactor extends Factor {
 	}
 	
 	@Override
+	public boolean isAlly() {
+		return true;
+	}
+	
+	@Override
 	public boolean isEnemy(Factor factor) {
 		return factor.isEnemyOfBlueFactor();
 	}
