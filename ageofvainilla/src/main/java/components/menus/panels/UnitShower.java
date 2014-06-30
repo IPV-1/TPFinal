@@ -20,8 +20,8 @@ public class UnitShower extends BasicAgeComponent {
 
 	public UnitShower(Appearance background) {
 		setAppearance(background);
-		setLife(new Label(new Font("verdana", Font.BOLD, 30), Color.BLUE, " - "));
-		setAttack(new Label(new Font("verdana", Font.BOLD, 30), Color.RED, " - "));
+		setLife(new Label(new Font("verdana", Font.BOLD, 24), Color.BLUE, " - "));
+		setAttack(new Label(new Font("verdana", Font.BOLD, 24), Color.RED, " - "));
 	}
 
 	@Override

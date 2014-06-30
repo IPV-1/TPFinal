@@ -17,12 +17,12 @@ public class Wall extends Builder {
 		this.setLifePoint(5000);
 	}
 	
+	@SuppressWarnings("serial")
 	@Override
 	public Map<String, Integer> getCost() {
-		HashMap<String, Integer> costo = new HashMap<String, Integer>();
-		costo.put(ResourceType.ROCK, 20);
-		
-		return costo;
+		return new HashMap<String, Integer>() {{
+			put(ResourceType.ROCK, 20);
+		}};
 	}
 
 }

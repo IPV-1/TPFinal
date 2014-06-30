@@ -31,13 +31,12 @@ public class WarriorBuilder extends Builder {
 		}
 	}
 	
+	@SuppressWarnings("serial")
 	@Override
 	public Map<String, Integer> getCost() {
-		HashMap<String, Integer> costo = new HashMap<String, Integer>();
-		costo.put(ResourceType.GOLD, 20);
-		costo.put(ResourceType.LUMBER, 10);
-		
-		return costo;
+		return new HashMap<String, Integer>() {{
+			put(ResourceType.FOOD, 10);
+		}};
 	}
 
 }
