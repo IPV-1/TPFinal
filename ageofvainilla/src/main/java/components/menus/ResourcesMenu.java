@@ -21,7 +21,7 @@ public class ResourcesMenu extends BasicAgeComponent {
 
 	public ResourcesMenu() {
 		super(0, 0);
-		this.setZ(10);
+		this.setZ(9);
 		this.setAppearance(new Rectangle(Color.BLACK, Configuration.getDisplayWidth(), 30));
 
 		ResourceBoard gold = new ResourceBoardFactory().withX(15).withLabel(ResourceType.GOLD).build();

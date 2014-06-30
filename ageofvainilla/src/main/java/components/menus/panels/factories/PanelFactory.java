@@ -3,8 +3,6 @@ package components.menus.panels.factories;
 
 import java.awt.Color;
 
-import map.tiles.Tile;
-
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.appearances.Rectangle;
@@ -30,7 +28,7 @@ public class PanelFactory {
 	public ControlPanel downPanelFullWith() {
 		// TODO: this method is painful, so much.
 		// Isn't  worse colours?
-		int height = Tile.HEIGHT * 3;
+		int height = 100;
 		Appearance appearance = new Rectangle(Color.orange, Configuration.getDisplayWidth(), height);
 		
 		Builder buildingBuilder = new Builder(1, 1);
@@ -50,7 +48,7 @@ public class PanelFactory {
 		getBuilder().withButton(new StopButton());
 		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(200, Configuration.getDisplayHeight() - height, Configuration.getDisplayWidth() - 200, Configuration.getDisplayHeight() - height);
-		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(8).withShower(unitShower).build(0, Configuration.getDisplayHeight() - height);
+		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(9).withShower(unitShower).build(0, Configuration.getDisplayHeight() - height);
 		unitShower.setPanel(panel);
 		return panel;
 	}

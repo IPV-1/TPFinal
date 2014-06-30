@@ -14,8 +14,6 @@ public class DownMenu extends BasicAgeComponent {
 
 	public DownMenu(Appearance appearance, double x, double y) {
 		super(appearance,x,y);
-		
-		this.setZ(10);
 	}
 
 	@Override
