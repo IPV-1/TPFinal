@@ -101,7 +101,7 @@ public class MovingUnit extends MovingGameComponent {
 
 	public void setState(UnitState state) {
 		this.state = state;
-		this.setAppearance(state.getAppearance());
+		this.setAppearance(state.getAppearance(this.getFactor()));
 	}
 
 	public Path getPath() {

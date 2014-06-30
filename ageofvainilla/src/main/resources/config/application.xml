@@ -10,7 +10,9 @@
     <entry key="map_img">map.png</entry>
     
     <entry key="stand">units/stand.png</entry>
+	<entry key="standE">units/standE.png</entry>
     <entry key="walking_unit">units/walking.png</entry>
+    <entry key="walking_unitE">units/walkingE.png</entry>
     
     <entry key="grass">map/tiles/grass.png</entry>
     <entry key="plain">map/tiles/sand.png</entry>
@@ -30,7 +32,7 @@
     <entry key="tileWidth">20</entry>
     <entry key="tileHeight">20</entry>
 
-    <entry key="withEnemyIA?">0</entry>
+    <entry key="withEnemyIA?">1</entry>
     
     <entry key="farmPerMinute_unit">60</entry>
     
