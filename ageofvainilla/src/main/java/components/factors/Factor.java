@@ -50,4 +50,8 @@ public abstract class Factor {
 		return new Waiting();
 	}
 
+	public static Factor getMyFactor() {
+		return Factor.BLUE;
+	}
+
 }

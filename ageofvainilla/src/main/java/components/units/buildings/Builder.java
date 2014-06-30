@@ -16,6 +16,7 @@ import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
+import components.factors.Factor;
 import components.units.Unit;
 
 public class Builder extends Unit {
@@ -28,6 +29,7 @@ public class Builder extends Unit {
 		setAppearance(buildingAppearance);
 		setWidthInTiles(widthInTiles);
 		setHeightInTiles(heightInTiles);
+		this.setFactor(Factor.getMyFactor());
 	}
 
 	protected Builder(Appearance appearance, int widthInTiles, int longInTiles) {
