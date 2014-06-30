@@ -10,6 +10,7 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import components.buttons.BasicAgeButton;
+import components.factors.Factor;
 import components.units.Flag;
 import components.units.Unit;
 
@@ -77,6 +78,7 @@ public class MouseHandler extends BasicAgeComponent {
 		return !this.inControlPanel() &&
 				!this.inResourcesMenu() &&
 				deltaState.isMouseButtonReleased(MouseButton.RIGHT) &&
+				unit.getFactor().equals(Factor.BLUE) &&
 				this.isSelected(unit);
 	}
 	
