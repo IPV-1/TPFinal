@@ -12,7 +12,7 @@ import map.Map;
 
 public class PathFinder {
 
-	private static final int ORTHOGONAL_COST = 10;
+	public static final int ORTHOGONAL_COST = 10;
 	private static final int DIAGONAL_COST = 14;
 
 	protected Node[][] nodes;
@@ -191,6 +191,10 @@ public class PathFinder {
 	public int getH(int xFrom, int yFrom, int xTo, int yTo) {
 		return ORTHOGONAL_COST
 				* (Math.abs(xFrom - xTo) + Math.abs(yFrom - yTo));
+	}
+	
+	public int tileDistance(int xFrom, int yFrom, int xTo, int yTo) {
+		return this.getH(xFrom, yFrom, xTo, yTo) / PathFinder.ORTHOGONAL_COST;
 	}
 
 	protected boolean insideMap(int x, int y) {
