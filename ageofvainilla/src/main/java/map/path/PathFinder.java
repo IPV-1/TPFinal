@@ -194,7 +194,7 @@ public class PathFinder {
 	}
 	
 	public int tileDistance(int xFrom, int yFrom, int xTo, int yTo) {
-		return this.getH(xFrom, yFrom, xTo, yTo) / this.ORTHOGONAL_COST;
+		return this.getH(xFrom, yFrom, xTo, yTo) / PathFinder.ORTHOGONAL_COST;
 	}
 
 	protected boolean insideMap(int x, int y) {

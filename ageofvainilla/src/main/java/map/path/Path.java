@@ -56,6 +56,10 @@ public class Path {
 		}
 	}
 	
+	public void setDestiny(Point p) {
+		this.setDestiny(p.x, p.y);
+	}
+	
 	public boolean isTravelingToDestiny() {
 		return this.getPoints().size() > 1;
 		//this.getComponent().getX() * Tile.WIDTH != this.getDestiny().x ||

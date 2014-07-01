@@ -60,7 +60,7 @@ public class MouseHandler extends BasicAgeComponent {
 		Tile tile = getScene().getMap().getTileCamera(this.getX(), this.getY());
 
 		if(! tile.isOccuppied()) {
-			return new Flag(this.getX(), this.getY());
+			return new Flag(this.getX() / Tile.WIDTH, this.getY() / Tile.HEIGHT);
 		}
 		
 		return tile.getOcuppant();
