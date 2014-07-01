@@ -10,9 +10,6 @@ import map.tiles.Tile;
 
 import com.uqbar.vainilla.Camera;
 import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.colissions.Circle;
-import com.uqbar.vainilla.colissions.CollisionDetector;
-import com.uqbar.vainilla.colissions.Rectangle;
 import com.uqbar.vainilla.events.constants.MouseButton;
 import com.uqbar.vainilla.space.ImmutablePoint;
 import components.MovingGameComponent;
@@ -24,16 +21,17 @@ public class Path {
 	protected final MovingGameComponent component;
 	protected List<ImmutablePoint> points = new ArrayList<ImmutablePoint>();
 	protected int currentStep = 0;
-	
+
 	protected Point destiny = new Point();
 	protected Unit following;
 
-	private Circle currentBreak;
+	private Direction xDir;
+	private Direction yDir;
 
 	public Path(MovingGameComponent component) {
 		this.component = component;
 	}
-	
+
 	public void update(DeltaState deltaState) {
 		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)
 				&& this.getComponent().getMouse()
@@ -47,44 +45,28 @@ public class Path {
 			this.checkBreak();
 		}
 	}
-	
+
 	public void setDestiny(int x, int y) {
 		this.getDestiny().setLocation(x, y);
-		if(!this.isTravelingToDestiny()) {
+		if (!this.isTravelingToDestiny()) {
 			this.setPathTo(x, y);
 		}
 	}
-	
+
 	public void setDestiny(Point p) {
 		this.setDestiny(p.x, p.y);
 	}
-	
+
 	public boolean isTravelingToDestiny() {
 		return this.getPoints().size() > 1;
 	}
 
-	public void update2(DeltaState deltaState) {
-		if (deltaState.isMouseButtonReleased(MouseButton.RIGHT)
-				&& this.getComponent().getMouse()
-						.isSelected(this.getComponent())) {
-			Point2D.Double d = deltaState.getCurrentMousePosition();
-			int x = (int) ((d.x + Camera.INSTANCE.getX()) / Tile.WIDTH);
-			int y = (int) ((d.y + Camera.INSTANCE.getY()) / Tile.HEIGHT);
-			this.setPathTo(x, y);
-		}
-		if (this.isTraveling()) {
-			this.checkBreak();
-		}
-	}
-	
 	protected void setPathTo(int x, int y) {
 		List<ImmutablePoint> l = new ArrayList<ImmutablePoint>();
-		this.getComponent()
-				.getScene()
-				.getPathFinder()
-				.findPath((int) this.getComponent().getX() / Tile.WIDTH,
-						(int) this.getComponent().getY() / Tile.HEIGHT, x,
-						y, l);
+		int xFrom = (int) this.getComponent().getX() / Tile.WIDTH;
+		int yFrom = (int) this.getComponent().getY() / Tile.HEIGHT;
+		this.getComponent().getScene().getPathFinder()
+				.findPath(xFrom, yFrom, x, y, l);
 		List<ImmutablePoint> ll = new ArrayList<ImmutablePoint>();
 		for (int j = 0, i = l.size() - 1; i >= 0; j++, i--) {
 			ll.add(j, l.get(i));
@@ -93,7 +75,9 @@ public class Path {
 		this.setPoints(ll);
 		if (ll.size() > 1) {
 			this.setCurrentStep(1);
-			this.moveTo(ll.get(1));// ll.size() - 1));
+			this.setxDir(Direction.getX(xFrom, ll.get(1).x));
+			this.setyDir(Direction.getY(yFrom, ll.get(1).y));
+			this.moveTo(ll.get(1));
 		} else {
 			this.stop();
 		}
@@ -107,40 +91,45 @@ public class Path {
 				.set(x - this.getComponent().getX(),
 						y - this.getComponent().getY());
 		this.getComponent().setSpeed(MovingUnit.SPEED);
-		this.currentBreak = new Circle(x + 2, y + 2, 4);
-		
+
 		Map map = this.getComponent().getScene().getMap();
 		map.occupy(this.getComponent(), this.getMoveTo().x, this.getMoveTo().y);
 	}
 
 	public void checkBreak() {
-		MovingGameComponent c = this.getComponent();
-		if (CollisionDetector.INSTANCE.collidesCircleAgainstRect(
-				this.currentBreak, new Rectangle(c.getX(), c.getY(), c.getWidth() / 3 * 2,
-						c.getHeight() / 3 * 2))) {//this.getComponent().getRect())) {
+		if (this.reachedTarget()) {
 			this.getComponent().setX(this.getMoveTo().x * Tile.WIDTH);
 			this.getComponent().setY(this.getMoveTo().y * Tile.HEIGHT);
-			
+
 			Map map = this.getComponent().getScene().getMap();
 			map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
 			this.setCurrentStep(this.getCurrentStep() + 1);
-			if(this.isFollowing()) {
-				this.setDestiny(this.getFollowing().getXTile(), this.getFollowing().getYTile());
+			if (this.isFollowing()) {
+				this.setDestiny(this.getFollowing().getXTile(), this
+						.getFollowing().getYTile());
 			}
 			this.setPathTo(this.getDestiny().x, this.getDestiny().y);
 		}
 	}
 
+	public boolean reachedTarget() {
+		return this.getxDir().reached(this.getComponent().getX(),
+				this.getMoveTo().x * Tile.WIDTH)
+				&& this.getyDir().reached(this.getComponent().getY(),
+						this.getMoveTo().y * Tile.HEIGHT);
+	}
+
 	public void setFree() {
 		Map map = this.getComponent().getScene().getMap();
-		if(this.getComponent().isMoving()) {
+		if (this.getComponent().isMoving()) {
 			map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
 			map.setFree(this.getMoveTo().x, this.getMoveTo().y);
 		} else {
-			map.setFree(this.getComponent().getXTile(), this.getComponent().getYTile());
+			map.setFree(this.getComponent().getXTile(), this.getComponent()
+					.getYTile());
 		}
 	}
-	
+
 	protected void applyChangesOnMap() {
 		Map map = this.getComponent().getScene().getMap();
 		map.setFree(this.getPreviousPoint().x, this.getPreviousPoint().y);
@@ -154,7 +143,7 @@ public class Path {
 	public ImmutablePoint getPreviousPoint() {
 		return this.getPoints().get(this.getCurrentStep() - 1);
 	}
-	
+
 	public ImmutablePoint destination() {
 		return this.getPoints().get(this.getPoints().size() - 1);
 	}
@@ -168,15 +157,15 @@ public class Path {
 		this.getComponent().setSpeed(0);
 		this.stopFollowing();
 	}
-	
+
 	public void lightStop() {
 		this.setDestiny(this.getMoveTo().x, this.getMoveTo().y);
 	}
-	
+
 	public boolean isFollowing() {
 		return this.getFollowing() != null;
 	}
-	
+
 	public void stopFollowing() {
 		this.setFollowing(null);
 	}
@@ -200,7 +189,7 @@ public class Path {
 	protected void setCurrentStep(int currentStep) {
 		this.currentStep = currentStep;
 	}
-	
+
 	public Point getDestiny() {
 		return destiny;
 	}
@@ -211,6 +200,22 @@ public class Path {
 
 	public void setFollowing(Unit following) {
 		this.following = following;
+	}
+
+	public Direction getxDir() {
+		return xDir;
+	}
+
+	public void setxDir(Direction xDir) {
+		this.xDir = xDir;
+	}
+
+	public Direction getyDir() {
+		return yDir;
+	}
+
+	public void setyDir(Direction yDir) {
+		this.yDir = yDir;
 	}
 
 }

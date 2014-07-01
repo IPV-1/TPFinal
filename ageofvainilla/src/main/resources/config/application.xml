@@ -44,8 +44,8 @@
 	<entry key="unitPA">10</entry>
 	
 	<entry key="enemyDelay">1200</entry>
-	<entry key="enemySubstractingDelay">50</entry>
-	<entry key="enemyMinimumDelay">20</entry>
+	<entry key="enemySubstractingDelay">20</entry>
+	<entry key="enemyMinimumDelay">30</entry>
 	
 	<entry key="enemySpawnX">10</entry>
 	<entry key="enemySpawnY">2</entry>
