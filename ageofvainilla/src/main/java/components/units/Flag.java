@@ -1,11 +1,14 @@
 package components.units;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Invisible;
 
 import components.MouseHandler;
+import components.buttons.BuildingButton;
 import components.factors.Factor;
 import components.menus.panels.UnitShower;
 import components.recursos.TiledComponent;
@@ -40,6 +43,11 @@ public class Flag extends TiledComponent {
 	
 	@Override
 	public void renderInPanel(UnitShower panel, Graphics2D graphics) {
+	}
+	
+	@Override
+	public List<BuildingButton> getButtons() {
+		return new ArrayList<BuildingButton>();
 	}
 	
 }

@@ -14,7 +14,6 @@ import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.UnitVector2D;
 import components.MovingGameComponent;
 import components.buttons.BuildingButton;
-import components.buttons.DeleteButton;
 import components.buttons.HouseButton;
 import components.buttons.StopButton;
 import components.buttons.WallButton;
@@ -124,7 +123,6 @@ public class MovingUnit extends MovingGameComponent {
 		List<BuildingButton> result = new ArrayList<BuildingButton>() {{
 			add(new HouseButton());
 			add(new WallButton());
-			add(new DeleteButton());
 			add(new StopButton());
 		}};
 		

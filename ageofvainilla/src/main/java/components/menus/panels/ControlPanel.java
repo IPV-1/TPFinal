@@ -8,6 +8,7 @@ import com.uqbar.vainilla.appearances.Appearance;
 import components.MouseHandler;
 import components.buttons.BasicAgeButton;
 import components.buttons.BuildingButton;
+import components.factors.Factor;
 import components.menus.DownMenu;
 import components.units.Flag;
 import components.units.Unit;
@@ -37,7 +38,8 @@ public class ControlPanel extends DownMenu {
 		
 		if(this.selectedUnitsChange()) {
 			removeButtons();
-			selected = getSelectedUnit();
+			
+			selected = Factor.isMyFactor(getSelectedUnit().getFactor()) ? getSelectedUnit() : EMPTY;
 			
 			addButtons(getUnitButtons());
 		}
@@ -77,7 +79,7 @@ public class ControlPanel extends DownMenu {
 	}
 
 	public List<BuildingButton> getUnitButtons() {
-		return getSelectedUnit().getButtons();
+		return selected.getButtons();
 	}
 	
 	public List<BuildingButton> getButtons() {

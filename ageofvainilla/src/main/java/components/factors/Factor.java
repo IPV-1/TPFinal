@@ -58,4 +58,8 @@ public abstract class Factor {
 		return Factor.BLUE;
 	}
 
+	public static boolean isMyFactor(Factor factor) {
+		return getMyFactor().equals(factor);
+	}
+
 }

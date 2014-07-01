@@ -4,7 +4,9 @@ package components.units.buildings;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D.Double;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import map.tiles.Tile;
@@ -16,6 +18,7 @@ import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.space.Coord;
 import components.MouseHandler;
+import components.buttons.BuildingButton;
 import components.factors.Factor;
 import components.menus.ResourcesMenu;
 import components.units.Unit;
@@ -145,6 +148,11 @@ public class Builder extends Unit {
 		for (Map.Entry<String, Integer> cursor : getCost().entrySet()) {
 			menu.subtract(cursor.getKey(), cursor.getValue());
 		}
+	}
+	
+	@Override
+	public List<BuildingButton> getButtons() {
+		return new ArrayList<BuildingButton>();
 	}
 	
 }

@@ -12,6 +12,7 @@ import com.uqbar.vainilla.events.constants.Key;
 import components.CameraRelativeComponent;
 import components.MouseHandler;
 import components.buttons.BuildingButton;
+import components.buttons.DeleteButton;
 import components.factors.Factor;
 import components.interfaces.Selectable;
 import components.menus.panels.UnitShower;
@@ -24,7 +25,6 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	private int powerAttack = 0;
 
 	private Factor factor;
-	private List<BuildingButton> buttons = new ArrayList<BuildingButton>();
 
 	public Unit() {
 		super();
@@ -163,12 +163,11 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 		return Configuration.getScaledAppearance(appearance);
 	}
 
+	@SuppressWarnings("serial")
 	public List<BuildingButton> getButtons() {
-		return this.buttons;
-	}
-	
-	public void setButtons(List<BuildingButton> buttons) {
-		this.buttons = buttons;
+		return new ArrayList<BuildingButton>() {{
+			add(new DeleteButton());
+		}};
 	}
 
 }

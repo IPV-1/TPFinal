@@ -22,8 +22,6 @@ import config.Configuration;
 
 public class FieldScene extends GameScene {
 
-	//private String backgroundPath = "board.png";
-	
 	protected Map map;
 	protected PathFinder pathFinder;
 	private ResourcesMenu resourcesMenu;
@@ -33,6 +31,7 @@ public class FieldScene extends GameScene {
 	private MouseHandler mouse = new MouseHandler();
 	public MovingUnit initialUnit2 = MovingUnit.getAlly(3, 3);
 	public MovingUnit initialUnit1 = MovingUnit.getAlly(8, 3);
+	public MovingUnit enemyUnit1 = MovingUnit.getEnemy(20, 20);
 	
 	private int allies = 0;
 
@@ -49,6 +48,7 @@ public class FieldScene extends GameScene {
         
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
+        this.addMovingUnit(enemyUnit1);
 
         this.addComponent(this.getMouse());
         
@@ -70,12 +70,10 @@ public class FieldScene extends GameScene {
 				this.getGame().getDisplayWidth(), this.getGame().getDisplayHeight());
     }
 
-
 	public void addResourceMenu(ResourcesMenu menu){
 		setResourcesMenu(menu);
 		addComponent(menu);
 	}
-
 
 	private void addControlPanel() {
 		PanelFactory panelFactory = new PanelFactory(new PanelBuilder());
@@ -93,8 +91,6 @@ public class FieldScene extends GameScene {
 		if(unit.getFactor().isAlly()) {
 			this.increaseAlly();
 		}
-		
-		//this.getMouse().addSelected(unit);
 	}
 
 	public MouseHandler getMouse() {
@@ -105,10 +101,6 @@ public class FieldScene extends GameScene {
 		this.mouse = mouse;
 	}
     
-//	private GameComponent<?> getBackground() {
-//        return new GameComponent<GameScene>(Resource.getSprite(backgroundPath), 0, 0);
-//	}
-	
 	public int getAllies() {
 		return allies;
 	}
@@ -163,7 +155,6 @@ public class FieldScene extends GameScene {
 	public EnemyController getEnemyController() {
 		return enemyController;
 	}
-
 
 	public void setEnemyController(EnemyController enemyController) {
 		this.enemyController = enemyController;
