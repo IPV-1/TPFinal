@@ -9,11 +9,16 @@ import components.MouseHandler;
 import components.buttons.BasicAgeButton;
 import components.buttons.BuildingButton;
 import components.menus.DownMenu;
+import components.units.Flag;
+import components.units.Unit;
 
 public class ControlPanel extends DownMenu {
-	//TODO: Make this parametric.
+	
 	public List<BuildingButton> buttons;
 	private UnitShower unitShower;
+	
+	private final Flag EMPTY = new Flag();
+	private Unit selected = EMPTY;
 
 	public ControlPanel(Appearance appearance, double x, double y) {
 		super(appearance, x, y);
@@ -23,33 +28,43 @@ public class ControlPanel extends DownMenu {
 	@Override
 	public void render(Graphics2D graphics) {
 		super.render(graphics);
-		getUnitShower().render(graphics);
-	}
 
-	@Override
-	public void onSceneActivated() {
-		super.onSceneActivated();
-		for (BuildingButton b : getButtons()){
-			b.onSceneActivated(this);
+		getUnitShower().render(graphics, this.getSelectedUnit());
+		
+		for (BuildingButton button : getButtons()) {
+			button.render(graphics);
 		}
-
+		
+		if(this.selectedUnitsChange()) {
+			removeButtons();
+			selected = getSelectedUnit();
+			
+			addButtons(getUnitButtons());
+		}
+		
+	}
+	
+	private boolean selectedUnitsChange() {
+		return getScene() != null && ! selected.equals(this.getSelectedUnit());
 	}
 
-
-	public void addButton(BuildingButton button) {
-		getComponents().add(button);
-		getButtons().add(button);
-	}
-
-	public void addButtons(List<BuildingButton> buttons) {
-		int nextX = ((int) getX()); // why 10? I don't know.
-		int nextY = (int) (getY());
+	private void addButtons(List<BuildingButton> buttons) {
+		int nextX = (int) getX();
+		int nextY = (int) getY();
+		
 		for (BuildingButton button : buttons) {
 			button.setX(nextX);
 			button.setY(nextY);
 			button.setZ(getZ() + 1);
 			nextX += button.getWidth();
-			addButton(button);
+		}
+		
+		this.setButtons(buttons);
+	}
+	
+	private void removeButtons() {
+		for (BuildingButton button : getButtons()) {
+			button.destroy();
 		}
 	}
 
@@ -61,8 +76,12 @@ public class ControlPanel extends DownMenu {
 		this.unitShower = unitShower;
 	}
 
+	public List<BuildingButton> getUnitButtons() {
+		return getSelectedUnit().getButtons();
+	}
+	
 	public List<BuildingButton> getButtons() {
-		return buttons;
+		return buttons; //new ArrayList<BuildingButton>();
 	}
 
 	public void setButtons(List<BuildingButton> buttons) {
@@ -77,4 +96,13 @@ public class ControlPanel extends DownMenu {
 			}
 		}
 	}
+
+	public Unit getSelectedUnit() {
+		if(getScene() != null && getScene().getMouse().getSelected().size() == 1) {
+			return getScene().getMouse().getSelected().get(0);
+		}
+		
+		return EMPTY;
+	}
+
 }

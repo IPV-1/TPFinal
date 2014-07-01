@@ -2,6 +2,8 @@ package components.units;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 import map.path.Path;
 import map.tiles.Tile;
@@ -11,10 +13,16 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.space.UnitVector2D;
 import components.MovingGameComponent;
+import components.buttons.BuildingButton;
+import components.buttons.DeleteButton;
+import components.buttons.HouseButton;
+import components.buttons.StopButton;
+import components.buttons.WallButton;
 import components.factors.Factor;
 import components.units.states.Moving;
 import components.units.states.UnitState;
 import components.units.states.Waiting;
+
 import config.Configuration;
 
 public class MovingUnit extends MovingGameComponent {
@@ -108,6 +116,20 @@ public class MovingUnit extends MovingGameComponent {
 
 	public Path getPath() {
 		return path;
+	}
+	
+	@Override
+	public List<BuildingButton> getButtons() {
+		@SuppressWarnings("serial")
+		List<BuildingButton> result = new ArrayList<BuildingButton>() {{
+			add(new HouseButton());
+			add(new WallButton());
+			add(new DeleteButton());
+			add(new StopButton());
+		}};
+		
+		result.addAll(super.getButtons());
+		return result;
 	}
 	
 }

@@ -1,6 +1,8 @@
 package components.units;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import map.tiles.Tile;
 
@@ -9,6 +11,7 @@ import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.events.constants.Key;
 import components.CameraRelativeComponent;
 import components.MouseHandler;
+import components.buttons.BuildingButton;
 import components.factors.Factor;
 import components.interfaces.Selectable;
 import components.menus.panels.UnitShower;
@@ -21,6 +24,7 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	private int powerAttack = 0;
 	
 	private Factor factor;
+	private List<BuildingButton> buttons = new ArrayList<BuildingButton>();
 
 	public Unit() {
 		super();
@@ -154,6 +158,14 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	
 	public Appearance getScaledAppearance(Appearance appearance) {
 		return Configuration.getScaledAppearance(appearance);
+	}
+
+	public List<BuildingButton> getButtons() {
+		return this.buttons;
+	}
+	
+	public void setButtons(List<BuildingButton> buttons) {
+		this.buttons = buttons;
 	}
 
 }

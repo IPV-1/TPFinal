@@ -1,14 +1,11 @@
 package components.units.buildings;
 
-import java.awt.Color;
 import java.util.Map;
 
 import map.tiles.Tile;
 
 import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.appearances.Sprite;
-
 import components.factors.Factor;
 import components.menus.ResourcesMenu;
 import components.recursos.TiledComponent;
@@ -18,17 +15,11 @@ public class BasicBuilding extends TiledComponent {
 	private int heightInTiles;
 	private Map<String, Integer> cost;
 
-	//I let this here for backward compatibility
-	public BasicBuilding(Color color, double xPos, double yPos) {
-		super(new Rectangle(color, Tile.WIDTH, Tile.WIDTH), xPos, yPos);
-		this.setFactor(Factor.BLUE);
-	}
-
 	public BasicBuilding(Appearance appearance, int tileX, int tileY, int widthInTiles, int heightInTiles) {
 		super(appearance, tileX, tileY);
 		setWidthInTiles(widthInTiles);
 		setHeightInTiles(heightInTiles);
-		this.setFactor(Factor.BLUE);
+		this.setFactor(Factor.getMyFactor());
 	}
 
 	public BasicBuilding(Builder builder, int tileX, int tileY) {
@@ -37,6 +28,7 @@ public class BasicBuilding extends TiledComponent {
 		this.setCost(builder.getCost());
 		this.setLifePoint(builder.getLifePoint());
 		this.setPowerAttack(builder.getPowerAttack());
+		this.setButtons(builder.getButtons());
 	}
 
 	public int getHeightInTiles() {

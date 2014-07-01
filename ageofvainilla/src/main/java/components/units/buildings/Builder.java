@@ -33,11 +33,6 @@ public class Builder extends Unit {
 		this.setFactor(Factor.getMyFactor());
 	}
 
-	protected Builder(Appearance appearance, int widthInTiles, int longInTiles) {
-		this(0, 0);
-		this.setAppearance(appearance);
-	}
-
 	public BasicBuilding build(int tileX, int tileY) {
 		return new BasicBuilding(this, tileX, tileY);
 	}

@@ -19,7 +19,7 @@ public class PanelBuilder {
 	public ControlPanel build(int x, int y) {
 		ControlPanel panel = new ControlPanel(getAppearance(), x, y);
 		panel.setZ(getZ());
-		panel.addButtons(getButtons());
+//		panel.addButtons(getButtons());
 		panel.setUnitShower(getUnitShower());
 		return panel;
 	}

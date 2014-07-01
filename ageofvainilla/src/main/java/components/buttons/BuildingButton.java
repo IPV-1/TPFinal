@@ -2,8 +2,8 @@ package components.buttons;
 
 import com.uqbar.vainilla.appearances.Appearance;
 import components.MouseHandler;
-import components.menus.panels.ControlPanel;
 import components.units.buildings.Builder;
+
 import config.Configuration;
 
 public class BuildingButton extends BasicAgeButton {
@@ -13,10 +13,6 @@ public class BuildingButton extends BasicAgeButton {
 	public BuildingButton(Builder builder, Appearance appearance, double x, double y) {
 		super(Configuration.getScaledDownButton(appearance), x, y);
 		setBuilder(builder);
-	}
-
-	public void onSceneActivated(ControlPanel panel) {
-		setScene(panel.getScene());
 	}
 
 	@Override

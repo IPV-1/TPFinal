@@ -15,7 +15,6 @@ import components.units.resources.Resource;
 public class UnitShower extends BasicAgeComponent {
 	private Label life;
 	private Label attack;
-	private Unit unit;
 	private ControlPanel panel;
 
 	public UnitShower(Appearance background) {
@@ -24,14 +23,9 @@ public class UnitShower extends BasicAgeComponent {
 		setAttack(new Label(new Font("verdana", Font.BOLD, 24), Color.RED, " - "));
 	}
 
-	@Override
-	public void render(Graphics2D graphics) {
+	public void render(Graphics2D graphics, Unit unit) {
 		super.render(graphics);
-		if (getPanel().getScene().getMouse().getSelected().size() == 1) {
-			Unit unit = getPanel().getScene().getMouse().getSelected().get(0);
-			
-			unit.renderInPanel(this, graphics);
-		}
+		unit.renderInPanel(this, graphics);
 	}
 
 	public void renderLife(Unit unit, Graphics2D graphics) {
@@ -93,14 +87,6 @@ public class UnitShower extends BasicAgeComponent {
 		this.attack = attack;
 	}
 
-	public Unit getUnit() {
-		return unit;
-	}
-
-	public void setUnit(Unit unit) {
-		this.unit = unit;
-	}
-
 	public void setPanel(ControlPanel panel) {
 		this.panel = panel;
 	}
@@ -108,4 +94,5 @@ public class UnitShower extends BasicAgeComponent {
 	public ControlPanel getPanel() {
 		return panel;
 	}
+	
 }

@@ -27,10 +27,8 @@ public class PanelFactory {
 	}
 
 	public ControlPanel downPanelFullWith() {
-		// TODO: this method is painful, so much.
-		// Isn't  worse colours?
 		int height = 100;
-		Appearance appearance = new Rectangle(Color.orange, Configuration.getDisplayWidth(), height);
+		
 		
 		Builder buildingBuilder = new Builder(1, 1);
 		Appearance buttonAp = new Circle(Color.red, 40);
@@ -51,8 +49,10 @@ public class PanelFactory {
 		getBuilder().withButton(new WarriorButton());
 		
 		UnitShower unitShower = UnitShowerFactory.createRectangle(200, Configuration.getDisplayHeight() - height, Configuration.getDisplayWidth() - 200, Configuration.getDisplayHeight() - height);
+		
+		Appearance appearance = new Rectangle(Color.orange, Configuration.getDisplayWidth(), height);
 		ControlPanel panel = getBuilder().withAppearance(appearance).withZ(9).withShower(unitShower).build(0, Configuration.getDisplayHeight() - height);
-		unitShower.setPanel(panel);
+
 		return panel;
 	}
 

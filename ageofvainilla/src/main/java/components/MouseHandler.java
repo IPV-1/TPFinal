@@ -146,4 +146,12 @@ public class MouseHandler extends BasicAgeComponent {
 		return unit instanceof Builder;
 	}
 
+	public Unit getSingleSelect() {
+		if(getScene() != null && getScene().getMouse().getSelected().size() == 1) {
+			return getScene().getMouse().getSelected().get(0);
+		}
+		
+		return new Flag();
+	}
+
 }
