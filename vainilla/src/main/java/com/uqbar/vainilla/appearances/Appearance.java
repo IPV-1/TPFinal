@@ -27,10 +27,6 @@ public interface Appearance {
 	public boolean collidesRect(double x, double y, double rx, double ry,
 			double rwidth, double rheight);
 
-	//TODO
-//	public boolean collidesTriangle(double x, double y, double tx, double ty,
-//			Triangle triangle);
-
 	// ****************************************************************
 	// ** GAME LOOP OPERATIONS
 	// ****************************************************************

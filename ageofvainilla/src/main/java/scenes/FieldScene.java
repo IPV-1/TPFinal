@@ -58,7 +58,6 @@ public class FieldScene extends GameScene {
 		}
 		
 		addResourceMenu(new ResourcesMenu());
-		//Comment this out for seeing control panel
 		addControlPanel();
 		
 		Builder.initialBuild(this);

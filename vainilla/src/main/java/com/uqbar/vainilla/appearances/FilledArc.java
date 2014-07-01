@@ -77,7 +77,6 @@ public class FilledArc implements Appearance {
 	@Override
 	public boolean collides(double x, double y, Appearance ap, double apX,
 			double apY) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -40,8 +40,6 @@ public class PathFinder {
 
 	public void findPath(int xFrom, int yFrom, int xTo, int yTo,
 			List<ImmutablePoint> path) {
-		// TODO if (xTo,yTo) is blocked and a close (x,y) is not but is
-		// unreachable, new calculation is needed
 		// Calculating x,y to go
 		if (xFrom != xTo || yFrom != yTo) {
 			int xT = xTo, yT = yTo;
@@ -119,7 +117,6 @@ public class PathFinder {
 
 	protected void findPathToCalculated(int xFrom, int yFrom, int xTo, int yTo,
 			List<ImmutablePoint> path) {
-		// TODO binary heaps
 		Node current = this.get(xFrom, yFrom);
 		current.clear();
 		this.getOpenList().clear();
@@ -154,7 +151,6 @@ public class PathFinder {
 						} else if (g < node.getG()) {
 							node.setParent(current);
 							node.setG(g);
-							// TODO reorder f
 						}
 					}
 					cost = cost == DIAGONAL_COST ? ORTHOGONAL_COST

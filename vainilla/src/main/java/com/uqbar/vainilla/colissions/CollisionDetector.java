@@ -122,21 +122,18 @@ public class CollisionDetector {
 	public boolean collidesCircleAgainstTriangle(double cx, double cy,
 			double cradius, double vertexX1, double vertexY1, double vertexX2,
 			double vertexY2, double vertexX3, double vertexY3) {
-		// TODO
 		return (Boolean) null;
 	}
 
 	public boolean collidesRectAgainstTriangle(double rx, double ry,
 			double rwidth, double rheight, double vertexX1, double vertexY1,
 			double vertexX2, double vertexY2, double vertexX3, double vertexY3) {
-		// TODO
 		return (Boolean) null;
 	}
 
 	public boolean collidesTriangleAgainstTriangle(double t1X1, double t1Y1,
 			double t1X2, double t1Y2, double t1X3, double t1Y3, double t2X1,
 			double t2Y1, double t2X2, double t2Y2, double t2X3, double t2Y3) {
-		// TODO
 		return (Boolean) null;
 	}
 
@@ -189,14 +186,12 @@ public class CollisionDetector {
 	public boolean collidesRectAgainstArc(double rx, double ry, double rwidth,
 			double rheight, double ax, double ay, double aradius,
 			double asangle, double aangle) {
-		// TODO reflection?
 		return (Boolean) null;
 	}
 
 	public boolean collidesTriangleAgainstArc(double t1X1, double t1Y1,
 			double t1X2, double t1Y2, double t1X3, double t1Y3, double ax,
 			double ay, double aradius, double asangle, double aangle) {
-		// TODO reflection?
 		return (Boolean) null;
 	}
 

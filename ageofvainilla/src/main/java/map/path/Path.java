@@ -28,7 +28,6 @@ public class Path {
 	protected Point destiny = new Point();
 	protected Unit following;
 
-	// TODO to remove
 	private Circle currentBreak;
 
 	public Path(MovingGameComponent component) {
@@ -62,8 +61,6 @@ public class Path {
 	
 	public boolean isTravelingToDestiny() {
 		return this.getPoints().size() > 1;
-		//this.getComponent().getX() * Tile.WIDTH != this.getDestiny().x ||
-				//this.getComponent().getY() * Tile.HEIGHT != this.getDestiny().y;
 	}
 
 	public void update2(DeltaState deltaState) {
@@ -93,7 +90,6 @@ public class Path {
 			ll.add(j, l.get(i));
 		}
 		this.setCurrentStep(0);
-		// TODO reuse the same list. first it will be cleaned then
 		this.setPoints(ll);
 		if (ll.size() > 1) {
 			this.setCurrentStep(1);
@@ -110,8 +106,7 @@ public class Path {
 				.getDirection()
 				.set(x - this.getComponent().getX(),
 						y - this.getComponent().getY());
-		this.getComponent().setSpeed(MovingUnit.SPEED); // TODO change state
-														// instead
+		this.getComponent().setSpeed(MovingUnit.SPEED);
 		this.currentBreak = new Circle(x + 2, y + 2, 4);
 		
 		Map map = this.getComponent().getScene().getMap();
@@ -133,45 +128,8 @@ public class Path {
 				this.setDestiny(this.getFollowing().getXTile(), this.getFollowing().getYTile());
 			}
 			this.setPathTo(this.getDestiny().x, this.getDestiny().y);
-			
-			/*
-			
-//			ImmutablePoint destination = this.destination();
-			
-//			boolean destinyOcuppied = this.getComponent().getScene().getMap()
-//					.isBlocked(destination.x, destination.y);
-				this.applyChangesOnMap();
-//				if(destinyOcuppied) {
-//					this.moveTo(destination);
-//				} else {
-					this.setCurrentStep(this.getCurrentStep() + 1);
-					if (!this.isTraveling()) {
-						this.getComponent().setSpeed(0);
-					} else {
-						this.moveTo(this.getMoveTo());
-					}
-				}
-//			}
-//			else {
-//				ImmutablePoint destination = this.destination();
-////				this.moveTo(destination);
-//				if(!this.getComponent().getScene().getMap()
-//						.isBlocked(destination.x, destination.y)) {
-//					this.moveTo(destination);
-//				} else {
-//					this.setPathToClosestFreeTileFrom(this.getMoveTo().x, this.getMoveTo().y);
-//				}
-//			} */
 		}
 	}
-	
-//	protected void setPathToClosestFreeTileFrom(int xTo, int yTo) {
-//		//TODO
-//		Point p = this.getComponent()
-//				.getScene()
-//				.getPathFinder().closestTo(xTo, yTo);
-//		this.setPathTo(p.x, p.y);
-//	}
 
 	public void setFree() {
 		Map map = this.getComponent().getScene().getMap();
@@ -206,7 +164,6 @@ public class Path {
 	}
 
 	public void stop() {
-		// TODO component should move to a valid tile position
 		this.setCurrentStep(this.getPoints().size());
 		this.getComponent().setSpeed(0);
 		this.stopFollowing();
