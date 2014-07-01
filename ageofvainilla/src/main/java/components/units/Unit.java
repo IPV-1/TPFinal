@@ -77,12 +77,16 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 
 		if (isDead()) {
 			// estado = muerto
+			this.kill();
 			this.getScene().getMouse().clearSelected();
-			this.removeFromMap();
-			this.destroy();
-			if (this.getFactor().isAlly()) {
-				this.getScene().decreaseAlly();
-			}
+		}
+	}
+	
+	public void kill() {
+		this.removeFromMap();
+		this.destroy();
+		if (this.getFactor().isAlly()) {
+			this.getScene().decreaseAlly();
 		}
 	}
 
