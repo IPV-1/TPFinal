@@ -18,8 +18,7 @@ import components.menus.panels.UnitShower;
 
 import config.Configuration;
 
-public abstract class Unit extends CameraRelativeComponent implements
-		Selectable {
+public abstract class Unit extends CameraRelativeComponent implements Selectable {
 
 	private int lifePoint = 1000;
 	private int powerAttack = 0;

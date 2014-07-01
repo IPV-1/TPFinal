@@ -39,11 +39,11 @@
 
     <entry key="withEnemyIA?">1</entry>
     
-	<entry key="movingUnitSpeed">200</entry>
+	<entry key="movingUnitSpeed">150</entry>
 	<entry key="unitHP">1000</entry>
 	<entry key="unitPA">10</entry>
 	
-	<entry key="enemyDelay">200</entry>
+	<entry key="enemyDelay">1200</entry>
 	<entry key="enemySubstractingDelay">50</entry>
 	<entry key="enemyMinimumDelay">20</entry>
 	
