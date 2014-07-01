@@ -159,7 +159,9 @@ public class Path {
 	}
 
 	public void lightStop() {
-		this.setDestiny(this.getMoveTo().x, this.getMoveTo().y);
+		if(this.isTravelingToDestiny()) {
+			this.setDestiny(this.getMoveTo().x, this.getMoveTo().y);
+		}
 	}
 
 	public boolean isFollowing() {
