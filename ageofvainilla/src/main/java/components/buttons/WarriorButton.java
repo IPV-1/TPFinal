@@ -27,12 +27,14 @@ public class WarriorButton extends BuildingButton {
 		int yTile = (int)coord.getY();
 		
 		Point createPos = new PathFinder(mouse.getScene().getMap()).closestTo(xTile, yTile);
+		if(createPos != null) {
 		
-		mouse.getScene().addComponent(this.getBuilder());
+			mouse.getScene().addComponent(this.getBuilder());
 		
-		this.getBuilder().buildIn((int)createPos.getX(), (int)createPos.getY());
+			this.getBuilder().buildIn((int)createPos.getX(), (int)createPos.getY());
 		
-		mouse.getScene().removeComponent(this.getBuilder());
+			mouse.getScene().removeComponent(this.getBuilder());
+		}
 	}
 
 }

@@ -43,15 +43,20 @@ public class EnemyController extends BasicAgeComponent {
 	protected void createEnemy() {
 		Point point = this.getScene().getPathFinder()
 				.closestTo(this.getSpawnPoint());
-		MovingUnit unit = MovingUnit.getEnemy(point);
-		this.getScene().addMovingUnit(unit);
-		unit.interact(this.getUnitToAttack());
+		if(point != null) {
+			MovingUnit unit = MovingUnit.getEnemy(point);
+			this.getScene().addMovingUnit(unit);
+			Unit u = this.getUnitToAttack();
+			if(u != null) {
+				unit.interact(u);
+			}
+		}
 	}
 
 	public Unit getUnitToAttack() {
 		Point point = this.getScene().getPathFinder()
 				.closestTo(Factor.BLUE, this.getSpawnPoint());
-		return this.getScene().getMap().get(point.x, point.y).getOcuppant();
+		return point != null ? this.getScene().getMap().get(point.x, point.y).getOcuppant() : null;
 	}
 
 	public int getPc() {

@@ -20,10 +20,13 @@ public class PathFinder {
 
 	protected List<Node> openList = new ArrayList<Node>();
 	protected List<Node> closedList = new ArrayList<Node>();
+	
+	protected int limit;
 
 	public PathFinder(Map map) {
 		super();
 		this.setMap(map);
+		this.setLimit(Math.max(map.getTileWidth(), map.getTileHeight()));
 	}
 
 	protected void setMap(Map map) {
@@ -45,8 +48,10 @@ public class PathFinder {
 			int xT = xTo, yT = yTo;
 			if (this.getMap().isBlocked(xT, yT)) {
 				Point p = this.closestTo(xTo, yTo);
-				xT = p.x;
-				yT = p.y;
+				if(p != null) {
+					xT = p.x;
+					yT = p.y;
+				}
 			}
 			if (this.getH(xT, yT, xTo, yTo) < this.getH(xFrom, yFrom, xTo, yTo)) {
 				this.findPathToCalculated(xFrom, yFrom, xT, yT, path);
@@ -74,6 +79,9 @@ public class PathFinder {
 		int y = yT - 1;
 		int x = xT;
 		search: for (int m = 0;; m++) {
+			if(m > this.getLimit()) {
+				return null;
+			}
 			y = yT - (m + 1);
 			x = xT - m;
 			for (int i = 0; i < 2; i++) {
@@ -224,6 +232,14 @@ public class PathFinder {
 
 	protected List<Node> getClosedList() {
 		return closedList;
+	}
+
+	protected int getLimit() {
+		return limit;
+	}
+
+	protected void setLimit(int limit) {
+		this.limit = limit;
 	}
 
 }
