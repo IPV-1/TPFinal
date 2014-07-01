@@ -1,5 +1,6 @@
 package scenes;
 
+import scenes.statics.LoseScene;
 import map.Map;
 import map.path.PathFinder;
 import map.tiles.Tile;
@@ -122,6 +123,13 @@ public class FieldScene extends GameScene {
 	
 	public void decreaseAlly() {
 		this.setAllies(this.getAllies() - 1);
+		if(this.getAllies() == 0) {
+			this.lose();
+		}
+	}
+	
+	public void lose() {
+		this.getGame().setCurrentScene(new LoseScene(this.getGame()));
 	}
 	    
     public Map getMap() {

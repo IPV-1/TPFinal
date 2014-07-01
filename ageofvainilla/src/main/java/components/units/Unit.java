@@ -15,11 +15,12 @@ import components.menus.panels.UnitShower;
 
 import config.Configuration;
 
-public abstract class Unit extends CameraRelativeComponent implements Selectable {
+public abstract class Unit extends CameraRelativeComponent implements
+		Selectable {
 
 	private int lifePoint = 1000;
 	private int powerAttack = 0;
-	
+
 	private Factor factor;
 
 	public Unit() {
@@ -33,22 +34,24 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	public Unit(double x, double y) {
 		super(x, y);
 	}
-	
+
 	public boolean isEnemy(Unit unit) {
 		return this.getFactor().isEnemy(unit.getFactor());
 	}
-	
+
 	public boolean isResource(Unit unit) {
 		return this.getFactor().isResource();
 	}
 
 	public void interactedBy(Unit unit, DeltaState deltaState) {
-		if(this.isEnemy(unit) && !unit.isDead() && !this.isDead()) {
-			this.decrementLife((int) (unit.getPowerAttack() * deltaState.getDelta() * 32));
-	
-			if(!this.isDead()) {
-				unit.decrementLife((int) (this.getPowerAttack() * deltaState.getDelta() * 32));
-				if(unit.isDead()) {
+		if (this.isEnemy(unit) && !unit.isDead() && !this.isDead()) {
+			this.decrementLife((int) (unit.getPowerAttack()
+					* deltaState.getDelta() * 32));
+
+			if (!this.isDead()) {
+				unit.decrementLife((int) (this.getPowerAttack()
+						* deltaState.getDelta() * 32));
+				if (unit.isDead()) {
 					this.hasKilled(unit);
 				}
 			} else {
@@ -59,53 +62,53 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 		}
 	}
 
-	public void hasKilled(Unit unit){
-		if(unit.getFactor().isAlly()) {
-			this.getScene().decreaseAlly();
-		}
+	public void hasKilled(Unit unit) {
 	}
 
 	public void setFree() {
 		this.getScene().getMap().setFree(this.getXTile(), this.getYTile());
 	}
-	
+
 	public void decrementLife(int points) {
 		this.setLifePoint(this.getLifePoint() - points);
 
-		if(isDead()) {
+		if (isDead()) {
 			// estado = muerto
 			this.removeFromMap();
 			this.destroy();
+			if (this.getFactor().isAlly()) {
+				this.getScene().decreaseAlly();
+			}
 		}
 	}
-	
+
 	public boolean isMoving() {
-		return this.getX() / Tile.WIDTH % 1 != 0 ||
-				this.getY() / Tile.HEIGHT % 1 != 0;
+		return this.getX() / Tile.WIDTH % 1 != 0
+				|| this.getY() / Tile.HEIGHT % 1 != 0;
 	}
 
 	public boolean isDead() {
 		return this.getLifePoint() <= 0;
 	}
-	
+
 	public int getXTile() {
 		return (int) (this.getX() / Tile.WIDTH);
 	}
-	
+
 	public int getYTile() {
 		return (int) (this.getY() / Tile.HEIGHT);
 	}
-	
+
 	@Override
 	public void seleccionate(MouseHandler mouse, DeltaState deltaState) {
-		
-		if(deltaState.isKeyBeingHold(Key.CTRL) && !mouse.isSelected(this)) {
+
+		if (deltaState.isKeyBeingHold(Key.CTRL) && !mouse.isSelected(this)) {
 			mouse.addSelected(this);
 		} else {
 			mouse.singleSelect(this);
 		}
 	}
-	
+
 	@Override
 	public void seleccionate(MouseHandler mouse) {
 		mouse.singleSelect(this);
@@ -138,20 +141,21 @@ public abstract class Unit extends CameraRelativeComponent implements Selectable
 	public void setFactor(Factor factor) {
 		this.factor = factor;
 	}
-	
+
 	public void removeFromMap() {
-		getScene().getMap().setFree((int)(this.getX() / Tile.WIDTH), (int)(this.getY() / Tile.HEIGHT));
+		getScene().getMap().setFree((int) (this.getX() / Tile.WIDTH),
+				(int) (this.getY() / Tile.HEIGHT));
 	}
 
 	public void renderInPanel(UnitShower panel, Graphics2D graphics) {
 		panel.renderLife(this, graphics);
 		panel.renderAttack(this, graphics);
 	}
-	
+
 	public Double getFarmSpeed() {
 		return Configuration.getValue("farmPerMinute_unit");
 	}
-	
+
 	public Appearance getScaledAppearance(Appearance appearance) {
 		return Configuration.getScaledAppearance(appearance);
 	}

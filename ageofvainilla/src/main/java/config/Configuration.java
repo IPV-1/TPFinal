@@ -63,6 +63,9 @@ public class Configuration {
 		addValue("unitPA");
 		
 		addValue("enemyDelay");
+		addValue("enemySubstractingDelay");
+		addValue("enemyMinimumDelay");
+		
 		addValue("enemySpawnX");
 		addValue("enemySpawnY");
 		
