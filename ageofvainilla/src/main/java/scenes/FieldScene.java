@@ -31,7 +31,6 @@ public class FieldScene extends GameScene {
 	private MouseHandler mouse = new MouseHandler();
 	public MovingUnit initialUnit2 = MovingUnit.getAlly(3, 3);
 	public MovingUnit initialUnit1 = MovingUnit.getAlly(8, 3);
-	public MovingUnit enemyUnit1 = MovingUnit.getEnemy(20, 20);
 	
 	private int allies = 0;
 
@@ -48,7 +47,6 @@ public class FieldScene extends GameScene {
         
         this.addMovingUnit(initialUnit1);
         this.addMovingUnit(initialUnit2);
-        this.addMovingUnit(enemyUnit1);
 
         this.addComponent(this.getMouse());
         
